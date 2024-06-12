@@ -1,0 +1,30 @@
+{
+  "name": "note-stickers",
+  "version": "0.0.1",
+  "description": "an unshared version of \"shareable-note-stickers\"",
+  "keywords": [],
+  "author": "Andreas Rozek <a.rozek@gmx.de> (https://www.rozek.de/)",
+  "license": "MIT",
+  "homepage": "https://github.com/rozek/note-stickers#readme",
+  "bugs": {
+    "url": "https://github.com/rozek/note-stickers/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "rimraf dist && tsc && vite build --sourcemap true --assetsDir .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rozek/note-stickers.git"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6"
+  },
+  "dependencies": {
+    "shareable-note-stickers": "^0.0.4",
+    "sns-boardview": "^0.0.1"
+  }
+}
