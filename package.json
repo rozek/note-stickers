@@ -29,7 +29,7 @@
     "localforage": "^1.10.0",
     "preact": "^10.22.0",
     "protoux": "^0.0.24",
-    "shareable-note-stickers": "^0.0.4",
-    "sns-boardview": "^0.0.1"
+    "shareable-note-stickers": "^0.0.5",
+    "sns-boardview": "^0.0.2"
   }
 }
