@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  build: {  	
+  build: {
+  	sourcemap:true,
   	rollupOptions: {
       output: {
         entryFileNames: `[name].js`,
