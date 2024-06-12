@@ -9,36 +9,33 @@
   import {
     quoted,
     ValuesAreEqual, ValuesDiffer,
-    ValueIsTextline, ValueIsArray, ValueIsURL,
-    expectTextline,
-    expectPlainObject,
+    ValueIsArray,
     expectListSatisfying,
-    expectURL
   } from 'javascript-interface-library'
 
   import localforage from 'localforage'
 
-  import { render, html, Component } from 'htm/preact'
+  import { html } from 'htm/preact'
 
   import {
     throwError, throwReadOnlyError,
-    ValueIsProject, ValueIsBoard, ValueIsSticker, ValueIsVisual, ValueIsFolder,
-    ValueIsName, ValueIsIdentifier, ValueIsError,
+    ValueIsBoard,
+    ValueIsName, ValueIsError,
     SNS_Id, SNS_Name, SNS_Identifier,
     SNS_Ordinal, SNS_Text, SNS_Textline, SNS_Color, SNS_URL,
     SNS_Geometry, SNS_FontStyle, SNS_Error,
     SNS_Visual, SNS_Folder, SNS_Project, SNS_Board, SNS_Sticker,
     newId, removeIdsFrom, SNS_Change,
     TemplateOfBehavior,
-    SNS_groupedBehaviorEntryList, SNS_BehaviorEntryGroup, SNS_BehaviorEntry,
+    SNS_BehaviorEntryGroup, SNS_BehaviorEntry,
     groupedBehaviorEntryList,
   } from 'shareable-note-stickers'
   import { SNS_BoardView } from 'sns-boardview'
 
   import {
     ProtoUX,
-    DragRecognizerFor, DragClickRecognizerFor,
-    observe, computed, dispose
+    DragClickRecognizerFor,
+    computed,
   } from 'protoux'
 
 /**** make some existing types indexable ****/
@@ -52,9 +49,6 @@
   type serializableObject = { [Key:string]:serializableValue }
   type serializableArray  = serializableValue[]
   type Serializable       = serializableObject
-
-
-  let isRunning:boolean = false  // withhold "computed" callbacks during startup
 
 //------------------------------------------------------------------------------
 //--                         Properties and Defaults                          --
@@ -396,20 +390,20 @@
     )}
   `
 
-  function OptionsForBehaviors (BehaviorEntryList:SNS_BehaviorEntry[]):HTMLElement {
+  function OptionsForBehaviors (BehaviorEntryList:SNS_BehaviorEntry[]):any {
     return html`${BehaviorEntryList.map(
       (BehaviorEntry:SNS_BehaviorEntry) => OptionForBehavior(BehaviorEntry)
     )}`
   }
 
-  function OptionForBehavior (BehaviorEntry:SNS_BehaviorEntry):HTMLElement {
+  function OptionForBehavior (BehaviorEntry:SNS_BehaviorEntry):any {
     const { Name, Label, disabled } = BehaviorEntry
     return html`<option value=${Name} disabled=${disabled}>${Label}</>`
   }
 
 /**** AppletGeneratorOptions ****/
 
-  function AppletGeneratorOptions (StickerList:SNS_Sticker[]):HTMLElement {
+  function AppletGeneratorOptions (StickerList:SNS_Sticker[]):any {
     const noStickers = (StickerList.length === 0)
 
     return html`
@@ -1297,6 +1291,7 @@ window['PUX'] = PUX // just for testing
             Style:'left:0px; top:0px; right:0px; bottom:0px; width:auto; height:auto',
             Substitute:BoardView,
             Rendering:updatedFrom(() => {                 // just a few triggers
+// @ts-ignore TS6198 important: accessing the following prop.s is relevant!
               const { Mode,ViewState,selectedStickers } = Application
             }),
           },
@@ -1345,33 +1340,33 @@ window['PUX'] = PUX // just for testing
           ProjectOpenButton: {
             disabled:updatedFrom(() => (
               (Application.selectedProjectIndex == null)) ||
-              ProjectIsOpen(Application.selectedProjectName)
+              ProjectIsOpen(Application.selectedProjectName as string)
             ),
-            onClick:() => doOpenProject(Application.selectedProjectName),
+            onClick:() => doOpenProject(Application.selectedProjectName as string),
           },
           ProjectPurgeButton: {
             disabled:updatedFrom(() => (
               (Application.selectedProjectIndex == null)) ||
-              ProjectIsOpen(Application.selectedProjectName)
+              ProjectIsOpen(Application.selectedProjectName as string)
             ),
-            onClick:() => doPurgeProject(Application.selectedProjectName),
+            onClick:() => doPurgeProject(Application.selectedProjectName as string),
           },
           ProjectNameInput: {
             Value:updatedFrom(() => Application.ProjectName),
             onInput:(Event:any) => Application.ProjectName = Event.target.value,
           },
           ProjectCreateButton: {
-            disabled:updatedFrom(() => ! ProjectNameIsAvailable(Application.ProjectName)),
-            onClick:() => doCreateProject(Application.ProjectName),
+            disabled:updatedFrom(() => ! ProjectNameIsAvailable(Application.ProjectName as string)),
+            onClick:() => doCreateProject(Application.ProjectName as string),
           },
           ProjectRenameButton: {
             disabled:updatedFrom(() => (
               (Application.selectedProjectIndex == null) ||
-              ProjectIsOpen(Application.selectedProjectName) ||
-              ! ProjectNameIsAvailable(Application.ProjectName)
+              ProjectIsOpen(Application.selectedProjectName as string) ||
+              ! ProjectNameIsAvailable(Application.ProjectName as string)
             )),
             onClick:() => doRenameProject(
-              Application.selectedProjectName,Application.ProjectName
+              Application.selectedProjectName as string, Application.ProjectName as string
             ),
           },
         },
@@ -1561,7 +1556,7 @@ window['PUX'] = PUX // just for testing
               (Application.BoardTree.length === 0) ||
               (Application.chosenBoard === Application.BoardTree[0])
             )),
-            onClick:() => doVisitBoard(Application.Project.Board(0)),
+            onClick:() => doVisitBoard(Application.Project?.Board(0)),
           },
           SearchButton: {
             disabled:true,
@@ -1581,15 +1576,18 @@ window['PUX'] = PUX // just for testing
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Options:updatedFrom(() => AppletGeneratorOptions(Application.selectedStickers)),
             onInput:(Event:any) => {
+              const chosenBoard = Application.chosenBoard
+              if (chosenBoard == null) { return }
+
               const [ Source,Mode ] = Event.target.value.split(':')
                 Event.target.value = ''
               switch (Source) {
                 case 'Board':
-                  return doGenerateAppletFromBoard(Application.chosenBoard,Mode)
+                  return doGenerateAppletFromBoard(chosenBoard,Mode)
                 case 'Boards':
-                  return doGenerateAppletFromBoardAndSuccessors(Application.chosenBoard,Mode)
+                  return doGenerateAppletFromBoardAndSuccessors(chosenBoard,Mode)
                 case 'Stickers': default:
-                  return doGenerateAppletFromBoard(Application.chosenBoard,Mode)
+                  return doGenerateAppletFromStickers(Application.selectedStickers,Mode)
               }
             },
           },
@@ -1740,8 +1738,10 @@ window['PUX'] = PUX // just for testing
             onInput:(Event:any) => {
               switch (Application.ValueEditorMode) {
                 case 'Project':
+                  if (Application.Project == null) { return }
                   return doConfigureProject(Application.Project,'editableValue',Event.target.value)
                 case 'Board':
+                  if (Application.chosenBoard == null) { return }
                   return doConfigureBoard(Application.chosenBoard,'editableValue',Event.target.value)
                 case 'Stickers': default:
                   return doConfigureStickers(Application.selectedStickers,'editableValue',Event.target.value)
@@ -1813,8 +1813,10 @@ window['PUX'] = PUX // just for testing
             onInput:(Event:any) => {
               switch (Application.ScriptEditorMode) {
                 case 'Project':
+                  if (Application.Project == null) { return }
                   return doConfigureProject(Application.Project,'pendingScript',Event.target.value)
                 case 'Board':
+                  if (Application.chosenBoard == null) { return }
                   return doConfigureBoard(Application.chosenBoard,'pendingScript',Event.target.value)
                 case 'Stickers': default:
                   return doConfigureStickers(Application.selectedStickers,'pendingScript',Event.target.value)
@@ -1833,8 +1835,10 @@ window['PUX'] = PUX // just for testing
             onClick:() => {
               switch (Application.ScriptEditorMode) {
                 case 'Project':
+                  if (Application.Project == null) { return }
                   return doApplyProjectScript(Application.Project)
                 case 'Board':
+                  if (Application.chosenBoard == null) { return }
                   return doApplyBoardScript(Application.chosenBoard)
                 case 'Stickers': default:
                   return doApplyStickerScript(Application.selectedStickers)
@@ -1846,8 +1850,10 @@ window['PUX'] = PUX // just for testing
             onClick:() => {
               switch (Application.ScriptEditorMode) {
                 case 'Project':
+                  if (Application.Project == null) { return }
                   return doWithdrawProjectScript(Application.Project)
                 case 'Board':
+                  if (Application.chosenBoard == null) { return }
                   return doWithdrawBoardScript(Application.chosenBoard)
                 case 'Stickers': default:
                   return doWithdrawStickerScript(Application.selectedStickers)
@@ -2012,6 +2018,8 @@ window['PUX'] = PUX // just for testing
             SelectionLimit: Number.MAX_SAFE_INTEGER,
             onSelectionChange:(selectedIndices) => {
               const chosenBoard = Application.chosenBoard
+              if (chosenBoard == null) { return }
+
               Application.selectedStickers = selectedIndices.map((Index:number) => chosenBoard.Sticker(Index))
             },
           },
@@ -2070,72 +2078,108 @@ window['PUX'] = PUX // just for testing
           SnapToGridCheck: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => BooleanFor(Application.ProjectProperties.SnapToGrid)),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'SnapToGrid',Event.target.checked),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'SnapToGrid',Event.target.checked)
+            },
           },
           GridWidthInput:  {
             min:0, step:1,
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => IntegerFor(Application.ProjectProperties.GridWidth)),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'GridWidth',parseInt(Event.target.value,10)),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'GridWidth',parseInt(Event.target.value,10))
+            },
           },
           GridHeightInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => IntegerFor(Application.ProjectProperties.GridHeight)),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'GridHeight',parseInt(Event.target.value,10)),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'GridHeight',parseInt(Event.target.value,10))
+            },
           },
           FontFamilyInput: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.FontFamily)),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'FontFamily',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'FontFamily',Event.target.value)
+            },
           },
           FontSizeInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => IntegerFor(Application.ProjectProperties.FontSize)),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'FontSize',parseInt(Event.target.value,10)),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'FontSize',parseInt(Event.target.value,10))
+            },
           },
           BoldCheck: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => BooleanFor(Application.ProjectProperties.FontWeight,700)),
-            onInput:(Event:any) => doConfigureProject(
-              Application.Project,'FontWeight',Event.target.checked ? 700 : 400
-            ),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(
+                Application.Project,'FontWeight',Event.target.checked ? 700 : 400
+              )
+            },
           },
           ItalicCheck: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => BooleanFor(Application.ProjectProperties.FontStyle,'italic')),
-            onInput:(Event:any) => doConfigureProject(
-              Application.Project,'FontStyle',Event.target.checked ? 'italic' : 'normal'
-            ),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(
+                Application.Project,'FontStyle',Event.target.checked ? 'italic' : 'normal'
+              )
+            },
           },
           TextColorInput: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.ForegroundColor)),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'ForegroundColor',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'ForegroundColor',Event.target.value)
+            },
           },
           LineHeightInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => IntegerFor(Application.ProjectProperties.LineHeight)),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'LineHeight',parseInt(Event.target.value,10)),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'LineHeight',parseInt(Event.target.value,10))
+            },
           },
           BackgroundColorInput: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.BackgroundColor)),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'BackgroundColor',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'BackgroundColor',Event.target.value)
+            },
           },
           TextureInput: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.BackgroundTexture)),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'BackgroundTexture',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'BackgroundTexture',Event.target.value)
+            },
           },
           ValueInput: {
             Style:'min-height:100px',
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.editableValue)),
             Placeholder:updatedFrom(() => '(enter a value for the currently active board)'),
-            onInput:(Event:any) => doConfigureProject(Application.Project,'editableValue',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.Project == null) { return }
+              doConfigureProject(Application.Project,'editableValue',Event.target.value)
+            },
           },
           ValueEditorButton: {
             onClick:(Event:PointerEvent) => {
@@ -2154,77 +2198,116 @@ window['PUX'] = PUX // just for testing
           NameInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.Name)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'Name',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'Name',Event.target.value)
+            },
           },
           SnapToGridCheck: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => BooleanFor(Application.BoardProperties.SnapToGrid)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'SnapToGrid',Event.target.checked),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'SnapToGrid',Event.target.checked)
+            },
           },
           GridWidthInput:  {
             min:0, step:1,
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => IntegerFor(Application.BoardProperties.GridWidth)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'GridWidth',parseInt(Event.target.value,10)),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'GridWidth',parseInt(Event.target.value,10))
+            },
           },
           GridHeightInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => IntegerFor(Application.BoardProperties.GridHeight)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'GridHeight',parseInt(Event.target.value,10)),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'GridHeight',parseInt(Event.target.value,10))
+            },
           },
           FontFamilyInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.FontFamily)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'FontFamily',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'FontFamily',Event.target.value)
+            },
           },
           FontSizeInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => IntegerFor(Application.BoardProperties.FontSize)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'FontSize',parseInt(Event.target.value,10)),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'FontSize',parseInt(Event.target.value,10))
+            },
           },
           BoldCheck: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => BooleanFor(Application.BoardProperties.FontWeight,700)),
-            onInput:(Event:any) => doConfigureBoard(
-              Application.chosenBoard,'FontWeight',Event.target.checked ? 700 : 400
-            ),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(
+                Application.chosenBoard,'FontWeight',Event.target.checked ? 700 : 400
+              )
+            },
           },
           ItalicCheck: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => BooleanFor(Application.BoardProperties.FontStyle,'italic')),
-            onInput:(Event:any) => doConfigureBoard(
-              Application.chosenBoard,'FontStyle',Event.target.checked ? 'italic' : 'normal'
-            ),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(
+                Application.chosenBoard,'FontStyle',Event.target.checked ? 'italic' : 'normal'
+              )
+            },
           },
           TextColorInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.ForegroundColor)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'ForegroundColor',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'ForegroundColor',Event.target.value)
+            },
           },
           LineHeightInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => IntegerFor(Application.BoardProperties.LineHeight)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'LineHeight',parseInt(Event.target.value,10)),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'LineHeight',parseInt(Event.target.value,10))
+            },
           },
           BackgroundColorInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.BackgroundColor)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'BackgroundColor',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'BackgroundColor',Event.target.value)
+            },
           },
           TextureInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.BackgroundTexture)),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'BackgroundTexture',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'BackgroundTexture',Event.target.value)
+            },
           },
           ValueInput: {
             Style:'min-height:100px',
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.editableValue)),
             Placeholder:updatedFrom(() => '(enter a value for the currently active board)'),
-            onInput:(Event:any) => doConfigureBoard(Application.chosenBoard,'editableValue',Event.target.value),
+            onInput:(Event:any) => {
+              if (Application.chosenBoard == null) { return }
+              doConfigureBoard(Application.chosenBoard,'editableValue',Event.target.value)
+            },
           },
           ValueEditorButton: {
             onClick:(Event:PointerEvent) => {
@@ -2536,16 +2619,16 @@ window['PUX'] = PUX // just for testing
     let Folder:SNS_Folder, Index:number
 
     if (BoardList.length > 0) {
-      Folder = BoardList[0].Folder
+      Folder = BoardList[0].Folder as SNS_Folder
       Index  = bottommostIndexOfBoards(BoardList)+1
     } else {
       const chosenBoard = Application.chosenBoard
       if (chosenBoard == null) {
-        Folder = Application.Project
+        Folder = Application.Project as SNS_Folder
         Index  = 0
       } else {
-        Folder = Application.chosenBoard.Folder
-        Index  = Application.chosenBoard.Index+1
+        Folder = chosenBoard.Folder as SNS_Folder
+        Index  = chosenBoard.Index+1
       }
     }
 
@@ -2599,25 +2682,27 @@ window['PUX'] = PUX // just for testing
 /**** doShiftBoardsIn ****/
 
   function doShiftBoardsIn (BoardList:SNS_Board[]):void {
-    const Folder:SNS_Folder        = commonFolderOfBoards(BoardList) // may fail!
-    const sortedBoards:SNS_Board[] = BoardsSortedByIndex(BoardList)
-    const TargetFolder:SNS_Folder  = Folder.Board(bottommostIndexOfBoards(BoardList)+1)
+    const Folder:SNS_Folder                 = commonFolderOfBoards(BoardList) // may fail!
+    const sortedBoards:SNS_Board[]          = BoardsSortedByIndex(BoardList)
+    const TargetFolder:SNS_Folder|undefined = Folder.Board(bottommostIndexOfBoards(BoardList)+1)
+      if (TargetFolder == null) { return }
 
     doOperation(new SNS_BoardMoveOperation(
       Folder,sortedBoards, TargetFolder,0
     ))
 
-    if (Application.expandedBoards.indexOf(TargetFolder) < 0) {
-      Application.expandedBoards = Application.expandedBoards.concat(TargetFolder)
+    if (Application.expandedBoards.indexOf(TargetFolder as SNS_Board) < 0) {
+      Application.expandedBoards = Application.expandedBoards.concat(TargetFolder as SNS_Board)
     }
   }
 
 /**** doShiftBoardsOut ****/
 
   function doShiftBoardsOut (BoardList:SNS_Board[]):void {
-    const Folder:SNS_Folder        = commonFolderOfBoards(BoardList)
-    const sortedBoards:SNS_Board[] = BoardsSortedByIndex(BoardList)
-    const TargetFolder:SNS_Folder  = Folder.Folder
+    const Folder:SNS_Folder                 = commonFolderOfBoards(BoardList)
+    const sortedBoards:SNS_Board[]          = BoardsSortedByIndex(BoardList)
+    const TargetFolder:SNS_Folder|undefined = Folder.Folder
+      if (TargetFolder == null) { return }
 
     doOperation(new SNS_BoardMoveOperation(
       Folder,sortedBoards, TargetFolder,Folder.Index
@@ -2659,7 +2744,9 @@ window['PUX'] = PUX // just for testing
 /**** doCreateNewSticker ****/
 
   function doCreateNewSticker (BehaviorName:SNS_Identifier):void {
-    const Board            = Application.chosenBoard
+    const Board = Application.chosenBoard
+    if (Board == null) { return }
+
     const selectedStickers = Application.selectedStickers
 
     const Index = (selectedStickers.length === 0
@@ -2676,6 +2763,7 @@ window['PUX'] = PUX // just for testing
 
   function doDuplicateStickers (StickerList:SNS_Sticker[]):void {
     const Board = Application.chosenBoard
+    if (Board == null) { return }
 
     const Serializations:Serializable[] = StickersSortedByIndex(StickerList).map(
       (Sticker:SNS_Sticker) => Sticker.Serialization
@@ -2767,7 +2855,9 @@ window['PUX'] = PUX // just for testing
   function doShiftStickersDown (StickerList:SNS_Sticker[]):void {
     const sortedStickers:SNS_Sticker[] = StickersSortedByIndex(StickerList)
 
-    const Board:SNS_Board    = commonBoardOfStickers(StickerList)
+    const Board:SNS_Board|undefined = commonBoardOfStickers(StickerList)
+    if (Board == null) { return }
+
     const newIndex:number    = Math.min(bottommostIndexOfStickers(StickerList)+1,Board.StickerCount-1)+1-StickerList.length
     const IndexList:number[] = sortedStickers.map((_:any,i:number) => newIndex+i)
 
@@ -2779,14 +2869,16 @@ window['PUX'] = PUX // just for testing
   function doShiftStickersToBottom (StickerList:SNS_Sticker[]):void {
     const sortedStickers:SNS_Sticker[] = StickersSortedByIndex(StickerList)
 
-    const Board:SNS_Board    = commonBoardOfStickers(StickerList)
+    const Board:SNS_Board|undefined = commonBoardOfStickers(StickerList)
+    if (Board == null) { return }
+
     const newIndex:number    = Board.StickerCount-StickerList.length
     const IndexList:number[] = sortedStickers.map((_:any,i:number) => newIndex+i)
 
     doOperation(new SNS_StickerShiftOperation(sortedStickers,IndexList))
   }
 
-/**** doShiftStickers ****/
+/**** doShiftStickers **** /
 
   function doShiftStickers (StickerList:SNS_Sticker[], IndexList:number[]):void {
     const Auxiliary:Indexable[] = StickerList.map(
@@ -2806,7 +2898,7 @@ window['PUX'] = PUX // just for testing
 
     doOperation(new SNS_StickerShiftOperation(sortedStickers,sortedIndices))
   }
-
+*/
 /**** doDeleteStickers ****/
 
   function doDeleteStickers (StickerList:SNS_Sticker[]):void {
@@ -2854,6 +2946,7 @@ window['PUX'] = PUX // just for testing
     if (! Application.ShelfIsFilled) { return }
 
     const Board = Application.chosenBoard
+    if (Board == null) { return }
 
     doOperation(new SNS_StickerDeserializationOperation(
       Board, Shelf.slice(), Board.StickerCount
@@ -2866,6 +2959,7 @@ window['PUX'] = PUX // just for testing
     if (! Application.ShelfIsFilled) { return }
 
     const Board = Application.chosenBoard
+    if (Board == null) { return }
 
     doOperation(new SNS_StickerDeserializationOperation(
       Board, Shelf.slice(), Board.StickerCount
@@ -2931,7 +3025,9 @@ window['PUX'] = PUX // just for testing
           let FileValue = (new TextDecoder()).decode(Reader.result as ArrayBuffer)
 console.log('Reader.onload')
           const chosenProject = Application.Project
-          const chosenBoard   = Application.chosenBoard
+          if (chosenProject == null) { return }
+
+          const chosenBoard = Application.chosenBoard
           try {
             let Serialization:Serializable = JSON.parse(FileValue)
             if (ValueIsArray(Serialization)) {
@@ -2970,6 +3066,7 @@ console.log('Reader.onload')
 
               removeIdsFrom(Serialization) // assign new ids to board & stickers
 
+// @ts-ignore TS18048 "Folder" is not null
               const importedBoard = Folder.BoardDeserializedAt(Serialization,Index)
               importedBoard.recursivelyActivateAllScripts()
 
@@ -3016,6 +3113,8 @@ console.log('Reader.onload')
       switch (Scope) {
         case 'whole Project':
           const Project = Application.Project
+          if (Project == null) { return }
+
           FileName   = Project.Name || 'SNS-Project'
           JSONObject = Project.Serialization
           break
@@ -3350,7 +3449,8 @@ window['Project'] = Application.Project // just for testing
         Application.PersistenceState = 'idle'
       } catch (Signal:any) {
         throwError(
-          'PersistsnceFailure: could not persist project ' + quoted(Project.Name)
+          'PersistenceFailure: could not persist project ' +
+          quoted(Project.Name as string)
         )
         Application.PersistenceState = 'failed'
       }
@@ -3375,7 +3475,7 @@ window['Project'] = Application.Project // just for testing
   function ProjectIsOpen (Name:string):boolean {
     return (
       (Application.Project != null) &&
-      (Application.Project.Name.toLowerCase() !== Name.toLowerCase())
+      ((Application.Project.Name as string).toLowerCase() !== Name.toLowerCase())
     )
   }
 
@@ -3390,15 +3490,14 @@ window['Project'] = Application.Project // just for testing
 //    case 'createBoard':    // Board
       case 'attachBoard':    // Board, Folder, Index
       case 'detachBoard':    // Board, Folder, Index
-        Application.BoardTree = Application.Project.BoardList
+        Application.BoardTree = Project.BoardList
         Application.BoardTreeState++
         return
       case 'configureFolder': // Board, Property, Value
         if (ArgList[1] === 'Name') { Application.BoardTreeState++ }
-console.log('configureFolder',...ArgList)
         switch (ArgList[0]) {
           case Application.Project:
-            Application.ProjectProperties = PropertiesOfProject(Application.Project)
+            Application.ProjectProperties = PropertiesOfProject(Project)
             Application.BoardProperties   = PropertiesOfBoard(Application.chosenBoard)
             Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers)
             Application.ViewState++
@@ -3422,12 +3521,11 @@ console.log('configureFolder',...ArgList)
       case 'attachSticker': // Sticker, Board, Index
       case 'detachSticker': // Sticker, Board, Index
         if (ArgList[1] === Application.chosenBoard) {
-          Application.StickerList = Application.chosenBoard.StickerList
+          Application.StickerList = (Application.chosenBoard as SNS_Board).StickerList
           Application.ViewState++
         }
         return
       case 'configureSticker': // Sticker, Property, Value
-console.log('configureSticker',...ArgList)
         if (ArgList[0].Board === Application.chosenBoard) {
           const selectedStickers = Application.selectedStickers
 
@@ -3447,7 +3545,7 @@ console.log('configureSticker',...ArgList)
 /**** ProjectRenderCallback ****/
 
   function ProjectRenderCallback (
-    Project:SNS_Project, Board:SNS_Board, Sticker:SNS_Sticker
+    Project:SNS_Project, Board:SNS_Board|undefined, Sticker:SNS_Sticker|undefined
   ):void {
     if ((Board === Application.chosenBoard) || (Application.chosenBoard == null)) {
       BoardViewWidget.rerender()
@@ -3478,6 +3576,7 @@ console.log('configureSticker',...ArgList)
     }
 
     try {
+// @ts-ignore TS6133 "commonFolderOfBoards" checks common folder
       const Folder:SNS_Folder = commonFolderOfBoards(BoardList)     // may fail!
 
       const BoardSet:Set<SNS_Board> = new Set()
@@ -3509,7 +3608,7 @@ console.log('configureSticker',...ArgList)
       return
     }
 
-    const StickerSet = new Set()
+    const StickerSet:Set<SNS_Sticker> = new Set()
       const chosenBoard = Application.chosenBoard
 
       StickerList.forEach((Sticker:SNS_Sticker) => {
@@ -3832,7 +3931,7 @@ console.log('configureSticker',...ArgList)
     if (Mode === 'standalone') {
       downloadStandaloneApplet(AppletName, AppletSerialization)
     } else {
-      downloadStandaloneApplet(AppletName, AppletSerialization)
+      downloadEmbeddableApplet(AppletName, AppletSerialization)
     }
   }
 
@@ -3846,7 +3945,7 @@ console.log('configureSticker',...ArgList)
       'Note-Stickers Applet'
     )
 
-    const BoardList = Board.Folder.BoardList.slice(Board.Index)
+    const BoardList = (Board.Folder as SNS_Folder).BoardList.slice(Board.Index)
 
     let minWidth:number = 0, minHeight:number = 0
       BoardList.forEach((Board:SNS_Board) => {
@@ -3864,7 +3963,7 @@ console.log('configureSticker',...ArgList)
     if (Mode === 'standalone') {
       downloadStandaloneApplet(AppletName, AppletSerialization)
     } else {
-      downloadStandaloneApplet(AppletName, AppletSerialization)
+      downloadEmbeddableApplet(AppletName, AppletSerialization)
     }
   }
 
@@ -3873,7 +3972,8 @@ console.log('configureSticker',...ArgList)
   function generateAppletFromStickers (
     Stickers:SNS_Sticker[], Mode:'standalone'|'embeddable'
   ):void {
-    const Board:SNS_Board = commonBoardOfStickers(Stickers)
+    const Board:SNS_Board|undefined = commonBoardOfStickers(Stickers)
+    if (Board == null) { return }
 
     const sortedStickers = StickersSortedByIndex(Stickers)
     const AppletName = (
@@ -3903,9 +4003,11 @@ console.log('configureSticker',...ArgList)
     }
 
     if (Mode === 'standalone') {
+// @ts-ignore TS2345 allow simplified serialization
       downloadStandaloneApplet(AppletName, AppletSerialization)
     } else {
-      downloadStandaloneApplet(AppletName, AppletSerialization)
+// @ts-ignore TS2345 allow simplified serialization
+      downloadEmbeddableApplet(AppletName, AppletSerialization)
     }
   }
 
@@ -3995,18 +4097,18 @@ ${JSON.stringify(AppletSerialization)}
     Application.InspectorMessage = newMessage.trim()
   }
 
-/**** clearScriptEditorMessage ****/
+/**** clearScriptEditorMessage **** /
 
   function clearScriptEditorMessage ():void {
     Application.ScriptEditorMessage = ''
   }
-
-/**** setScriptEditorMessage ****/
+*/
+/**** setScriptEditorMessage **** /
 
   function setScriptEditorMessage (newMessage:string):void {
     Application.ScriptEditorMessage = newMessage.trim()
   }
-
+*/
 //------------------------------------------------------------------------------
 //--                                Reactivity                                --
 //------------------------------------------------------------------------------
@@ -4021,7 +4123,7 @@ console.log('was changed: Application.Project')
       Application.BoardTreeState    = 0
       Application.ProjectProperties = SNS_ProjectDefaults
     } else {
-      Application.BoardTree         = Application.Project.BoardList
+      Application.BoardTree         = chosenProject.BoardList
       Application.BoardTreeState++
       Application.ProjectProperties = PropertiesOfProject(chosenProject)
     }
@@ -4031,6 +4133,7 @@ console.log('was changed: Application.Project')
 
   computed(() => {                  // chosenProject -> BoardTree -> chosenBoard
 console.log('was changed: Application.BoardTreeState')
+// @ts-ignore TS6133 "BoardTreeState" is used for triggering
     const BoardTreeState = Application.BoardTreeState     // just for triggering
     validateVisitHistory()        // may change "VisitHistory" and "chosenBoard"
   })
@@ -4039,11 +4142,10 @@ console.log('was changed: Application.BoardTreeState')
 
   computed(() => { // selectedBoards -> BoardSelectionMayBeShiftedUp/Down/In/Out
 console.log('was changed: Application.BoardTreeState/selectedBoards/expandedBoards')
+// @ts-ignore TS6133 "BoardTreeState" is used for triggering
     const BoardTreeState = Application.BoardTreeState     // just for triggering
 
   /**** sanitize selection ****/
-
-    const Project = Application.Project
 
     Application.selectedBoards = (
       Application.BoardTree.length === 0
@@ -4080,9 +4182,7 @@ console.log('was changed: Application.BoardTreeState/selectedBoards/expandedBoar
 console.log('was changed: Application.chosenBoard')
     const chosenBoard = Application.chosenBoard
 
-    Application.BoardProperties = (
-      chosenBoard == null ? SNS_BoardDefaults : PropertiesOfBoard(chosenBoard)
-    )
+    Application.BoardProperties = PropertiesOfBoard(chosenBoard)
 
     Application.StickerList = (
       chosenBoard == null ? [] : chosenBoard.StickerList
@@ -4105,6 +4205,7 @@ console.log('was changed: Application.StickerList')
   computed(() => {  // sel.Stickers -> StickerSel.Properties/MayBeShiftedUp/Down
 console.log('was changed: Application.chosenBoard/StickerList/selectedStickers')
     const chosenBoard = Application.chosenBoard
+// @ts-ignore TS6133 "StickerList" is used for triggering
     const StickerList = Application.StickerList                 // a small trick
 
   /**** sanitize selection ****/
@@ -4308,7 +4409,7 @@ console.log('was changed: Application.VisitHistoryState')
     private _Folder:SNS_Folder
     private _Serializations:Indexable[]
     private _Index:number
-    private _newBoards:SNS_Board[]
+    private _newBoards:SNS_Board[] = []
 
   /**** constructor ****/
 
@@ -4587,7 +4688,7 @@ console.log('was changed: Application.VisitHistoryState')
         for (let i = oldIndices.length-1; i >= 0; i--) {
           try {
             oldFolder.moveBoardTo(oldIndices[i],newFolder,newIndex)
-            luckyMoves.push(newFolder.Board(newIndex))
+            luckyMoves.push(newFolder.Board(newIndex) as SNS_Board)
           } catch (Signal:any) { debugger /* nop */ }
         }
 
@@ -4642,7 +4743,7 @@ console.log('was changed: Application.VisitHistoryState')
         for (let i = 0, l = oldIndices.length; i < l; i++) {
           try {
             newFolder.moveBoardTo(newIndex,oldFolder,oldIndices[i])
-            luckyMoves.push(oldFolder.Board(oldIndices[i]))
+            luckyMoves.push(oldFolder.Board(oldIndices[i]) as SNS_Board)
           } catch (Signal:any) { debugger /* nop */ }
         }
 
@@ -4890,7 +4991,7 @@ console.log('was changed: Application.VisitHistoryState')
     private _Board:SNS_Board
     private _Serializations:Indexable[]
     private _Index:number
-    private _newStickers:SNS_Sticker[]
+    private _newStickers:SNS_Sticker[] = []
 
   /**** constructor ****/
 
@@ -5017,7 +5118,7 @@ console.log('was changed: Application.VisitHistoryState')
     ) {
       super()
 
-      this._Board        = commonBoardOfStickers(Stickers)
+      this._Board        = commonBoardOfStickers(Stickers) as SNS_Board
       this._Stickers     = Stickers.slice()
       this._PropertyName = PropertyName
       this._oldValues    = Stickers.map((Sticker:SNS_Sticker) => Sticker[PropertyName])
@@ -5126,7 +5227,6 @@ console.log('was changed: Application.VisitHistoryState')
   class SNS_StickerShapeOperation extends SNS_Operation {
     private _Board:SNS_Board
     private _Stickers:SNS_Sticker[]
-    private _PropertyName:string
     private _oldGeometries:SNS_Geometry[]
     private _newGeometries:SNS_Geometry[]
 
@@ -5258,7 +5358,7 @@ console.log('was changed: Application.VisitHistoryState')
     public constructor (sortedStickers:SNS_Sticker[], sortedIndices:number[]) {
       super()
 
-      this._Board    = commonBoardOfStickers(sortedStickers)
+      this._Board    = commonBoardOfStickers(sortedStickers) as SNS_Board
       this._Stickers = sortedStickers
 
       this._oldIndices = sortedStickers.map((Sticker:SNS_Sticker) => Sticker.Index)
@@ -5372,7 +5472,7 @@ console.log('was changed: Application.VisitHistoryState')
     public constructor (sortedStickers:SNS_Sticker[]) {
       super()
 
-      this._Board          = commonBoardOfStickers(sortedStickers)
+      this._Board          = commonBoardOfStickers(sortedStickers) as SNS_Board
       this._Stickers       = sortedStickers.slice()
       this._Indices        = sortedStickers.map((Sticker:SNS_Sticker) => Sticker.Index)
       this._Serializations = sortedStickers.map((Sticker:SNS_Sticker) => Sticker.Serialization)
@@ -5479,9 +5579,9 @@ console.log('was changed: Application.VisitHistoryState')
 /**** commonFolderOfBoards ****/
 
   function commonFolderOfBoards (BoardList:SNS_Board[]):SNS_Folder {
-    if (BoardList.length === 0) { return Application.Project }
+    if (BoardList.length === 0) { return Application.Project as SNS_Folder }
 
-    let Result:SNS_Folder = BoardList[0].Folder
+    let Result:SNS_Folder = BoardList[0].Folder as SNS_Folder
       if (BoardList.some((Board:SNS_Board) => Board.Folder !== Result)) throwError(
         'InvalidArgument: the given boards do not all belong to the same folder'
       )
@@ -5511,13 +5611,13 @@ console.log('was changed: Application.VisitHistoryState')
 /**** BoardsAtIndexPaths ****/
 
   function BoardsAtIndexPaths (IndexPathList:number[][]):SNS_Board[] {
-    const Project = Application.Project
+    const Project = Application.Project as SNS_Project
     return IndexPathList.map(
       (IndexPath:number[]) => Project.BoardAtIndexPath(IndexPath)
-    )
+    ).filter((Item:any) => Item != null) as SNS_Board[]
   }
 
-/**** BoardsUpdatedbyId ****/
+/**** BoardsUpdatedbyId **** /
 
   function BoardsUpdatedbyId (BoardList:SNS_Board[]):SNS_Board[] {
     if (BoardList.length === 0) { return [] }
@@ -5529,7 +5629,7 @@ console.log('was changed: Application.VisitHistoryState')
       (Board:SNS_Board) => (Board != null) && ValueIsBoard(Board)
     )
   }
-
+*/
 /**** BoardsMayBeShiftedUp ****/
 
   function BoardsMayBeShiftedUp (BoardList:SNS_Board[]):boolean {
@@ -5547,7 +5647,7 @@ console.log('was changed: Application.VisitHistoryState')
   function BoardsMayBeShiftedDown (BoardList:SNS_Board[]):boolean {
     if (BoardList.length === 0) { return false }
 
-    const BoardCount = BoardList[0].Folder.BoardCount
+    const BoardCount = (BoardList[0].Folder as SNS_Board).BoardCount
 
     const bottommostIndex = bottommostIndexOfBoards(BoardList)
     if (bottommostIndex < BoardCount-1) { return true }
@@ -5567,7 +5667,7 @@ console.log('was changed: Application.VisitHistoryState')
 
   function BoardsMayBeShiftedOut (BoardList:SNS_Board[]):boolean {
     if (BoardList.length === 0) { return false }
-    return (BoardList[0].Folder.Folder != null)
+    return (BoardList[0]?.Folder?.Folder != null)
   }
 
 /**** topmostIndexOfBoards ****/
@@ -5592,7 +5692,9 @@ console.log('was changed: Application.VisitHistoryState')
 
 /**** PropertiesOfBoard ****/
 
-  function PropertiesOfBoard (Board:SNS_Board):SNS_BoardProperties {
+  function PropertiesOfBoard (Board:SNS_Board|undefined):SNS_BoardProperties {
+    if (Board == null) { return SNS_BoardDefaults }
+
     const Result:Indexable = {}
       Object.keys(SNS_BoardDefaults).forEach(
         (Property:string) => Result[Property] = Board[Property]
@@ -5602,7 +5704,7 @@ console.log('was changed: Application.VisitHistoryState')
 
 /**** commonBoardOfStickers ****/
 
-  function commonBoardOfStickers (StickerList:SNS_Sticker[]):SNS_Board {
+  function commonBoardOfStickers (StickerList:SNS_Sticker[]):SNS_Board|undefined {
     if (StickerList.length === 0) { return undefined }
 
     let Result:SNS_Board = StickerList[0].Board
@@ -5670,7 +5772,7 @@ console.log('was changed: Application.VisitHistoryState')
   function StickersMayBeShiftedDown (StickerList:SNS_Sticker[]):boolean {
     if (StickerList.length === 0) { return false }
 
-    const StickerCount = StickerList[0].Folder.StickerCount
+    const StickerCount = (StickerList[0].Folder as SNS_Board).StickerCount
 
     const bottommostIndex = bottommostIndexOfStickers(StickerList)
     if (bottommostIndex < StickerCount-1) { return true }
@@ -5711,20 +5813,20 @@ console.log('was changed: Application.VisitHistoryState')
     }
   }
 
-/**** commonErrorOf ****/
+/**** commonErrorOf **** /
 
   function commonErrorOf (
     ErrorList:SNS_Error[]
   ):SNS_Error|typeof noSelection|typeof mixedValues|undefined {
     if (ErrorList.length === 0) { return noSelection }
 
-    let Result:SNS_Error|undefined = ErrorList[0]
+    let Result:SNS_Error|typeof noSelection|typeof mixedValues|undefined = ErrorList[0]
       ErrorList.slice(1).forEach((Error:SNS_Error|undefined) => {
         if (ValuesDiffer(Error,Result)) { Result = mixedValues }
       })
     return Result
   }
-
+*/
 /**** ValueFor ****/
 
   function ValueFor (Value:any):any {
@@ -5735,7 +5837,7 @@ console.log('was changed: Application.VisitHistoryState')
     )
   }
 
-/**** PlaceholderFor ****/
+/**** PlaceholderFor **** /
 
   function PlaceholderFor (Value:any, Default:string='Enter Value'):any {
     switch (Value) {
@@ -5744,7 +5846,7 @@ console.log('was changed: Application.VisitHistoryState')
       default:          return Default
     }
   }
-
+*/
 /**** IntegerFor ****/
 
   function IntegerFor (Value:any):number|null {
@@ -5765,12 +5867,12 @@ console.log('was changed: Application.VisitHistoryState')
     )
   }
 
-/**** IndeterminateFor ****/
+/**** IndeterminateFor **** /
 
   function IndeterminateFor (Value:any):boolean {
     return (Value === noSelection) || (Value === mixedValues) || (Value == null)
   }
-
+*/
 /**** ErrorMessageFor ****/
 
   function ErrorMessageFor (Error:SNS_Error):string {
@@ -5778,32 +5880,32 @@ console.log('was changed: Application.VisitHistoryState')
       case (Error == null):         return '(no error found)'
       case (Error === noSelection): return '(no selection)'
       case (Error === mixedValues): return '(various errors)'
-      default:                      return Error.Title + ': ' + Error.Message
+      default:                      return Error.Type + ': ' + Error.Message
     }
   }
 
-/**** isRealValue ****/
+/**** isRealValue **** /
 
   function isRealValue (Value:any):boolean {
     return (Value !== noSelection) && (Value !== mixedValues) && (Value != null)
   }
-
-/**** showError ****/
+*/
+/**** showError **** /
 
   function showError (Error:SNS_Error, Sticker:SNS_Sticker):void {
     if (window.confirm(
-      Error.Title + '\n\n' + Error.Message + '\n\n' +
+      Error.Type + '\n\n' + Error.Message + '\n\n' +
       'Do you want to proceed to the Script Editor?'
     )) {
       selectStickers([Sticker])
       PUX.openDialog('ScriptEditor')
     }
   }
-
+*/
 /**** showScriptError ****/
 
   function showScriptError (Error:SNS_Error):void {
-    window.alert(Error.Title + '\n\n' + Error.Message)
+    window.alert(Error.Type + '\n\n' + Error.Message)
   }
 
 /**** applyPendingScriptOfVisual ****/
@@ -5854,7 +5956,7 @@ console.log('was changed: Application.VisitHistoryState')
     )
   }
 
-/**** ListsDiffer ****/
+/**** ListsDiffer **** /
 
   function ListsDiffer (ListA:any[], ListB:any[]):boolean {
     return (
@@ -5862,7 +5964,7 @@ console.log('was changed: Application.VisitHistoryState')
       ListA.some((Element:any, i:number) => Element !== ListB[i])
     )
   }
-
+*/
 /**** MovesFor ****/
 
   export type SNS_Move = { oldIndex:number, newIndex:number, Count:number }
@@ -5929,9 +6031,9 @@ console.log('was changed: Application.VisitHistoryState')
     showDialogCentered('ProjectBrowser')
 
     print('ready for operation')
-window['Application'] = Application                   // just for testing
-window['MainScreen']  = PUX.ScreenNamed('MainScreen') // just for testing
-window['Inspector']   = PUX.DialogNamed('Inspector')  // just for testing
-
-    isRunning = true
+Object.assign(window,{ // just for testing
+  Application,
+  MainScreen:PUX.ScreenNamed('MainScreen'),
+  Inspector:PUX.DialogNamed('Inspector')
+})
   })
