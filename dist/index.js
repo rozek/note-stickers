@@ -3818,7 +3818,7 @@ var q0=Object.defineProperty;var J0=(t,e,i)=>e in t?q0(t,e,{enumerable:!0,config
         <option value="Stickers:standalone" disabled=${e}>as standalone WebApp</option>
         <option value="Stickers:embeddable" disabled=${e}>as embeddable Element</option>
       </optgroup>
-    `}window.PUX=we;we.ImageFolder="/WebWorld/images/";we.Style=`  #PUX_0 { background-image:url("/images/BinaryTexture_white.jpg") }
+    `}window.PUX=we;we.ImageFolder="/icons/";we.Style=`  #PUX_0 { background-image:url("/images/BinaryTexture_white.jpg") }
   #PUX_1 { left:31px; top:30px; width:161px; height:90px; right:auto; bottom:auto }
 
   #PUX_52 {
