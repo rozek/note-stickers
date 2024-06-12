@@ -429,7 +429,7 @@
 
 //let PUX = new ProtoUX()                                 // already done before
 window['PUX'] = PUX // just for testing
-    PUX.ImageFolder = '/WebWorld/images/'
+    PUX.ImageFolder = '/icons/'
 
     PUX.Style = `  #PUX_0 { background-image:url("/images/BinaryTexture_white.jpg") }
   #PUX_1 { left:31px; top:30px; width:161px; height:90px; right:auto; bottom:auto }
