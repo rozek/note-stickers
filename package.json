@@ -11,7 +11,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "rimraf dist && tsc && vite build --sourcemap true --assetsDir . && mkdir ./dist/common ./dist/icons ./dist/js && cp ./common/* ./dist/common/ && cp ./icons/* ./dist/icons/ && cp ./js/* ./dist/js/",
+    "build": "rimraf dist && tsc && vite build --sourcemap true --assetsDir . && mkdir ./dist/common ./dist/icons ./dist/js && cp ./common/* ./dist/common/ && cp ./icons/* ./dist/icons/ && cp ./js/* ./dist/js/ && sed -i '' 's\"/index.js\"./index.js\"g' ./dist/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
