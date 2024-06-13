@@ -28,7 +28,7 @@
   <style name="white-textured-background">
     html, body {
       background-color: white;
-      background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABQAHADASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAgEAAwf/xAAmEAEAAgICAQQCAgMAAAAAAAABAhEAIRIxQSJRYXEygQORE0Kh/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/APYj+TaNa8mImLVI/Oc+NSovXVHeU4wtW18XgdORdWXlzl+B16pe2RaTsra3gdaLut4WAt7/ALws5Jp29AYpSRALv5wNOMpaJUfWSUV4+Q7OsUpkDd5bAt194AAi2x/UTrNFPzlpdb8YxEsbzYHPU5XrjHz75LUtGvBnTjGko3mIB74A9UYBduK0o7lmIPK2V/rDwbbDb24HXIg9l5ybTZt63ilyKiO8BMRr46rIwE1rd5pSYnV5eVBZv2wJxTfb85IiXKRv4xEhvxXvlEem8ADznsQPCYRX1at6M7ZKDxgco3s3Xl+csLIyl0PWLhH2yShJT1WX0mBY8qt/RmjJb1QebzS5dRD+8Mz8Y0kfgwFzLO9+cvIulLwaJcpNV0LmKL/kT6MB8da0++SMUVu1zRksbSssZErq9YBCTK5BR7OTbKTu8fKN1ZeLA5XGMeIjJcVEId/vExHsMLCMm9394BHgXLt6FzMnkb+9axMbRHrJKGit7384GZpWu/F7xMwa3f1hrj6k/Rmijc5a8b8YDZB2hlzlqcr1xj/3Mys5I14wOiXkYiVWsO4fxm94txjvbgGc00D91klqoR1e1c65KvA5xGUh/wBTrWYrc1eJ1vHKJI3kYekLdYAZqWLb0BiZ6sr7czBR36vGThr8aDwbvAXMIkkesVlW6+8A85UiB4TDyV5WfB5wOpIkabzZzrjHe5L4zXwCN+pwHxPY3mIh1gJJJ2p8nnKTeZGjfs9YGIS5CyuvjNInJBDjfhxExlx3f1mZRGlMApznW6O95Gd3TQe2IgAhe/nMQ0C2HjAkZPH583ljO4q+9awkJbsL98y6IEUPrAcZEi/HzmJEukcEkZcdEY++U8zk+MDpkowQjXqe3MKqsvSYF/xxu9j95mDyUavIzTdH15cTMihT/WAWHqKBPlzfhvir8GNkHaGbvA5rULv1Se3JxZekdeUzrmYiU4H/2Q==);
+      background-image: url(/common/BinaryTexture_white.jpg);
       background-repeat:repeat;
 
       font-family:'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
@@ -47,17 +47,34 @@
     }
   </script>
 
-  <script name="download" src="./js/download.min.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "javascript-interface-library":"https://rozek.github.io/javascript-interface-library/dist/javascript-interface-library.esm.js",
+      "htm":                         "https://rozek.github.io/htm/dist/htm.module.js",
+      "preact":                      "https://rozek.github.io/htm/preact/standalone.module.js",
+      "htm/preact":                  "https://rozek.github.io/htm/preact/standalone.module.js",
+      "protoux":                     "https://rozek.github.io/protoux/dist/protoux.esm.js",
+      "nanoid":                      "https://rozek.github.io/nanoid/dist/nanoid.esm.js",
+      "nanoid-dictionary":           "https://rozek.github.io/nanoid-dictionary/dist/nanoid-dictionary.esm.js",
+      "shareable-note-stickers":     "https://rozek.github.io/shareable-note-stickers/dist/shareable-note-stickers.js",
+      "sns-boardview":               "https://rozek.github.io/sns-boardview/dist/sns-boardview.js",
+      "svelte-coordinate-conversion":"https://rozek.github.io/svelte-coordinate-conversion/dist/svelte-coordinate-conversion.esm.js",
+      "localforage":                 "https://rozek.github.io/localforage-esm/dist/localforage.esm.js"
+    }
+  }
+  </script>
+  <script name="download" src="https://rozek.github.io/download/download.min.js"></script>
   <style>
   textarea[name="ScriptInput"] {
     white-space:pre;
     overflow-wrap:normal;
   }
   </style>
-   <script type="module" crossorigin src="./index.js"></script>
  </head>
  <body>
 
+  <script type="module" src="./NoteStickers.js"></script>
  </body>
 </html>
 
