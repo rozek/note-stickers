@@ -2,6 +2,15 @@
   "name": "note-stickers",
   "version": "0.0.1",
   "description": "an unshared version of \"shareable-note-stickers\"",
+  "type": "module",
+  "source": "src/NoteStickers.ts",
+  "exports": {
+    "types": "./dist/NoteStickers.d.ts",
+    "default": "./dist/NoteStickers.js"
+  },
+  "module": "./dist/NoteStickers.js",
+  "svelte": "./dist/NoteStickers.js",
+  "types": "./dist/NoteStickers.d.ts",
   "keywords": [],
   "author": "Andreas Rozek <a.rozek@gmx.de> (https://www.rozek.de/)",
   "license": "MIT",
@@ -9,9 +18,8 @@
   "bugs": {
     "url": "https://github.com/rozek/note-stickers/issues"
   },
-  "type": "module",
   "scripts": {
-    "build": "rimraf dist && tsc && vite build --sourcemap true --assetsDir . && mkdir ./dist/common ./dist/icons ./dist/js && cp ./common/* ./dist/common/ && cp ./icons/* ./dist/icons/ && cp ./js/* ./dist/js/ && sed -i '' 's\"/index.js\"./index.js\"g' ./dist/index.html",
+    "build": "rimraf ./dist && tsc && vite build --sourcemap true --assetsDir . && cp ./index.html ./dist && mkdir ./dist/common ./dist/icons && cp ./common/* ./dist/common/ && cp ./icons/* ./dist/icons/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,17 +27,18 @@
     "url": "git+https://github.com/rozek/note-stickers.git"
   },
   "devDependencies": {
+    "microbundle": "^0.15.1",
     "rimraf": "^3.0.2",
     "typescript": "^5.2.2",
-    "vite": "^5.1.6"
+    "vite": "^5.2.13",
+    "vite-plugin-dts": "^3.9.1"
   },
   "dependencies": {
     "htm": "^3.1.1",
     "javascript-interface-library": "^1.0.6",
     "localforage": "^1.10.0",
-    "preact": "^10.22.0",
     "protoux": "^0.0.24",
-    "shareable-note-stickers": "^0.0.5",
-    "sns-boardview": "^0.0.2"
+    "shareable-note-stickers": "^0.0.6",
+    "sns-boardview": "^0.0.4"
   }
 }
