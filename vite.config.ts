@@ -1,14 +1,21 @@
 import { defineConfig } from 'vite'
+import dts  from 'vite-plugin-dts'
+import path from 'path'
 
 export default defineConfig({
-  build: {
-  	sourcemap:true,
+  build: {  	
+  	lib: {
+  		entry:   path.resolve(__dirname, 'src/NoteStickers.ts'),
+  		name:    'NoteStickers',
+  		formats: ['es']
+  	},
+  	minify: false,
   	rollupOptions: {
-//  		external: [
-//  		  'javascript-interface-library','htm','preact','nanoid','nanoid-dictionary',
-//  		  'protoux','shareable-note-stickers','sns-boardview',
-//  		  'svelte-coordinate-conversion'
-//  		],
+  		external: [
+  		  'javascript-interface-library','htm','preact','protoux','nanoid','nanoid-dictionary',
+  		  'shareable-note-stickers','sns-boardview',
+  		  'svelte-coordinate-conversion','localforage'
+  		],
       output: {
         entryFileNames: `[name].js`,
         chunkFileNames: `[name].js`,
@@ -16,8 +23,7 @@ export default defineConfig({
       }
     }
   },
-
-  worker: {
-    format: "es",
-  },
+  plugins: [
+    dts({ insertTypesEntry: true }),
+  ],
 })
