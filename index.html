@@ -47,7 +47,24 @@
     }
   </script>
 
-  <script name="download" src="./js/download.min.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "javascript-interface-library":"https://rozek.github.io/javascript-interface-library/dist/javascript-interface-library.esm.js",
+      "htm":                         "https://rozek.github.io/htm/dist/htm.module.js",
+      "preact":                      "https://rozek.github.io/htm/preact/standalone.module.js",
+      "htm/preact":                  "https://rozek.github.io/htm/preact/standalone.module.js",
+      "protoux":                     "https://rozek.github.io/protoux/dist/protoux.esm.js",
+      "nanoid":                      "https://rozek.github.io/nanoid/dist/nanoid.esm.js",
+      "nanoid-dictionary":           "https://rozek.github.io/nanoid-dictionary/dist/nanoid-dictionary.esm.js",
+      "shareable-note-stickers":     "https://rozek.github.io/shareable-note-stickers/dist/shareable-note-stickers.js",
+      "sns-boardview":               "https://rozek.github.io/sns-boardview/dist/sns-boardview.js",
+      "svelte-coordinate-conversion":"https://rozek.github.io/svelte-coordinate-conversion/dist/svelte-coordinate-conversion.esm.js",
+      "localforage":                 "https://rozek.github.io/localforage-esm/dist/localforage.esm.js"
+    }
+  }
+  </script>
+  <script name="download" src="https://rozek.github.io/download/download.min.js"></script>
   <style>
   textarea[name="ScriptInput"] {
     white-space:pre;
@@ -57,7 +74,7 @@
  </head>
  <body>
 
-  <script type="module" src="./src/NoteStickers.ts"></script>
+  <script type="module" src="./NoteStickers.js"></script>
  </body>
 </html>
 
