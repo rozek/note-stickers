@@ -1,9 +1,6 @@
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __publicField = (obj, key, value) => {
-  __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-  return value;
-};
+var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 import { quoted, ValueIsArray, ValuesAreEqual, ValuesDiffer, expectListSatisfying } from "javascript-interface-library";
 import localforage from "localforage";
 import { h } from "preact";
@@ -2740,10 +2737,9 @@ async function fetchPersistedProjectList() {
 }
 async function createPersistedProject(Name) {
   let normalizedName = Name.toLowerCase();
-  if (Application.normalizedProjectList.indexOf(normalizedName) >= 0)
-    throwError(
-      "ProjectExists: a project named " + quoted(Name) + " exists already"
-    );
+  if (Application.normalizedProjectList.indexOf(normalizedName) >= 0) throwError(
+    "ProjectExists: a project named " + quoted(Name) + " exists already"
+  );
   const Serialization = SerializationOfEmptyProject(Name);
   try {
     await ProjectStore.setItem(
@@ -2762,14 +2758,12 @@ async function createPersistedProject(Name) {
 async function renamePersistedProjectTo(oldName, newName) {
   await fetchPersistedProjectList();
   let normalizedProjectList = Application.normalizedProjectList;
-  if (normalizedProjectList.indexOf(oldName.toLowerCase()) < 0)
-    throwError(
-      "NoSuchProject: a project named " + quoted(oldName) + " does not exist"
-    );
-  if (normalizedProjectList.indexOf(newName.toLowerCase()) >= 0)
-    throwError(
-      "ProjectExists: a project named " + quoted(newName) + " exists already"
-    );
+  if (normalizedProjectList.indexOf(oldName.toLowerCase()) < 0) throwError(
+    "NoSuchProject: a project named " + quoted(oldName) + " does not exist"
+  );
+  if (normalizedProjectList.indexOf(newName.toLowerCase()) >= 0) throwError(
+    "ProjectExists: a project named " + quoted(newName) + " exists already"
+  );
   let Serialization = {};
   try {
     Serialization = JSON.parse(await ProjectStore.getItem(oldName));
@@ -2803,10 +2797,9 @@ async function renamePersistedProjectTo(oldName, newName) {
 async function openPersistedProject(Name) {
   await fetchPersistedProjectList();
   let normalizedProjectList = Application.normalizedProjectList;
-  if (normalizedProjectList.indexOf(Name.toLowerCase()) < 0)
-    throwError(
-      "NoSuchProject: a project named " + quoted(Name) + " does not exist"
-    );
+  if (normalizedProjectList.indexOf(Name.toLowerCase()) < 0) throwError(
+    "NoSuchProject: a project named " + quoted(Name) + " does not exist"
+  );
   let Serialization = {};
   try {
     Serialization = JSON.parse(await ProjectStore.getItem(Name));
@@ -3323,7 +3316,7 @@ function downloadStandaloneApplet(AppletName, AppletSerialization) {
     html, body { width:100%; height:100%; width:100vw; height:100vh; margin:0px; padding:0px }
     html       { overflow:hidden scroll }
   </style>
-  ${"<"}script src="https://rozek.github.io/note-stickers/dist/note-stickers-runtime.js">${"<"}/script>
+  ${"<"}script src="https://rozek.github.io/note-stickers-runtime/dist/note-stickers-runtime.js">${"<"}/script>
   ${"<"}script type="Note-Stickers" name="${AppletName}">
 ${JSON.stringify(AppletSerialization)}
   ${"<"}/script>
@@ -4473,10 +4466,9 @@ function commonFolderOfBoards(BoardList) {
     return Application.Project;
   }
   let Result = BoardList[0].Folder;
-  if (BoardList.some((Board) => Board.Folder !== Result))
-    throwError(
-      "InvalidArgument: the given boards do not all belong to the same folder"
-    );
+  if (BoardList.some((Board) => Board.Folder !== Result)) throwError(
+    "InvalidArgument: the given boards do not all belong to the same folder"
+  );
   return Result;
 }
 function BoardsSortedByIndex(BoardList) {
@@ -4567,10 +4559,9 @@ function commonBoardOfStickers(StickerList) {
     return void 0;
   }
   let Result = StickerList[0].Board;
-  if (StickerList.some((Sticker) => Sticker.Board !== Result))
-    throwError(
-      "InvalidArgument: the given stickers do not all belong to the same board"
-    );
+  if (StickerList.some((Sticker) => Sticker.Board !== Result)) throwError(
+    "InvalidArgument: the given stickers do not all belong to the same board"
+  );
   return Result;
 }
 function StickersSortedByIndex(StickerList) {
