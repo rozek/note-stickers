@@ -9,7 +9,7 @@
   import {
     quoted,
     ValuesAreEqual, ValuesDiffer,
-    ValueIsArray,
+    ValueIsArray, ValueIsListSatisfying,
     expectListSatisfying,
   } from 'javascript-interface-library'
 
@@ -19,8 +19,8 @@
 
   import {
     throwError, throwReadOnlyError,
-    ValueIsBoard,
-    ValueIsName, ValueIsError,
+    ValueIsBoard, ValueIsSticker,
+    ValueIsName, ValueIsIdentifier, ValueIsGeometry, ValueIsError,
     SNS_Id, SNS_Name, SNS_Identifier,
     SNS_Ordinal, SNS_Text, SNS_Textline, SNS_Color, SNS_URL,
     SNS_Geometry, SNS_FontStyle, SNS_Error,
@@ -1578,7 +1578,7 @@ window['PUX'] = PUX // just for testing
             Options:updatedFrom(() => AppletGeneratorOptions(Application.selectedStickers)),
             onInput:(Event:any) => {
               const chosenBoard = Application.chosenBoard
-              if (chosenBoard == null) { return }
+              if (chosenBoard == null) { return withWarning('there is currently no chosen board') }
 
               const [ Source,Mode ] = Event.target.value.split(':')
                 Event.target.value = ''
@@ -1739,11 +1739,9 @@ window['PUX'] = PUX // just for testing
             onInput:(Event:any) => {
               switch (Application.ValueEditorMode) {
                 case 'Project':
-                  if (Application.Project == null) { return }
-                  return doConfigureProject(Application.Project,'editableValue',Event.target.value)
+                  return doConfigureProject(Application.Project as SNS_Project,'editableValue',Event.target.value)
                 case 'Board':
-                  if (Application.chosenBoard == null) { return }
-                  return doConfigureBoard(Application.chosenBoard,'editableValue',Event.target.value)
+                  return doConfigureBoard(Application.chosenBoard as SNS_Board,'editableValue',Event.target.value)
                 case 'Stickers': default:
                   return doConfigureStickers(Application.selectedStickers,'editableValue',Event.target.value)
               }
@@ -1814,11 +1812,9 @@ window['PUX'] = PUX // just for testing
             onInput:(Event:any) => {
               switch (Application.ScriptEditorMode) {
                 case 'Project':
-                  if (Application.Project == null) { return }
-                  return doConfigureProject(Application.Project,'pendingScript',Event.target.value)
+                  return doConfigureProject(Application.Project as SNS_Project,'pendingScript',Event.target.value)
                 case 'Board':
-                  if (Application.chosenBoard == null) { return }
-                  return doConfigureBoard(Application.chosenBoard,'pendingScript',Event.target.value)
+                  return doConfigureBoard(Application.chosenBoard as SNS_Board,'pendingScript',Event.target.value)
                 case 'Stickers': default:
                   return doConfigureStickers(Application.selectedStickers,'pendingScript',Event.target.value)
               }
@@ -1836,11 +1832,9 @@ window['PUX'] = PUX // just for testing
             onClick:() => {
               switch (Application.ScriptEditorMode) {
                 case 'Project':
-                  if (Application.Project == null) { return }
-                  return doApplyProjectScript(Application.Project)
+                  return doApplyProjectScript(Application.Project as SNS_Project)
                 case 'Board':
-                  if (Application.chosenBoard == null) { return }
-                  return doApplyBoardScript(Application.chosenBoard)
+                  return doApplyBoardScript(Application.chosenBoard as SNS_Board)
                 case 'Stickers': default:
                   return doApplyStickerScript(Application.selectedStickers)
               }
@@ -1851,11 +1845,9 @@ window['PUX'] = PUX // just for testing
             onClick:() => {
               switch (Application.ScriptEditorMode) {
                 case 'Project':
-                  if (Application.Project == null) { return }
-                  return doWithdrawProjectScript(Application.Project)
+                  return doWithdrawProjectScript(Application.Project as SNS_Project)
                 case 'Board':
-                  if (Application.chosenBoard == null) { return }
-                  return doWithdrawBoardScript(Application.chosenBoard)
+                  return doWithdrawBoardScript(Application.chosenBoard as SNS_Board)
                 case 'Stickers': default:
                   return doWithdrawStickerScript(Application.selectedStickers)
               }
@@ -2019,7 +2011,7 @@ window['PUX'] = PUX // just for testing
             SelectionLimit: Number.MAX_SAFE_INTEGER,
             onSelectionChange:(selectedIndices) => {
               const chosenBoard = Application.chosenBoard
-              if (chosenBoard == null) { return }
+              if (chosenBoard == null) { return withWarning('there is currently no chosen board') }
 
               Application.selectedStickers = selectedIndices.map((Index:number) => chosenBoard.Sticker(Index))
             },
@@ -2079,108 +2071,92 @@ window['PUX'] = PUX // just for testing
           SnapToGridCheck: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => BooleanFor(Application.ProjectProperties.SnapToGrid)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'SnapToGrid',Event.target.checked)
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'SnapToGrid',Event.target.checked
+            ),
           },
           GridWidthInput:  {
             min:0, step:1,
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => IntegerFor(Application.ProjectProperties.GridWidth)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'GridWidth',parseInt(Event.target.value,10))
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'GridWidth',parseInt(Event.target.value,10)
+            ),
           },
           GridHeightInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => IntegerFor(Application.ProjectProperties.GridHeight)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'GridHeight',parseInt(Event.target.value,10))
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'GridHeight',parseInt(Event.target.value,10)
+            ),
           },
           FontFamilyInput: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.FontFamily)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'FontFamily',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'FontFamily',Event.target.value
+            ),
           },
           FontSizeInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => IntegerFor(Application.ProjectProperties.FontSize)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'FontSize',parseInt(Event.target.value,10))
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'FontSize',parseInt(Event.target.value,10)
+            ),
           },
           BoldCheck: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => BooleanFor(Application.ProjectProperties.FontWeight,700)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(
-                Application.Project,'FontWeight',Event.target.checked ? 700 : 400
-              )
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'FontWeight',Event.target.checked ? 700 : 400
+            ),
           },
           ItalicCheck: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => BooleanFor(Application.ProjectProperties.FontStyle,'italic')),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(
-                Application.Project,'FontStyle',Event.target.checked ? 'italic' : 'normal'
-              )
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'FontStyle',Event.target.checked ? 'italic' : 'normal'
+            ),
           },
           TextColorInput: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.ForegroundColor)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'ForegroundColor',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'ForegroundColor',Event.target.value
+            ),
           },
           LineHeightInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => IntegerFor(Application.ProjectProperties.LineHeight)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'LineHeight',parseInt(Event.target.value,10))
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'LineHeight',parseInt(Event.target.value,10)
+            ),
           },
           BackgroundColorInput: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.BackgroundColor)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'BackgroundColor',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'BackgroundColor',Event.target.value
+            ),
           },
           TextureInput: {
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.BackgroundTexture)),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'BackgroundTexture',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'BackgroundTexture',Event.target.value
+            ),
           },
           ValueInput: {
             Style:'min-height:100px',
             disabled:updatedFrom(() => Application.Project == null),
             Value:updatedFrom(() => ValueFor(Application.ProjectProperties.editableValue)),
             Placeholder:updatedFrom(() => '(enter a value for the currently active board)'),
-            onInput:(Event:any) => {
-              if (Application.Project == null) { return }
-              doConfigureProject(Application.Project,'editableValue',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureProject(
+              Application.Project as SNS_Project,'editableValue',Event.target.value
+            ),
           },
           ValueEditorButton: {
             onClick:(Event:PointerEvent) => {
@@ -2199,116 +2175,99 @@ window['PUX'] = PUX // just for testing
           NameInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.Name)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'Name',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'Name',Event.target.value
+            ),
           },
           SnapToGridCheck: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => BooleanFor(Application.BoardProperties.SnapToGrid)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'SnapToGrid',Event.target.checked)
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'SnapToGrid',Event.target.checked
+            ),
           },
           GridWidthInput:  {
             min:0, step:1,
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => IntegerFor(Application.BoardProperties.GridWidth)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'GridWidth',parseInt(Event.target.value,10))
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'GridWidth',parseInt(Event.target.value,10)
+            ),
           },
           GridHeightInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => IntegerFor(Application.BoardProperties.GridHeight)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'GridHeight',parseInt(Event.target.value,10))
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'GridHeight',parseInt(Event.target.value,10)
+            ),
           },
           FontFamilyInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.FontFamily)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'FontFamily',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'FontFamily',Event.target.value
+            ),
           },
           FontSizeInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => IntegerFor(Application.BoardProperties.FontSize)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'FontSize',parseInt(Event.target.value,10))
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'FontSize',parseInt(Event.target.value,10)
+            ),
           },
           BoldCheck: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => BooleanFor(Application.BoardProperties.FontWeight,700)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(
-                Application.chosenBoard,'FontWeight',Event.target.checked ? 700 : 400
-              )
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'FontWeight',Event.target.checked ? 700 : 400
+            ),
           },
           ItalicCheck: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => BooleanFor(Application.BoardProperties.FontStyle,'italic')),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(
-                Application.chosenBoard,'FontStyle',Event.target.checked ? 'italic' : 'normal'
-              )
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'FontStyle',Event.target.checked ? 'italic' : 'normal'
+            ),
           },
           TextColorInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.ForegroundColor)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'ForegroundColor',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'ForegroundColor',Event.target.value
+            ),
           },
           LineHeightInput: {
             min:0, step:1,
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => IntegerFor(Application.BoardProperties.LineHeight)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'LineHeight',parseInt(Event.target.value,10))
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'LineHeight',parseInt(Event.target.value,10)
+            ),
           },
           BackgroundColorInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.BackgroundColor)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'BackgroundColor',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'BackgroundColor',Event.target.value
+            ),
           },
           TextureInput: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.BackgroundTexture)),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'BackgroundTexture',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'BackgroundTexture',Event.target.value
+            ),
           },
           ValueInput: {
             Style:'min-height:100px',
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Value:updatedFrom(() => ValueFor(Application.BoardProperties.editableValue)),
             Placeholder:updatedFrom(() => '(enter a value for the currently active board)'),
-            onInput:(Event:any) => {
-              if (Application.chosenBoard == null) { return }
-              doConfigureBoard(Application.chosenBoard,'editableValue',Event.target.value)
-            },
+            onInput:(Event:any) => doConfigureBoard(
+              Application.chosenBoard as SNS_Board,'editableValue',Event.target.value
+            ),
           },
           ValueEditorButton: {
             onClick:(Event:PointerEvent) => {
@@ -2541,6 +2500,12 @@ window['PUX'] = PUX // just for testing
 /**** doCreateProject ****/
 
   async function doCreateProject (Name:SNS_Name):Promise<void> {
+    switch (true) {
+      case (Name == null):      return withWarning('no "Name" given')
+      case ! ValueIsName(Name): return withWarning('invalid "Name" given')
+//    case ProjectExists(Name)
+    }
+
     if (PersistenceIsPending()) {
       persistProject()
     }
@@ -2553,6 +2518,12 @@ window['PUX'] = PUX // just for testing
 /**** doOpenProject ****/
 
   async function doOpenProject (Name:SNS_Name):Promise<void> {
+    switch (true) {
+      case (Name == null):      return withWarning('no "Name" given')
+      case ! ValueIsName(Name): return withWarning('invalid "Name" given')
+//    case ! ProjectExists(Name)
+    }
+
     if (PersistenceIsPending()) {
       persistProject()
     }
@@ -2564,6 +2535,16 @@ window['PUX'] = PUX // just for testing
 /**** doRenameProject ****/
 
   function doRenameProject (oldName:SNS_Name, newName:SNS_Name):void {
+    switch (true) {
+      case (oldName == null):      return withWarning('no "oldName" given')
+      case ! ValueIsName(oldName): return withWarning('invalid "oldName" given')
+      case (newName == null):      return withWarning('no "newName" given')
+      case ! ValueIsName(newName): return withWarning('invalid "newName" given')
+      case (oldName === newName):  return withWarning('"oldName" and "newName" are identical')
+//    case ! ProjectExists(oldName)
+//    case ProjectExists(newName)
+    }
+
     if (OperationWasConfirmed(
       'Do you really want to rename project ' + quoted(oldName) + ' to ' +
       quoted(newName) + '?'
@@ -2575,6 +2556,12 @@ window['PUX'] = PUX // just for testing
 /**** doPurgeProject ****/
 
   function doPurgeProject (Name:SNS_Name):void {
+    switch (true) {
+      case (Name == null):      return withWarning('no "Name" given')
+      case ! ValueIsName(Name): return withWarning('invalid "Name" given')
+//    case ! ProjectExists(oldName)
+    }
+
     if (OperationWasConfirmed(
       'Do you really want to delete project ' + quoted(Name) + '?'
     )) {
@@ -2594,6 +2581,11 @@ window['PUX'] = PUX // just for testing
   function doConfigureProject (
     Project:SNS_Project, PropertyName:SNS_Identifier, PropertyValue:any
   ):void {
+    switch (true) {
+      case (Project == null):                       return withWarning('no "Project" given')
+      case ! (PropertyName in SNS_ProjectDefaults): return withWarning('unknown project property ' + quoted(PropertyName))
+    }
+
     doOperation(new SNS_ProjectConfigurationOperation(
       Project, PropertyName, PropertyValue
     ))
@@ -2602,12 +2594,20 @@ window['PUX'] = PUX // just for testing
 /**** doApplyProjectScript ****/
 
   function doApplyProjectScript (Project:SNS_Project):void {
+    switch (true) {
+      case (Project == null): return withWarning('no "Project" given')
+    }
+
     applyPendingScriptOfVisual(Project)
   }
 
 /**** doWithdrawProjectScript ****/
 
   function doWithdrawProjectScript (Project:SNS_Project):void {
+    switch (true) {
+      case (Project == null): return withWarning('no "Project" given')
+    }
+
     doOperation(new SNS_ProjectConfigurationOperation(
       Project, 'pendingScript', undefined
     ))
@@ -2617,6 +2617,13 @@ window['PUX'] = PUX // just for testing
 /**** doCreateNewBoard ****/
 
   function doCreateNewBoard (BoardList:SNS_Board[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(BoardList,ValueIsBoard):
+        return withWarning('the given "BoardList" contains invalid elements',BoardList)
+      case BoardList.some((Board:SNS_Board) => ! Board.isAttached):
+        return withWarning('some boards in the given "BoardList" are no longer attached',BoardList)
+    }
+
     let Folder:SNS_Folder, Index:number
 
     if (BoardList.length > 0) {
@@ -2641,6 +2648,13 @@ window['PUX'] = PUX // just for testing
 /**** doDuplicateBoards ****/
 
   function doDuplicateBoards (BoardList:SNS_Board[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(BoardList,ValueIsBoard):
+        return withWarning('the given "BoardList" contains invalid elements',BoardList)
+      case BoardList.some((Board:SNS_Board) => ! Board.isAttached):
+        return withWarning('some boards in the given "BoardList" are no longer attached',BoardList)
+    }
+
     const sortedBoards:SNS_Board[] = BoardsSortedByIndex(BoardList)
 
     const Folder:SNS_Folder = commonFolderOfBoards(BoardList)       // may fail!
@@ -2660,6 +2674,12 @@ window['PUX'] = PUX // just for testing
   function doConfigureBoard (
     Board:SNS_Board, PropertyName:SNS_Identifier, PropertyValue:any
   ):void {
+    switch (true) {
+      case (Board == null):                       return withWarning('no "Board" given')
+      case ! Board.isAttached:                    return withWarning('the given "Board" is no longer attached')
+      case ! (PropertyName in SNS_BoardDefaults): return withWarning('unknown board property ' + quoted(PropertyName))
+    }
+
     doOperation(new SNS_BoardConfigurationOperation(
       Board, PropertyName, PropertyValue
     ))
@@ -2668,12 +2688,22 @@ window['PUX'] = PUX // just for testing
 /**** doApplyBoardScript ****/
 
   function doApplyBoardScript (Board:SNS_Board):void {
+    switch (true) {
+      case (Board == null):    return withWarning('no "Board" given')
+      case ! Board.isAttached: return withWarning('the given "Board" is no longer attached')
+    }
+
     applyPendingScriptOfVisual(Board)
   }
 
 /**** doWithdrawBoardScript ****/
 
   function doWithdrawBoardScript (Board:SNS_Board):void {
+    switch (true) {
+      case (Board == null):    return withWarning('no "Board" given')
+      case ! Board.isAttached: return withWarning('the given "Board" is no longer attached')
+    }
+
     doOperation(new SNS_BoardConfigurationOperation(
       Board, 'pendingScript', undefined
     ))
@@ -2683,10 +2713,17 @@ window['PUX'] = PUX // just for testing
 /**** doShiftBoardsIn ****/
 
   function doShiftBoardsIn (BoardList:SNS_Board[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(BoardList,ValueIsBoard):
+        return withWarning('the given "BoardList" contains invalid elements',BoardList)
+      case BoardList.some((Board:SNS_Board) => ! Board.isAttached):
+        return withWarning('some boards in the given "BoardList" are no longer attached',BoardList)
+    }
+
     const Folder:SNS_Folder                 = commonFolderOfBoards(BoardList) // may fail!
     const sortedBoards:SNS_Board[]          = BoardsSortedByIndex(BoardList)
     const TargetFolder:SNS_Folder|undefined = Folder.Board(bottommostIndexOfBoards(BoardList)+1)
-      if (TargetFolder == null) { return }
+      if (TargetFolder == null) { return withWarning('the given boards can not be shifted in') }
 
     doOperation(new SNS_BoardMoveOperation(
       Folder,sortedBoards, TargetFolder,0
@@ -2700,10 +2737,17 @@ window['PUX'] = PUX // just for testing
 /**** doShiftBoardsOut ****/
 
   function doShiftBoardsOut (BoardList:SNS_Board[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(BoardList,ValueIsBoard):
+        return withWarning('the given "BoardList" contains invalid elements',BoardList)
+      case BoardList.some((Board:SNS_Board) => ! Board.isAttached):
+        return withWarning('some boards in the given "BoardList" are no longer attached',BoardList)
+    }
+
     const Folder:SNS_Folder                 = commonFolderOfBoards(BoardList)
     const sortedBoards:SNS_Board[]          = BoardsSortedByIndex(BoardList)
     const TargetFolder:SNS_Folder|undefined = Folder.Folder
-      if (TargetFolder == null) { return }
+      if (TargetFolder == null) { return withWarning('the given boards can not be shifted out') }
 
     doOperation(new SNS_BoardMoveOperation(
       Folder,sortedBoards, TargetFolder,Folder.Index
@@ -2713,6 +2757,13 @@ window['PUX'] = PUX // just for testing
 /**** doShiftBoardsUp ****/
 
   function doShiftBoardsUp (BoardList:SNS_Board[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(BoardList,ValueIsBoard):
+        return withWarning('the given "BoardList" contains invalid elements',BoardList)
+      case BoardList.some((Board:SNS_Board) => ! Board.isAttached):
+        return withWarning('some boards in the given "BoardList" are no longer attached',BoardList)
+    }
+
     const sortedBoards:SNS_Board[] = BoardsSortedByIndex(BoardList)
 
     const Folder:SNS_Folder  = commonFolderOfBoards(BoardList)
@@ -2725,6 +2776,13 @@ window['PUX'] = PUX // just for testing
 /**** doShiftBoardsDown ****/
 
   function doShiftBoardsDown (BoardList:SNS_Board[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(BoardList,ValueIsBoard):
+        return withWarning('the given "BoardList" contains invalid elements',BoardList)
+      case BoardList.some((Board:SNS_Board) => ! Board.isAttached):
+        return withWarning('some boards in the given "BoardList" are no longer attached',BoardList)
+    }
+
     const sortedBoards:SNS_Board[] = BoardsSortedByIndex(BoardList)
 
     const Folder:SNS_Folder  = commonFolderOfBoards(BoardList)
@@ -2737,6 +2795,13 @@ window['PUX'] = PUX // just for testing
 /**** doDeleteBoards ****/
 
   function doDeleteBoards (BoardList:SNS_Board[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(BoardList,ValueIsBoard):
+        return withWarning('the given "BoardList" contains invalid elements',BoardList)
+      case BoardList.some((Board:SNS_Board) => ! Board.isAttached):
+        return withWarning('some boards in the given "BoardList" are no longer attached',BoardList)
+    }
+
     doOperation(new SNS_BoardDeletionOperation(
       BoardsSortedByIndex(BoardList)
     ))
@@ -2746,7 +2811,14 @@ window['PUX'] = PUX // just for testing
 
   function doCreateNewSticker (BehaviorName:SNS_Identifier):void {
     const Board = Application.chosenBoard
-    if (Board == null) { return }
+
+    switch (true) {
+      case (BehaviorName == null):            return withWarning('no "BehaviorName" given')
+      case ! ValueIsIdentifier(BehaviorName): return withWarning('invalid "BehaviorName" given')
+      case (Board == null):                   return withWarning('there is currently no chosen board')
+// @ts-ignore TS18048 "Board" is obviously *not* undefined here
+      case ! Board.isAttached:                return withWarning('the chosen board is no longer attached')
+    }
 
     const selectedStickers = Application.selectedStickers
 
@@ -2764,7 +2836,18 @@ window['PUX'] = PUX // just for testing
 
   function doDuplicateStickers (StickerList:SNS_Sticker[]):void {
     const Board = Application.chosenBoard
-    if (Board == null) { return }
+
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+      case (Board == null):    return withWarning('there is currently no chosen board')
+// @ts-ignore TS18048 "Board" is obviously *not* undefined here
+      case ! Board.isAttached: return withWarning('the chosen board is no longer attached')
+    }
 
     const Serializations:Serializable[] = StickersSortedByIndex(StickerList).map(
       (Sticker:SNS_Sticker) => Sticker.Serialization
@@ -2794,29 +2877,57 @@ window['PUX'] = PUX // just for testing
 /**** doConfigureStickers ****/
 
   function doConfigureStickers (
-    Stickers:SNS_Sticker[], PropertyName:SNS_Identifier, PropertyValue:any
+    StickerList:SNS_Sticker[], PropertyName:SNS_Identifier, PropertyValue:any
   ):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+      case ! (PropertyName in SNS_StickerDefaults): return withWarning('unknown sticker property ' + quoted(PropertyName))
+    }
+
     doOperation(new SNS_StickerConfigurationOperation(
-      Stickers, PropertyName, PropertyValue
+      StickerList, PropertyName, PropertyValue
     ))
   }
 
 /**** doApplyStickerScript ****/
 
-  function doApplyStickerScript (Stickers:SNS_Sticker[]):void {
-    Stickers.forEach(
+  function doApplyStickerScript (StickerList:SNS_Sticker[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+    }
+
+    StickerList.forEach(
       (Sticker:SNS_Sticker) => applyPendingScriptOfVisual(Sticker)
     )
   }
 
 /**** doWithdrawStickerScript ****/
 
-  function doWithdrawStickerScript (Stickers:SNS_Sticker[]):void {
+  function doWithdrawStickerScript (StickerList:SNS_Sticker[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+    }
+
     doOperation(new SNS_StickerConfigurationOperation(
-      Stickers, 'pendingScript', undefined
+      StickerList, 'pendingScript', undefined
     ))
 
-    Stickers.forEach((Sticker:SNS_Sticker) => {
+    StickerList.forEach((Sticker:SNS_Sticker) => {
       Sticker.ScriptError = undefined
     })
   }
@@ -2826,6 +2937,19 @@ window['PUX'] = PUX // just for testing
   function doChangeStickerGeometries (
     StickerList:SNS_Sticker[], GeometryList:SNS_Geometry[]
   ):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+      case ! ValueIsListSatisfying(GeometryList,ValueIsGeometry):
+        return withWarning('the given "GeometryList" contains invalid elements',GeometryList)
+      case (StickerList.length !== GeometryList.length):
+        return withWarning('the given "StickerList" and "GeometryList" do not match',StickerList,GeometryList)
+    }
+
     doOperation(new SNS_StickerShapeOperation(
       StickerList, GeometryList
     ))
@@ -2834,6 +2958,15 @@ window['PUX'] = PUX // just for testing
 /**** doShiftStickersToTop ****/
 
   function doShiftStickersToTop (StickerList:SNS_Sticker[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+    }
+
     doOperation(new SNS_StickerShiftOperation(
       StickersSortedByIndex(StickerList),
       StickerList.map((_:any,i:number) => i)
@@ -2843,6 +2976,15 @@ window['PUX'] = PUX // just for testing
 /**** doShiftStickersUp ****/
 
   function doShiftStickersUp (StickerList:SNS_Sticker[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+    }
+
     const sortedStickers:SNS_Sticker[] = StickersSortedByIndex(StickerList)
 
     const newIndex:number     = Math.max(0,topmostIndexOfStickers(StickerList)-1)
@@ -2854,10 +2996,19 @@ window['PUX'] = PUX // just for testing
 /**** doShiftStickersDown ****/
 
   function doShiftStickersDown (StickerList:SNS_Sticker[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+    }
+
     const sortedStickers:SNS_Sticker[] = StickersSortedByIndex(StickerList)
 
     const Board:SNS_Board|undefined = commonBoardOfStickers(StickerList)
-    if (Board == null) { return }
+    if (Board == null) { return withWarning('the given stickers do not share the same folder') }
 
     const newIndex:number    = Math.min(bottommostIndexOfStickers(StickerList)+1,Board.StickerCount-1)+1-StickerList.length
     const IndexList:number[] = sortedStickers.map((_:any,i:number) => newIndex+i)
@@ -2868,10 +3019,19 @@ window['PUX'] = PUX // just for testing
 /**** doShiftStickersToBottom ****/
 
   function doShiftStickersToBottom (StickerList:SNS_Sticker[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+    }
+
     const sortedStickers:SNS_Sticker[] = StickersSortedByIndex(StickerList)
 
     const Board:SNS_Board|undefined = commonBoardOfStickers(StickerList)
-    if (Board == null) { return }
+    if (Board == null) { return withWarning('the given stickers do not share the same folder') }
 
     const newIndex:number    = Board.StickerCount-StickerList.length
     const IndexList:number[] = sortedStickers.map((_:any,i:number) => newIndex+i)
@@ -2882,6 +3042,19 @@ window['PUX'] = PUX // just for testing
 /**** doShiftStickers **** /
 
   function doShiftStickers (StickerList:SNS_Sticker[], IndexList:number[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+      case ! ValueIsListSatisfying(IndexList,(Value:any) => ValueIsListSatisfying(Value,ValueIsOrdinal)):
+        return withWarning('the given "IndexList" contains invalid elements',GeometryList)
+      case (StickerList.length !== IndexList.length):
+        return withWarning('the given "StickerList" and "IndexList" do not match',StickerList,GeometryList)
+    }
+
     const Auxiliary:Indexable[] = StickerList.map(
       (Sticker:SNS_Sticker, i:number) => ({
         Sticker, oldIndex:Sticker.Index, newIndex:IndexList[i]
@@ -2903,6 +3076,15 @@ window['PUX'] = PUX // just for testing
 /**** doDeleteStickers ****/
 
   function doDeleteStickers (StickerList:SNS_Sticker[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+    }
+
     doOperation(new SNS_StickerDeletionOperation(
       StickersSortedByIndex(StickerList)
     ))
@@ -2911,6 +3093,15 @@ window['PUX'] = PUX // just for testing
 /**** doCutStickers ****/
 
   function doCutStickers (StickerList:SNS_Sticker[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+    }
+
     Shelf.splice(0,Shelf.length)
 
     StickerList = StickersSortedByIndex(StickerList)
@@ -2928,6 +3119,15 @@ window['PUX'] = PUX // just for testing
 /**** doCopyStickers ****/
 
   function doCopyStickers (StickerList:SNS_Sticker[]):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return withWarning('the given "StickerList" is empty')
+    }
+
     Shelf.splice(0,Shelf.length)
 
     StickerList = StickersSortedByIndex(StickerList)
@@ -2944,10 +3144,12 @@ window['PUX'] = PUX // just for testing
 /**** doPasteStickers ****/
 
   function doPasteStickers ():void {
-    if (! Application.ShelfIsFilled) { return }
+    switch (true) {
+      case ! Application.ShelfIsFilled: return withWarning('shelf is empty')
+    }
 
     const Board = Application.chosenBoard
-    if (Board == null) { return }
+    if (Board == null) { return withWarning('there is curently no chosen board') }
 
     doOperation(new SNS_StickerDeserializationOperation(
       Board, Shelf.slice(), Board.StickerCount
@@ -2957,10 +3159,12 @@ window['PUX'] = PUX // just for testing
 /**** doPasteStickersAround ****/
 
   function doPasteStickersAround (x:number, y:number):void {
-    if (! Application.ShelfIsFilled) { return }
+    switch (true) {
+      case ! Application.ShelfIsFilled: return withWarning('shelf is empty')
+    }
 
     const Board = Application.chosenBoard
-    if (Board == null) { return }
+    if (Board == null) { return withWarning('there is curently no chosen board') }
 
     doOperation(new SNS_StickerDeserializationOperation(
       Board, Shelf.slice(), Board.StickerCount
@@ -3013,6 +3217,12 @@ window['PUX'] = PUX // just for testing
 /**** doVisitBoard ****/
 
   function doVisitBoard (Board:SNS_Board|undefined):void {
+    switch (true) {
+      case (Board == null):    break
+// @ts-ignore TS18048 "Board" is obviously *not* undefined here
+      case ! Board.isAttached: return withWarning('the given "Board" is no longer attached')
+    }
+
     visitBoard(Board)
   }
 
@@ -3114,17 +3324,14 @@ console.log('Reader.onload')
       switch (Scope) {
         case 'whole Project':
           const Project = Application.Project
-          if (Project == null) { return }
+          if (Project == null) { return withWarning('there is currently no active project') }
 
           FileName   = Project.Name || 'SNS-Project'
           JSONObject = Project.Serialization
           break
         case 'active Board':
           const chosenBoard = Application.chosenBoard
-          if (chosenBoard == null) {
-            window.alert('no active board')
-            return
-          }
+          if (chosenBoard == null) { return withWarning('there is currently no chosen board') }
 
           FileName   = chosenBoard.Name || 'SNS-Board'
           JSONObject = chosenBoard.Serialization
@@ -3132,8 +3339,7 @@ console.log('Reader.onload')
         case 'selected Stickers': default:
           const selectedStickers = Application.selectedStickers
           if (selectedStickers.length === 0) {
-            window.alert('no stickers selected')
-            return
+            return withWarning('there are currently no selected stickers')
           }
 
           FileName   = 'SNS-Stickers'
@@ -3158,6 +3364,11 @@ console.log('Reader.onload')
   function doGenerateAppletFromBoard (
     Board:SNS_Board, Mode:'standalone'|'embeddable'
   ):void {
+    switch (true) {
+      case (Board == null):    return withWarning('no "Board" given')
+      case ! Board.isAttached: return withWarning('the given "Board" is no longer attached')
+    }
+
     generateAppletFromBoard(Board,Mode)
   }
 
@@ -3166,6 +3377,11 @@ console.log('Reader.onload')
   function doGenerateAppletFromBoardAndSuccessors (
     Board:SNS_Board, Mode:'standalone'|'embeddable'
   ):void {
+    switch (true) {
+      case (Board == null):    return withWarning('no "Board" given')
+      case ! Board.isAttached: return withWarning('the given "Board" is no longer attached')
+    }
+
     generateAppletFromBoardAndSuccessors(Board,Mode)
   }
 
@@ -3174,12 +3390,26 @@ console.log('Reader.onload')
   function doGenerateAppletFromStickers (
     StickerList:SNS_Sticker[], Mode:'standalone'|'embeddable'
   ):void {
+    switch (true) {
+      case ! ValueIsListSatisfying(StickerList,ValueIsSticker):
+        return withWarning('the given "StickerList" contains invalid elements',StickerList)
+      case StickerList.some((Sticker:SNS_Sticker) => ! Sticker.isAttached):
+        return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
+      case (StickerList.length === 0):
+        return // no warning as there is no disabling of this command entry yet
+//      return withWarning('the given "StickerList" is empty')
+    }
+
     generateAppletFromStickers(StickerList,Mode)
   }
 
 /**** doPrintBoard ****/
 
   function doPrintBoard ():void {
+    switch (true) {
+      case (Application.chosenBoard == null): return withWarning('there is currently no chosen board')
+    }
+
     window.print()
   }
 
@@ -6015,6 +6245,28 @@ console.log('was changed: Application.VisitHistoryState')
       }
 
       return MoveList
+  }
+
+/**** withError **** /
+
+  function withError (Message:SNS_Textline, ...DetailList:any[]):void {
+    if (DetailList.length === 0) {
+      console.error('NoteStickers: ' + Message)
+    } else {
+      console.error.call(null,['NoteStickers: ' + Message].concat(DetailList))
+    }
+debugger // *C* remove or comment for production
+  }
+*/
+/**** withWarning ****/
+
+  function withWarning (Message:SNS_Textline, ...DetailList:any[]):void {
+    if (DetailList.length === 0) {
+      console.warn('NoteStickers: ' + Message)
+    } else {
+      console.warn.call(null,['NoteStickers: ' + Message].concat(DetailList))
+    }
+debugger // *C* remove or comment for production
   }
 
 /**** begin with localForage ****/
