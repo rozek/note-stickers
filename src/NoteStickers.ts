@@ -30,6 +30,7 @@
     SNS_BehaviorEntryGroup, SNS_BehaviorEntry,
     groupedBehaviorEntryList,
   } from 'shareable-note-stickers'
+
   import { SNS_BoardView } from 'sns-boardview'
 
   import {
@@ -4040,7 +4041,7 @@ window['Project'] = Application.Project // just for testing
     html, body { width:100%; height:100%; width:100vw; height:100vh; margin:0px; padding:0px }
     html       { overflow:hidden scroll }
   </style>
-  ${'<'}script src="https://rozek.github.io/note-stickers/dist/note-stickers-runtime.js">${'<'}/script>
+  ${'<'}script src="https://rozek.github.io/note-stickers-runtime/dist/note-stickers-runtime.js">${'<'}/script>
   ${'<'}script type="Note-Stickers" name="${AppletName}">
 ${JSON.stringify(AppletSerialization)}
   ${'<'}/script>
