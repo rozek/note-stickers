@@ -38,7 +38,7 @@
     "javascript-interface-library": "^1.0.6",
     "localforage": "^1.10.0",
     "protoux": "^0.0.24",
-    "shareable-note-stickers": "^0.0.6",
-    "sns-boardview": "^0.0.4"
+    "shareable-note-stickers": "^0.0.8",
+    "sns-boardview": "^0.0.6"
   }
 }
