@@ -3580,8 +3580,6 @@ computed(() => {
   const chosenBoard = Application.chosenBoard;
   Application.BoardProperties = PropertiesOfBoard(chosenBoard);
   Application.StickerList = chosenBoard == null ? [] : chosenBoard.StickerList;
-  Application.ViewState++;
-  console.log("Application.ViewState++");
 });
 computed(() => {
   console.log("was changed: Application.StickerList");
@@ -3603,6 +3601,8 @@ computed(() => {
   Application.StickerSelectionProperties = PropertiesOfStickers(selectedStickers);
   Application.StickerSelectionMayBeShiftedUp = StickersMayBeShiftedUp(selectedStickers);
   Application.StickerSelectionMayBeShiftedDown = StickersMayBeShiftedDown(selectedStickers);
+  Application.ViewState++;
+  console.log("Application.ViewState++");
 });
 computed(() => {
   console.log("was changed: Application.ScriptEditorMode/Project/Board/StickerSelectionProperties");
