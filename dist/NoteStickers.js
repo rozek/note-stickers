@@ -1149,7 +1149,7 @@ PUX.configure({
     ModeButton: {
       disabled: updatedFrom(() => Application.chosenBoard == null),
       Style: updatedFrom(
-        () => Application.Mode === "edit" ? "background:#e8f0ff; outline:solid 2px #e8f0ff" : ""
+        () => Application.Mode === "edit" ? "background:#e8f0ff; outline:solid 2px lightgray; border-radius:4px" : ""
       ),
       onClick: () => doSwitchMode()
     },
@@ -2483,7 +2483,7 @@ function doConfigureStickers(StickerList, PropertyName, PropertyValue) {
       return withWarning('some stickers in the given "StickerList" are no longer attached', StickerList);
     case StickerList.length === 0:
       return withWarning('the given "StickerList" is empty');
-    case !(PropertyName in SNS_StickerDefaults):
+    case (!(PropertyName in SNS_StickerDefaults) && (PropertyName !== "x" && PropertyName !== "Width" && PropertyName !== "y" && PropertyName !== "Height")):
       return withWarning("unknown sticker property " + quoted(PropertyName));
   }
   doOperation(new SNS_StickerConfigurationOperation(
