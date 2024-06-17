@@ -3739,17 +3739,20 @@ window['Project'] = Application.Project // just for testing
             Application.BoardProperties   = PropertiesOfBoard(Application.chosenBoard)
             Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers)
             Application.ViewState++
+console.log('Application.ViewState++')
             return
           case Application.chosenBoard:
             Application.BoardProperties = PropertiesOfBoard(Application.chosenBoard)
             Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers)
             Application.ViewState++
+console.log('Application.ViewState++')
             return
           default:
             if (ArgList[0].containsFolder(Application.chosenBoard)) {
               Application.BoardProperties = PropertiesOfBoard(Application.chosenBoard)
               Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers)
               Application.ViewState++
+console.log('Application.ViewState++')
             }
         }
         return
@@ -3761,6 +3764,7 @@ window['Project'] = Application.Project // just for testing
         if (ArgList[1] === Application.chosenBoard) {
           Application.StickerList = (Application.chosenBoard as SNS_Board).StickerList
           Application.ViewState++
+console.log('Application.ViewState++')
         }
         return
       case 'configureSticker': // Sticker, Property, Value
@@ -3774,6 +3778,7 @@ window['Project'] = Application.Project // just for testing
           }
           Application.StickerSelectionProperties = PropertiesOfStickers(selectedStickers)
           Application.ViewState++
+console.log('Application.ViewState++')
         }
         return
 //    case 'destroySticker':   // Sticker
@@ -3786,6 +3791,7 @@ window['Project'] = Application.Project // just for testing
     Project:SNS_Project, Board:SNS_Board|undefined, Sticker:SNS_Sticker|undefined
   ):void {
     if ((Board === Application.chosenBoard) || (Application.chosenBoard == null)) {
+console.log('ProjectRenderCallback')
       BoardViewWidget.rerender()
     }
   }
@@ -4427,6 +4433,7 @@ console.log('was changed: Application.chosenBoard')
     )
 
     Application.ViewState++
+console.log('Application.ViewState++')
   })
 
 /**** observe "StickerList" ****/
