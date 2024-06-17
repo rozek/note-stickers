@@ -4431,9 +4431,6 @@ console.log('was changed: Application.chosenBoard')
     Application.StickerList = (
       chosenBoard == null ? [] : chosenBoard.StickerList
     )
-
-    Application.ViewState++
-console.log('Application.ViewState++')
   })
 
 /**** observe "StickerList" ****/
@@ -4471,6 +4468,9 @@ console.log('was changed: Application.chosenBoard/StickerList/selectedStickers')
 
     Application.StickerSelectionMayBeShiftedUp   = StickersMayBeShiftedUp(selectedStickers)
     Application.StickerSelectionMayBeShiftedDown = StickersMayBeShiftedDown(selectedStickers)
+
+    Application.ViewState++
+console.log('Application.ViewState++')
   })
 
 /**** update "ScriptEditorValue" ****/
