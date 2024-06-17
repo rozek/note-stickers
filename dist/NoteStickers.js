@@ -3090,17 +3090,20 @@ function ProjectChangeCallback(Project, Change, ...ArgList) {
           Application.BoardProperties = PropertiesOfBoard(Application.chosenBoard);
           Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers);
           Application.ViewState++;
+          console.log("Application.ViewState++");
           return;
         case Application.chosenBoard:
           Application.BoardProperties = PropertiesOfBoard(Application.chosenBoard);
           Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers);
           Application.ViewState++;
+          console.log("Application.ViewState++");
           return;
         default:
           if (ArgList[0].containsFolder(Application.chosenBoard)) {
             Application.BoardProperties = PropertiesOfBoard(Application.chosenBoard);
             Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers);
             Application.ViewState++;
+            console.log("Application.ViewState++");
           }
       }
       return;
@@ -3109,6 +3112,7 @@ function ProjectChangeCallback(Project, Change, ...ArgList) {
       if (ArgList[1] === Application.chosenBoard) {
         Application.StickerList = Application.chosenBoard.StickerList;
         Application.ViewState++;
+        console.log("Application.ViewState++");
       }
       return;
     case "configureSticker":
@@ -3121,12 +3125,14 @@ function ProjectChangeCallback(Project, Change, ...ArgList) {
         }
         Application.StickerSelectionProperties = PropertiesOfStickers(selectedStickers);
         Application.ViewState++;
+        console.log("Application.ViewState++");
       }
       return;
   }
 }
 function ProjectRenderCallback(Project, Board, Sticker) {
   if (Board === Application.chosenBoard || Application.chosenBoard == null) {
+    console.log("ProjectRenderCallback");
     BoardViewWidget.rerender();
   }
 }
@@ -3575,6 +3581,7 @@ computed(() => {
   Application.BoardProperties = PropertiesOfBoard(chosenBoard);
   Application.StickerList = chosenBoard == null ? [] : chosenBoard.StickerList;
   Application.ViewState++;
+  console.log("Application.ViewState++");
 });
 computed(() => {
   console.log("was changed: Application.StickerList");
