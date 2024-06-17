@@ -1383,7 +1383,9 @@ window['PUX'] = PUX // just for testing
           ModeButton: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
             Style:updatedFrom(() =>
-              Application.Mode === 'edit' ? 'background:#e8f0ff; outline:solid 2px #e8f0ff' : ''
+              Application.Mode === 'edit'
+              ? 'background:#e8f0ff; outline:solid 2px lightgray; border-radius:4px'
+              : ''
             ),
             onClick:() => doSwitchMode(),
           },
@@ -2886,7 +2888,11 @@ window['PUX'] = PUX // just for testing
         return withWarning('some stickers in the given "StickerList" are no longer attached',StickerList)
       case (StickerList.length === 0):
         return withWarning('the given "StickerList" is empty')
-      case ! (PropertyName in SNS_StickerDefaults): return withWarning('unknown sticker property ' + quoted(PropertyName))
+      case ! (PropertyName in SNS_StickerDefaults) && (
+        (PropertyName !== 'x') && (PropertyName !== 'Width') &&
+        (PropertyName !== 'y') && (PropertyName !== 'Height')
+      ):
+        return withWarning('unknown sticker property ' + quoted(PropertyName))
     }
 
     doOperation(new SNS_StickerConfigurationOperation(
@@ -3247,6 +3253,7 @@ console.log('Reader.onload')
                 return
               }
 
+// @ts-ignore TS2721 "Serialization" is not null
               Serialization.forEach(  // assign new ids to any imported stickers
                 (Serialization:Serializable) => removeIdsFrom(Serialization)
               )
