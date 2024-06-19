@@ -12,7 +12,7 @@ export default defineConfig({
   	minify: false,
   	rollupOptions: {
   		external: [
-  		  'javascript-interface-library','htm','preact','htm/preact','hyperactiv','protoux','nanoid','nanoid-dictionary',
+  		  'javascript-interface-library','htm/preact','hyperactiv','protoux','nanoid','nanoid-dictionary',
   		  'shareable-note-stickers','sns-boardview',
   		  'svelte-coordinate-conversion','localforage'
   		],
