@@ -3,12 +3,10 @@ var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { en
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 import { quoted, ValueIsListSatisfying, ValueIsArray, ValuesAreEqual, ValuesDiffer, expectListSatisfying } from "javascript-interface-library";
 import localforage from "localforage";
-import { h } from "preact";
-import e from "htm";
+import { html } from "htm/preact";
 import { groupedBehaviorEntryList, ValueIsError, ValueIsName, ValueIsBoard, ValueIsIdentifier, TemplateOfBehavior, ValueIsSticker, ValueIsGeometry, removeIdsFrom, throwError, SNS_Project, throwReadOnlyError, newId } from "shareable-note-stickers";
 import { SNS_BoardView } from "sns-boardview";
 import { ProtoUX, DragClickRecognizerFor, computed } from "protoux";
-var m = e.bind(h);
 const noSelection = {};
 const mixedValues = {};
 const SNS_commonDefaults = {
@@ -150,7 +148,7 @@ function hideDesignerTools() {
 }
 function BoardView() {
   var _a, _b, _c;
-  return m`<${SNS_BoardView}
+  return html`<${SNS_BoardView}
       Mode=${Application.Mode}
       Board=${Application.chosenBoard} StickerList=${Application.StickerList}
       selectedStickers=${Application.selectedStickers}
@@ -166,10 +164,10 @@ function BoardView() {
       GridHeight=${IntegerFor((_c = Application.BoardProperties) == null ? void 0 : _c.GridHeight) || 10}
     />`;
 }
-const StickerCreateOptions = m`
+const StickerCreateOptions = html`
     <option value="" disabled selected>please select</option>
     ${groupedBehaviorEntryList().map(
-  (BehaviorEntryGroup) => m`
+  (BehaviorEntryGroup) => html`
         <optgroup label="${BehaviorEntryGroup.GroupLabel}">
           ${OptionsForBehaviors(BehaviorEntryGroup.BehaviorEntryList)}
         </optgroup>
@@ -177,17 +175,17 @@ const StickerCreateOptions = m`
 )}
   `;
 function OptionsForBehaviors(BehaviorEntryList) {
-  return m`${BehaviorEntryList.map(
+  return html`${BehaviorEntryList.map(
     (BehaviorEntry) => OptionForBehavior(BehaviorEntry)
   )}`;
 }
 function OptionForBehavior(BehaviorEntry) {
   const { Name, Label, disabled } = BehaviorEntry;
-  return m`<option value=${Name} disabled=${disabled}>${Label}</>`;
+  return html`<option value=${Name} disabled=${disabled}>${Label}</>`;
 }
 function AppletGeneratorOptions(StickerList) {
   const noStickers = StickerList.length === 0;
-  return m`
+  return html`
       <option value="" disabled selected>please select</option>
       <optgroup label="from current Board">
         <option value="Board:standalone">as standalone WebApp</option>
@@ -1575,9 +1573,9 @@ PUX.configure({
         ItemRenderer: (Board, IndexPath) => {
           const Style = Application.chosenBoard === Board ? "font-weight:bold; text-decoration:underline" : void 0;
           if (Board.Name == null) {
-            return m`<div class="ItemLabel" style=${Style}><i>(unnamed)</i></div>`;
+            return html`<div class="ItemLabel" style=${Style}><i>(unnamed)</i></div>`;
           } else {
-            return m`<div class="ItemLabel" style=${Style}>${Board.Name}</div>`;
+            return html`<div class="ItemLabel" style=${Style}>${Board.Name}</div>`;
           }
         },
         SelectionMode: "same-container",
