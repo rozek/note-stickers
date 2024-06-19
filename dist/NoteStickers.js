@@ -6,7 +6,9 @@ import localforage from "localforage";
 import { html } from "htm/preact";
 import { groupedBehaviorEntryList, ValueIsError, ValueIsName, ValueIsBoard, ValueIsIdentifier, TemplateOfBehavior, ValueIsSticker, ValueIsGeometry, removeIdsFrom, throwError, SNS_Project, throwReadOnlyError, newId } from "shareable-note-stickers";
 import { SNS_BoardView } from "sns-boardview";
-import { ProtoUX, DragClickRecognizerFor, computed } from "protoux";
+import hyperactiv from "hyperactiv";
+import { ProtoUX, DragClickRecognizerFor } from "protoux";
+const { computed } = hyperactiv;
 const noSelection = {};
 const mixedValues = {};
 const SNS_commonDefaults = {
