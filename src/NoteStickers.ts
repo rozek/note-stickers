@@ -33,10 +33,12 @@
 
   import { SNS_BoardView } from 'sns-boardview'
 
+  import hyperactiv from 'hyperactiv'
+  const { computed } = hyperactiv
+
   import {
     ProtoUX,
     DragClickRecognizerFor,
-    computed,
   } from 'protoux'
 
 /**** make some existing types indexable ****/
