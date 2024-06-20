@@ -35,10 +35,10 @@
   "dependencies": {
     "htm": "github:rozek/htm",
     "hyperactiv": "github:rozek/hyperactiv",
-    "javascript-interface-library": "^1.0.6",
-    "localforage": "^1.10.0",
-    "protoux": "^0.0.29",
-    "shareable-note-stickers": "^0.0.14",
-    "sns-boardview": "^0.0.13"
+    "javascript-interface-library": "github:rozek/javascript-interface-library",
+    "localforage": "github:rozek/localforage-esm",
+    "protoux": "github:rozek/protoux",
+    "shareable-note-stickers": "github:rozek/shareable-note-stickers",
+    "sns-boardview": "github:rozek/sns-boardview"
   }
 }
