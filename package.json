@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "rimraf": "^3.0.2",
-    "typescript": "^5.2.2",
+    "typescript": "^5.4.5",
     "vite": "^5.2.13",
     "vite-plugin-dts": "^3.9.1"
   },
@@ -37,7 +37,7 @@
     "hyperactiv": "github:rozek/hyperactiv",
     "javascript-interface-library": "^1.0.6",
     "localforage": "^1.10.0",
-    "protoux": "^0.0.28",
+    "protoux": "^0.0.29",
     "shareable-note-stickers": "^0.0.14",
     "sns-boardview": "^0.0.13"
   }
