@@ -1,6 +1,3 @@
-var __defProp = Object.defineProperty;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 import { quoted, ValueIsListSatisfying, ValueIsArray, ValuesAreEqual, ValuesDiffer, expectListSatisfying } from "javascript-interface-library";
 import localforage from "localforage";
 import { html } from "htm/preact";
@@ -1654,7 +1651,7 @@ PUX.configure({
           if (chosenBoard == null) {
             return withWarning("there is currently no chosen board");
           }
-          Application.selectedStickers = selectedIndices.map((Index) => chosenBoard.Sticker(Index));
+          Application.selectedStickers = selectedIndices.map((Index) => chosenBoard.Sticker(Index)).filter((Sticker) => Sticker != null);
         }
       },
       StickerCreateButton: {
@@ -2896,6 +2893,7 @@ async function fetchPersistedProjectList() {
   try {
     persistedProjectList = (await ProjectStore.keys()).sort();
   } catch (Signal) {
+    persistedProjectList = [];
     console.warn("could not fetch names of persisted projects", Signal);
   }
   Application.persistedProjectList = persistedProjectList;
@@ -3136,9 +3134,9 @@ function ProjectRenderCallback(Project, Board, Sticker) {
     BoardViewWidget.rerender();
   }
 }
-function ProjectErrorCallback(Project, Visual, Error2) {
+function ProjectErrorCallback(Project, Visual, Error) {
   window.alert(
-    Error2.Type + "\n" + Error2.Message + "\n" + Error2.Cause
+    Error.Type + "\n" + Error.Message + "\n" + Error.Cause
   );
 }
 function selectBoards(BoardList) {
@@ -3656,10 +3654,6 @@ class SNS_ProjectConfigurationOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(Project, PropertyName, PropertyValue) {
     super();
-    __publicField(this, "_Project");
-    __publicField(this, "_PropertyName");
-    __publicField(this, "_oldValue");
-    __publicField(this, "_newValue");
     this._Project = Project;
     this._PropertyName = PropertyName;
     this._oldValue = Project[PropertyName];
@@ -3710,10 +3704,7 @@ class SNS_BoardDeserializationOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(Folder, sortedSerializations, Index, keepIds = false) {
     super();
-    __publicField(this, "_Folder");
-    __publicField(this, "_Serializations");
-    __publicField(this, "_Index");
-    __publicField(this, "_newBoards", []);
+    this._newBoards = [];
     this._Folder = Folder;
     this._Serializations = sortedSerializations.slice();
     this._Index = Index;
@@ -3802,10 +3793,6 @@ class SNS_BoardConfigurationOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(Board, PropertyName, PropertyValue) {
     super();
-    __publicField(this, "_Board");
-    __publicField(this, "_PropertyName");
-    __publicField(this, "_oldValue");
-    __publicField(this, "_newValue");
     this._Board = Board;
     this._PropertyName = PropertyName;
     this._oldValue = Board[PropertyName];
@@ -3872,10 +3859,6 @@ class SNS_BoardMoveOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(oldFolder, sortedBoards, newFolder, Index) {
     super();
-    __publicField(this, "_oldFolder");
-    __publicField(this, "_oldIndices");
-    __publicField(this, "_newFolder");
-    __publicField(this, "_newIndex");
     this._oldFolder = oldFolder;
     this._oldIndices = sortedBoards.map((Board) => Board.Index);
     this._newFolder = newFolder;
@@ -3987,12 +3970,6 @@ class SNS_BoardShiftOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(Folder, sortedBoards, sortedIndices) {
     super();
-    __publicField(this, "_Folder");
-    __publicField(this, "_Boards");
-    __publicField(this, "_oldIndices");
-    __publicField(this, "_newIndices");
-    __publicField(this, "_forwardMoves");
-    __publicField(this, "_backwardMoves");
     this._Folder = Folder;
     this._Boards = sortedBoards;
     this._oldIndices = sortedBoards.map((Entry) => Entry.Index);
@@ -4070,10 +4047,6 @@ class SNS_BoardDeletionOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(sortedBoards) {
     super();
-    __publicField(this, "_Folder");
-    __publicField(this, "_Boards");
-    __publicField(this, "_Indices");
-    __publicField(this, "_Serializations");
     this._Folder = commonFolderOfBoards(sortedBoards);
     this._Boards = sortedBoards.slice();
     this._Indices = sortedBoards.map((Board) => Board.Index);
@@ -4162,10 +4135,7 @@ class SNS_StickerDeserializationOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(Board, sortedSerializations, Index, keepId = false) {
     super();
-    __publicField(this, "_Board");
-    __publicField(this, "_Serializations");
-    __publicField(this, "_Index");
-    __publicField(this, "_newStickers", []);
+    this._newStickers = [];
     this._Board = Board;
     this._Serializations = sortedSerializations.slice();
     this._Index = Index;
@@ -4260,11 +4230,6 @@ class SNS_StickerConfigurationOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(Stickers, PropertyName, PropertyValue) {
     super();
-    __publicField(this, "_Board");
-    __publicField(this, "_Stickers");
-    __publicField(this, "_PropertyName");
-    __publicField(this, "_oldValues");
-    __publicField(this, "_newValue");
     this._Board = commonBoardOfStickers(Stickers);
     this._Stickers = Stickers.slice();
     this._PropertyName = PropertyName;
@@ -4360,10 +4325,6 @@ class SNS_StickerShapeOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(Stickers, Geometries) {
     super();
-    __publicField(this, "_Board");
-    __publicField(this, "_Stickers");
-    __publicField(this, "_oldGeometries");
-    __publicField(this, "_newGeometries");
     this._Board = Stickers[0].Board;
     this._Stickers = Stickers.slice();
     this._oldGeometries = Stickers.map((Sticker) => Sticker.Geometry);
@@ -4462,12 +4423,6 @@ class SNS_StickerShiftOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(sortedStickers, sortedIndices) {
     super();
-    __publicField(this, "_Board");
-    __publicField(this, "_Stickers");
-    __publicField(this, "_oldIndices");
-    __publicField(this, "_newIndices");
-    __publicField(this, "_forwardMoves");
-    __publicField(this, "_backwardMoves");
     this._Board = commonBoardOfStickers(sortedStickers);
     this._Stickers = sortedStickers;
     this._oldIndices = sortedStickers.map((Sticker) => Sticker.Index);
@@ -4549,10 +4504,6 @@ class SNS_StickerDeletionOperation extends SNS_Operation {
   /**** constructor ****/
   constructor(sortedStickers) {
     super();
-    __publicField(this, "_Board");
-    __publicField(this, "_Stickers");
-    __publicField(this, "_Indices");
-    __publicField(this, "_Serializations");
     this._Board = commonBoardOfStickers(sortedStickers);
     this._Stickers = sortedStickers.slice();
     this._Indices = sortedStickers.map((Sticker) => Sticker.Index);
@@ -4843,20 +4794,20 @@ function IntegerFor(Value) {
 function BooleanFor(Value, TruthValue = true) {
   return Value === noSelection || Value === mixedValues ? null : Value === TruthValue;
 }
-function ErrorMessageFor(Error2) {
+function ErrorMessageFor(Error) {
   switch (true) {
-    case Error2 == null:
+    case Error == null:
       return "(no error found)";
-    case Error2 === noSelection:
+    case Error === noSelection:
       return "(no selection)";
-    case Error2 === mixedValues:
+    case Error === mixedValues:
       return "(various errors)";
     default:
-      return Error2.Type + ": " + Error2.Message;
+      return Error.Type + ": " + Error.Message;
   }
 }
-function showScriptError(Error2) {
-  window.alert(Error2.Type + "\n\n" + Error2.Message);
+function showScriptError(Error) {
+  window.alert(Error.Type + "\n\n" + Error.Message);
 }
 function applyPendingScriptOfVisual(Visual) {
   let pendingScript = (Visual.pendingScript || "").trim();
@@ -4927,9 +4878,9 @@ function MovesFor(oldIndices, newIndices, ItemCount) {
   for (let i = MoveList.length - 1; i >= 1; i--) {
     const curMove = MoveList[i];
     const prevMove = MoveList[i - 1];
-    if (prevMove[0] === curMove[0] - 1 && prevMove[1] === curMove[1] - 1) {
+    if (prevMove.oldIndex === curMove.oldIndex - 1 && prevMove.newIndex === curMove.newIndex - 1) {
       MoveList.splice(i, 1);
-      prevMove[2] += curMove[2];
+      prevMove.Count += curMove.Count;
     }
   }
   return MoveList;
