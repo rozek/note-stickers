@@ -4,7 +4,7 @@
 *                                                                              *
 *******************************************************************************/
 
-  declare const download
+  declare const download:Function
 
   import {
     quoted,
@@ -431,7 +431,7 @@
 //------------------------------------------------------------------------------
 
 //let PUX = new ProtoUX()                                 // already done before
-window['PUX'] = PUX // just for testing
+;(window as Indexable)['PUX'] = PUX // just for testing
     PUX.ImageFolder = './icons/'
 
     PUX.Style = `  #PUX_0 { background-image:url("/images/BinaryTexture_white.jpg") }
@@ -1539,8 +1539,8 @@ window['PUX'] = PUX // just for testing
             Value:      '',
             Placeholder:'',
             accept:'.json,application/json',
-            onChange:(Event) => doImport(Event.target.files[0]),
-            onDrop:  (Event) => doImport(Event.dataTransfer.files[0]),
+            onChange:(Event:Indexable) => doImport(Event.target.files[0]),
+            onDrop:  (Event:Indexable) => doImport(Event.dataTransfer.files[0]),
           },
           ExportButton: {
             disabled:updatedFrom(() => Application.Project == null),
@@ -1936,10 +1936,10 @@ window['PUX'] = PUX // just for testing
             SelectionMode:    'same-container',
             SelectionLimit:   Number.MAX_SAFE_INTEGER,
             selectedPaths:    updatedFrom(() => (Application.BoardTreeState, IndexPathsOfBoards(Application.selectedBoards))),
-            onSelectionChange:(selectedBoardPaths) => Application.selectedBoards = BoardsAtIndexPaths(selectedBoardPaths),
+            onSelectionChange:(selectedBoardPaths:number[][]) => Application.selectedBoards = BoardsAtIndexPaths(selectedBoardPaths),
             onItemDoubleClicked:(Board:SNS_Board) => doVisitBoard(Board),
             expandedPaths:    updatedFrom(() => (Application.BoardTreeState, IndexPathsOfBoards(Application.expandedBoards))),
-            onExpansionChange:(expandedBoardPaths) => Application.expandedBoards = BoardsAtIndexPaths(expandedBoardPaths),
+            onExpansionChange:(expandedBoardPaths:number[][]) => Application.expandedBoards = BoardsAtIndexPaths(expandedBoardPaths),
           },
 
           BoardCreateButton: {
@@ -2013,11 +2013,14 @@ window['PUX'] = PUX // just for testing
               )
             }),
             SelectionLimit: Number.MAX_SAFE_INTEGER,
-            onSelectionChange:(selectedIndices) => {
+            onSelectionChange:(selectedIndices:number[]) => {
               const chosenBoard = Application.chosenBoard
               if (chosenBoard == null) { return withWarning('there is currently no chosen board') }
 
-              Application.selectedStickers = selectedIndices.map((Index:number) => chosenBoard.Sticker(Index))
+// @ts-ignore TS2322 "undefined" list entries will be removed
+              Application.selectedStickers = selectedIndices
+                .map((Index:number) => chosenBoard.Sticker(Index))
+                .filter((Sticker:any) => Sticker != null)
             },
           },
 
@@ -3302,7 +3305,7 @@ console.log('Reader.onload')
                 Object.keys(SNS_ProjectDefaults).forEach((Property:string) => {
                   if ((Property !== 'Id') && (Property !== 'Name')) {
                     if (Serialization[Property] != null) {
-                      chosenProject[Property] = Serialization[Property]
+                      (chosenProject as Indexable)[Property] = Serialization[Property]
                     }
                   }
                 })
@@ -3465,10 +3468,11 @@ console.log('Reader.onload')
 /**** fetchPersistedProjectList - alphabetically sorted ****/
 
   async function fetchPersistedProjectList ():Promise<void> {
-    let persistedProjectList
+    let persistedProjectList:SNS_Name[]
       try {
         persistedProjectList = (await ProjectStore.keys()).sort() as SNS_Name[]
       } catch (Signal:any) {
+        persistedProjectList = []
         console.warn('could not fetch names of persisted projects',Signal)
       }
     Application.persistedProjectList = persistedProjectList
@@ -3603,7 +3607,7 @@ console.log('Reader.onload')
       Application.Project.onError(ProjectErrorCallback)
 
       Application.Project.recursivelyActivateAllScripts()
-window['Project'] = Application.Project // just for testing
+;(window as Indexable)['Project'] = Application.Project // just for testing
 
       hideDesignerTools()
     } catch (Signal:any) {
@@ -4052,7 +4056,7 @@ console.log('ProjectRenderCallback')
 
 /**** appendToConsole ****/
 
-  function appendToConsole (fullText):void {
+  function appendToConsole (fullText:string):void {
     if (fullText === '') { return }                      // nothing to be output
 
     let LineCount:number = EOLCount(fullText)
@@ -4588,7 +4592,7 @@ console.log('was changed: Application.VisitHistoryState')
 
       this._Project      = Project
       this._PropertyName = PropertyName
-      this._oldValue     = Project[PropertyName]
+      this._oldValue     = (Project as Indexable)[PropertyName]
       this._newValue     = PropertyValue
     }
 
@@ -4615,7 +4619,7 @@ console.log('was changed: Application.VisitHistoryState')
     public doNow ():void {
       clearInspectorMessage()
       try {
-        this._Project[this._PropertyName] = this._newValue
+        (this._Project as Indexable)[this._PropertyName] = this._newValue
       } catch (Signal:any) {
         setInspectorMessage('operation failed')
         throwError('OperationFailure: could not change the given property')
@@ -4640,7 +4644,7 @@ console.log('was changed: Application.VisitHistoryState')
     public undo ():void {
       clearInspectorMessage()
       try {
-        this._Project[this._PropertyName] = this._oldValue
+        (this._Project as Indexable)[this._PropertyName] = this._oldValue
       } catch (Signal:any) {
         setInspectorMessage('operation failed')
         throwError('OperationFailure: could not restore the given property')
@@ -4781,7 +4785,7 @@ console.log('was changed: Application.VisitHistoryState')
 
       this._Board        = Board
       this._PropertyName = PropertyName
-      this._oldValue     = Board[PropertyName]
+      this._oldValue     = (Board as Indexable)[PropertyName]
       this._newValue     = PropertyValue
     }
 
@@ -4814,7 +4818,7 @@ console.log('was changed: Application.VisitHistoryState')
       }
 
       try {
-        this._Board[this._PropertyName] = this._newValue
+        (this._Board as Indexable)[this._PropertyName] = this._newValue
       } catch (Signal:any) {
         setInspectorMessage('operation failed')
         throwError('OperationFailure: could not change the given property')
@@ -4849,7 +4853,7 @@ console.log('was changed: Application.VisitHistoryState')
       }
 
       try {
-        this._Board[this._PropertyName] = this._oldValue
+        (this._Board as Indexable)[this._PropertyName] = this._oldValue
       } catch (Signal:any) {
         setInspectorMessage('operation failed')
         throwError('OperationFailure: could not restore the given property')
@@ -5368,7 +5372,7 @@ console.log('was changed: Application.VisitHistoryState')
       this._Board        = commonBoardOfStickers(Stickers) as SNS_Board
       this._Stickers     = Stickers.slice()
       this._PropertyName = PropertyName
-      this._oldValues    = Stickers.map((Sticker:SNS_Sticker) => Sticker[PropertyName])
+      this._oldValues    = Stickers.map((Sticker:SNS_Sticker) => (Sticker as Indexable)[PropertyName])
       this._newValue     = PropertyValue
     }
 
@@ -5406,7 +5410,7 @@ console.log('was changed: Application.VisitHistoryState')
       const luckyStickers:SNS_Sticker[] = []
         existingStickers.forEach((Sticker:SNS_Sticker) => {
           try {
-            Sticker[this._PropertyName] = this._newValue
+            (Sticker as Indexable)[this._PropertyName] = this._newValue
             luckyStickers.push(Sticker)
           } catch (Signal:any) { debugger /* nop */ }
         })
@@ -5453,7 +5457,7 @@ console.log('was changed: Application.VisitHistoryState')
         existingStickers.forEach((Sticker:SNS_Sticker) => {
           let StickerIndex:number = this._Stickers.indexOf(Sticker)
           try {
-            Sticker[this._PropertyName] = this._oldValues[StickerIndex]
+            (Sticker as Indexable)[this._PropertyName] = this._oldValues[StickerIndex]
             luckyStickers.push(Sticker)
           } catch (Signal:any) { debugger /* nop */ }
         })
@@ -5818,7 +5822,7 @@ console.log('was changed: Application.VisitHistoryState')
   function PropertiesOfProject (Project:SNS_Project):SNS_ProjectProperties {
     const Result:Indexable = {}
       Object.keys(SNS_ProjectDefaults).forEach(
-        (Property:string) => Result[Property] = Project[Property]
+        (Property:string) => Result[Property] = (Project as Indexable)[Property]
       )
     return Result as SNS_ProjectProperties
   }
@@ -5944,7 +5948,7 @@ console.log('was changed: Application.VisitHistoryState')
 
     const Result:Indexable = {}
       Object.keys(SNS_BoardDefaults).forEach(
-        (Property:string) => Result[Property] = Board[Property]
+        (Property:string) => Result[Property] = (Board as Indexable)[Property]
       )
     return Result as SNS_BoardProperties
   }
@@ -5980,7 +5984,7 @@ console.log('was changed: Application.VisitHistoryState')
   function PropertiesOfSticker (Sticker:SNS_Sticker):SNS_StickerProperties {
     const Result:Indexable = {}
       Object.keys(SNS_StickerDefaults).forEach(
-        (Property:string) => Result[Property] = Sticker[Property]
+        (Property:string) => Result[Property] = (Sticker as Indexable)[Property]
       )
     return Result as SNS_StickerProperties
   }
@@ -5995,7 +5999,7 @@ console.log('was changed: Application.VisitHistoryState')
     const Result:Indexable = PropertiesOfSticker(StickerList[0])
       StickerList.slice(1).forEach((Sticker:SNS_Sticker) => {
         Object.keys(SNS_StickerDefaults).forEach((Property:string) => {
-          const Value:any = Sticker[Property]
+          const Value:any = (Sticker as Indexable)[Property]
           if (ValuesDiffer(Value,Result)) { Result[Property] = mixedValues }
         })
       })
@@ -6254,9 +6258,12 @@ console.log('was changed: Application.VisitHistoryState')
       for (let i = MoveList.length-1; i >= 1; i--) {           // optimize moves
         const curMove  = MoveList[i]
         const prevMove = MoveList[i-1]
-        if ((prevMove[0] === curMove[0]-1) && (prevMove[1] === curMove[1]-1)) {
+        if (
+          (prevMove.oldIndex === curMove.oldIndex-1) &&
+          (prevMove.newIndex === curMove.newIndex-1)
+        ) {
           MoveList.splice(i,1)
-          prevMove[2] += curMove[2]
+          prevMove.Count += curMove.Count
         }
       }
 
