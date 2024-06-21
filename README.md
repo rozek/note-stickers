@@ -1,6 +1,6 @@
 # note-stickers #
 
-unshared version of "shareable-note-stickers"
+(an unshared application based on "[shareable-note-stickers](https://github.com/rozek/shareable-note-stickers)")
 
 ![NoteStickers Screenshot](./NoteStickers-Screenshot.png)
 
