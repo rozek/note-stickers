@@ -1,6 +1,10 @@
 # note-stickers #
 
-unshared version of "shareable-note-stickers"
+(an unshared application based on "[shareable-note-stickers](https://github.com/rozek/shareable-note-stickers)")
+
+![NoteStickers Screenshot](./NoteStickers-Screenshot.png)
+
+"NoteStickers" is the first step in a series of implementation and user studies towards a modern variant of Apple's famous but hopelessly underrated [HyperCard](https://en.m.wikipedia.org/wiki/HyperCard)
 
 (work in progress)
 
