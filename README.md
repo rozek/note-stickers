@@ -10,11 +10,11 @@
 
 [live demo](https://rozek.github.io/note-stickers/dist/) (right now, for internal testing only - there still seems to be a really strange but fundamental problem when running from GitHub.io compared to an instance running from a local server...)
 
-![NoteStickers TLDR I](./NoteStickers_TLDR_I.png)
+![NoteStickers CheatSheet I](./NoteStickers_CheatSheet_I.png)
 
-![NoteStickers TLDR II](./NoteStickers_TLDR_II.png)
+![NoteStickers CheatSheet II](./NoteStickers_CheatSheet_II.png)
 
-![NoteStickers TLDR III](./NoteStickers_TLDR_III.png)
+![NoteStickers CheatSheet III](./NoteStickers_CheatSheet_III.png)
 
 
 ## License ##
