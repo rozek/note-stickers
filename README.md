@@ -14,6 +14,8 @@
 
 ![NoteStickers TLDR II](./NoteStickers_TLDR_II.png)
 
+![NoteStickers TLDR III](./NoteStickers_TLDR_III.png)
+
 
 ## License ##
 
