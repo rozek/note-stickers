@@ -12,6 +12,8 @@
 
 ![NoteStickers Startup I](./NoteStickers_Startup_I.png)
 
+![NoteStickers Startup II](./NoteStickers_Startup_II.png)
+
 
 ## License ##
 
