@@ -10,6 +10,9 @@
 
 [live demo](https://rozek.github.io/note-stickers/dist/) (right now, for internal testing only - there still seems to be a really strange but fundamental problem when running from GitHub.io compared to an instance running from a local server...)
 
+![NoteStickers Startup I](./NoteStickers_Startup_I.png)
+
+
 ## License ##
 
 [MIT License](LICENSE.md)
