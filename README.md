@@ -18,6 +18,8 @@
 
 ![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_IV.png)
 
+![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_V.png)
+
 
 ## License ##
 
