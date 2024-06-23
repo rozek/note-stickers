@@ -22,6 +22,8 @@
 
 ![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_VI.png)
 
+![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_VII.png)
+
 (more to come: Board Configurator, Sticker Configurator, Script Editor, Value Editor)
 
 
