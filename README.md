@@ -30,7 +30,9 @@
 
 ![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_X.png)
 
-(more to come: Board Configurator, Sticker Configurator, Script Editor, Value Editor)
+![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_XI.png)
+
+(more to come: Script Editor, Value Editor)
 
 
 ## License ##
