@@ -34,7 +34,11 @@ All stickers of a board have a "rendering order", given by their index in the li
 
 ### Value ###
 
-(t.b.w.) ()
+Every visual may have a "value" which must be a (JSON-)serializable JavaScript value (i.e., a boolean, number, string, array or object).
+
+The value of a sticker usually controls what the sticker renders onto the screen: the value of an "HTML View" contains the HTML to be shown, the value of an "Image View" the URL of the displayed image, that of an "SVG View" the shown SVG content, etc.
+
+Boards and the project itself may also have values, but these often contain (persistable) objects with values used by several other (inner boards and) stickers and have no immediate influence on the appearance of the board or project.
 
 ### Scripting ###
 
