@@ -34,6 +34,8 @@
 
 ![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_XII.png)
 
+![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_XIII.png)
+
 (more to come: Script Editor with Scripting Infos)
 
 
