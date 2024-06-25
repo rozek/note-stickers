@@ -52,7 +52,7 @@ The rendering callback is usually the most important one: here you can compute t
 
 #### Reactivity ####
 
-(t.b.w.) (reactively callback, visual.observed/unobserved)
+(t.b.w.) (reactively callback, visual.observed/unobserved, based on [hyperactiv](https://github.com/rozek/hyperactiv))
 
 #### Behaviors ####
 
