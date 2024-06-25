@@ -32,7 +32,9 @@
 
 ![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_XI.png)
 
-(more to come: Script Editor with Scripting Infos, Value Editor)
+![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_XII.png)
+
+(more to come: Script Editor with Scripting Infos)
 
 
 ## License ##
