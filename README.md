@@ -18,9 +18,13 @@ Projects are automatically saved in a browser's storage area (indexeddb) and may
 
 > Nota bene: in the current stage of development it is recommended to "download" often in order to save any work done with "NoteStickers"
 
-"Boards" always cover the whole HTML element into which "NoteStickers" is rendered - this also includes the application's dialog windows. As a consequence, it is recommended to keep the containing element large enough (normally, the containign element is the document body and "NoteStickers" covers the whole browser window)
+"Boards" always cover the whole HTML element into which "NoteStickers" is rendered - this also includes the application's dialog windows. As a consequence, it is recommended to keep the containing element large enough (normally, the containing element is the document body and "NoteStickers" then covers the whole browser window)
 
 Only one board may be actually shown at a given time - that board is called to be "active" or "visited".
+
+Boards may contain "stickers", rectangular areas that may be freely sized and positioned within the board. The visual appearance of every sticker is controlled by its visual "configuration" and its "rendering function". There are many built-in "types" of stickers with specific rendering functions, but you are free to define your own or modify any existing ones. The visual configuration of visuals is currently a bit limited: you may only specify the typography, fore- and background color and the background texture (more properties will be added later)
+
+All stickers of a board have a "rendering order", given by their index in the list of stickers belonging to a given board: stickers with lower indices are rendered earlier than stickers with higher ones. As a consequence, stickers with higher indices may cover (and, thus, perhaps hide) stickers with lower indices.
 
 
 
