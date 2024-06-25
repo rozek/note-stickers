@@ -22,10 +22,17 @@ Projects are automatically saved in a browser's storage area (indexeddb) and may
 
 Only one board may be actually shown at a given time - that board is called to be "active" or "visited".
 
-Boards may contain "stickers", rectangular areas that may be freely sized and positioned within the board. The visual appearance of every sticker is controlled by its visual "configuration" and its "rendering function". There are many built-in "types" of stickers with specific rendering functions, but you are free to define your own or modify any existing ones. The visual configuration of visuals is currently a bit limited: you may only specify the typography, fore- and background color and the background texture (more properties will be added later)
+Boards may contain "stickers", rectangular areas that may be freely sized and positioned within that board. The visual appearance of every sticker is controlled by its visual "configuration" and its "rendering function". There are many built-in "types" of stickers with specific rendering functions, but you are free to define your own or modify any existing ones. The  configuration of visuals is currently a bit limited: you may only specify the typography, fore- and background color and the background texture (but more properties will be added later).
 
 All stickers of a board have a "rendering order", given by their index in the list of stickers belonging to a given board: stickers with lower indices are rendered earlier than stickers with higher ones. As a consequence, stickers with higher indices may cover (and, thus, perhaps hide) stickers with lower indices.
 
+All visuals may be scripted. A "script" is (the body of) a JavaScript function which runs in the context of its visual. Scripts are executed whenever the containing visuals are created or when a script is re-"applied" to its visual after being changed at runtime.
+
+Within a script, you have access to the containing visual, the board it belongs to (if such a board exists) and the project itself. You may create local variables and functions, change the visual's configuration and define callbacks that will be executed whenever a visual appeared on the screen, is going to disappear or has to be rendered.
+
+The rendering callback is usually the most important one: here you can compute the contents of a visual and then return either a text to be rendered, a single HTML element or a list of HTML elements that should be shown inside the containing sticker.
+
+> Note bene: you may use the built-in ```html``` function with a template literal to define the desired HTML elements. That function uses [htm](https://github.com/developit/htm) under the hood and therefore allows you to use the "Hyperscript Tagged Markup" defined there
 
 
 (to be continued)
