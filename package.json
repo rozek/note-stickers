@@ -19,7 +19,8 @@
     "url": "https://github.com/rozek/note-stickers/issues"
   },
   "scripts": {
-    "build": "rimraf ./dist && tsc && vite build --sourcemap true --assetsDir . && cp ./index.html ./dist && mkdir ./dist/common ./dist/icons && cp ./common/* ./dist/common/ && cp ./icons/* ./dist/icons/",
+    "compile": "tsc --target esnext --moduleResolution nodenext --module nodenext ./src/NoteStickers.ts",
+    "build": "rimraf ./dist && mkdir ./dist && tsc --target esnext --moduleResolution nodenext --module nodenext ./src/NoteStickers.ts || mv ./src/NoteStickers.js ./dist && cp ./index.html ./dist && mkdir ./dist/common ./dist/icons && cp ./common/* ./dist/common/ && cp ./icons/* ./dist/icons/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "url": "git+https://github.com/rozek/note-stickers.git"
   },
   "devDependencies": {
+    "microbundle": "^0.15.1",
     "rimraf": "^3.0.2",
     "typescript": "^5.4.5",
     "vite": "^5.2.13",
@@ -36,7 +38,7 @@
     "htm": "github:rozek/htm",
     "hyperactiv": "github:rozek/hyperactiv",
     "javascript-interface-library": "github:rozek/javascript-interface-library",
-    "localforage": "^1.10.0",
+    "localforage": "github:rozek/localforage-esm",
     "protoux": "github:rozek/protoux",
     "shareable-note-stickers": "github:rozek/shareable-note-stickers",
     "sns-boardview": "github:rozek/sns-boardview"
