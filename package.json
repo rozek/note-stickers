@@ -19,8 +19,8 @@
     "url": "https://github.com/rozek/note-stickers/issues"
   },
   "scripts": {
-    "compile": "tsc --target esnext --moduleResolution nodenext --module nodenext ./src/NoteStickers.ts",
-    "build": "rimraf ./dist && mkdir ./dist && tsc --target esnext --moduleResolution nodenext --module nodenext ./src/NoteStickers.ts || mv ./src/NoteStickers.js ./dist && cp ./index.html ./dist && mkdir ./dist/common ./dist/icons && cp ./common/* ./dist/common/ && cp ./icons/* ./dist/icons/",
+    "compile": "tsc --target esnext --moduleResolution nodenext --module nodenext --skipLibCheck --allowSyntheticDefaultImports ./src/NoteStickers.ts",
+    "build": "rimraf ./dist && mkdir ./dist && npm run compile && mv ./src/NoteStickers.js ./dist && cp ./index.html ./dist && mkdir ./dist/common ./dist/icons && cp ./common/* ./dist/common/ && cp ./icons/* ./dist/icons/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,11 +28,8 @@
     "url": "git+https://github.com/rozek/note-stickers.git"
   },
   "devDependencies": {
-    "microbundle": "^0.15.1",
     "rimraf": "^3.0.2",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.13",
-    "vite-plugin-dts": "^3.9.1"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "htm": "github:rozek/htm",
