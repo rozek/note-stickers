@@ -4,7 +4,9 @@
 *                                                                              *
 *******************************************************************************/
 import { quoted, ValuesAreEqual, ValuesDiffer, ValueIsArray, ValueIsListSatisfying, expectListSatisfying, } from 'javascript-interface-library';
-import localforage from 'localforage';
+//import 'localforage-types'
+import * as _localforage from 'localforage';
+const localforage = _localforage; // *C* very weird hack
 import { html } from 'htm/preact';
 import { throwError, throwReadOnlyError, ValueIsBoard, ValueIsSticker, ValueIsName, ValueIsIdentifier, ValueIsGeometry, ValueIsError, SNS_Project, newId, removeIdsFrom, TemplateOfBehavior, groupedBehaviorEntryList, } from 'shareable-note-stickers';
 import { SNS_BoardView } from 'sns-boardview';
