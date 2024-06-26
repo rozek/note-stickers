@@ -600,6 +600,11 @@
     background-image:url("/images/square-code.png"); 
   }
 
+  #PUX_106 {
+    left:37px; top:217px; width:24px; height:24px; right:auto; bottom:auto; 
+    background-image:url("/images/clapperboard.png"); 
+  }
+
   #PUX_57 { left:421px; top:130px; width:280px; height:220px; right:auto; bottom:auto }
 
   #PUX_53 {
@@ -716,318 +721,318 @@
   #PUX_94 { left:5px; top:auto; width:147px; height:29px; right:auto; bottom:77px }
   #PUX_95 { left:5px; top:auto; width:90px; height:29px; right:auto; bottom:8px }
   #PUX_99 { left:auto; top:auto; width:90px; height:29px; right:5px; bottom:8px }
-  #PUX_106 { background-image:url("/images/BinaryTexture_white_768x1024.jpg") }
+  #PUX_107 { background-image:url("/images/BinaryTexture_white_768x1024.jpg") }
 
-  #PUX_109 {
+  #PUX_110 {
     left:20px; top:19px; width:242px; height:610px; right:auto; bottom:auto; 
     border:dotted 1px #000000; 
   }
 
-  #PUX_134 { left:6px; top:0px; width:221px; height:29px; right:auto; bottom:auto }
-  #PUX_135 { left:6px; top:31px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_136 { left:6px; top:61px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_227 { left:95px; top:31px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_228 { left:95px; top:61px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_229 { left:auto; top:101px; width:21px; height:21px; right:6px; bottom:auto }
-  #PUX_137 { left:6px; top:171px; width:90px; height:29px; right:auto; bottom:auto }
-  #PUX_138 { left:6px; top:201px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_230 { left:95px; top:201px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_139 { left:6px; top:230px; width:101px; height:29px; right:auto; bottom:auto }
-  #PUX_231 { left:auto; top:230px; width:53px; height:29px; right:7px; bottom:auto }
-  #PUX_140 { left:6px; top:261px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_232 { left:auto; top:266px; width:21px; height:21px; right:6px; bottom:auto }
-  #PUX_141 { left:6px; top:291px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_233 { left:auto; top:296px; width:21px; height:21px; right:6px; bottom:auto }
-  #PUX_142 { left:6px; top:320px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_234 { left:auto; top:320px; width:40px; height:29px; right:6px; bottom:auto }
-  #PUX_143 { left:6px; top:351px; width:121px; height:29px; right:auto; bottom:auto }
-  #PUX_235 { left:auto; top:351px; width:53px; height:29px; right:7px; bottom:auto }
-  #PUX_144 { left:6px; top:391px; width:90px; height:29px; right:auto; bottom:auto }
-  #PUX_145 { left:6px; top:420px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_236 { left:auto; top:420px; width:40px; height:29px; right:6px; bottom:auto }
-  #PUX_146 { left:6px; top:451px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_148 { left:6px; top:130px; width:101px; height:29px; right:auto; bottom:auto }
-  #PUX_243 { left:auto; top:130px; width:52px; height:29px; right:78px; bottom:auto }
-  #PUX_241 { left:auto; top:130px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_135 { left:6px; top:0px; width:221px; height:29px; right:auto; bottom:auto }
+  #PUX_136 { left:6px; top:31px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_137 { left:6px; top:61px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_228 { left:95px; top:31px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_229 { left:95px; top:61px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_230 { left:auto; top:101px; width:21px; height:21px; right:6px; bottom:auto }
+  #PUX_138 { left:6px; top:171px; width:90px; height:29px; right:auto; bottom:auto }
+  #PUX_139 { left:6px; top:201px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_231 { left:95px; top:201px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_140 { left:6px; top:230px; width:101px; height:29px; right:auto; bottom:auto }
+  #PUX_232 { left:auto; top:230px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_141 { left:6px; top:261px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_233 { left:auto; top:266px; width:21px; height:21px; right:6px; bottom:auto }
+  #PUX_142 { left:6px; top:291px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_234 { left:auto; top:296px; width:21px; height:21px; right:6px; bottom:auto }
+  #PUX_143 { left:6px; top:320px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_235 { left:auto; top:320px; width:40px; height:29px; right:6px; bottom:auto }
+  #PUX_144 { left:6px; top:351px; width:121px; height:29px; right:auto; bottom:auto }
+  #PUX_236 { left:auto; top:351px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_145 { left:6px; top:391px; width:90px; height:29px; right:auto; bottom:auto }
+  #PUX_146 { left:6px; top:420px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_237 { left:auto; top:420px; width:40px; height:29px; right:6px; bottom:auto }
+  #PUX_147 { left:6px; top:451px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_149 { left:6px; top:130px; width:101px; height:29px; right:auto; bottom:auto }
+  #PUX_244 { left:auto; top:130px; width:52px; height:29px; right:78px; bottom:auto }
+  #PUX_242 { left:auto; top:130px; width:53px; height:29px; right:7px; bottom:auto }
 
-  #PUX_242 {
+  #PUX_243 {
     left:auto; top:130px; width:21px; height:29px; right:59px; bottom:auto; 
     text-align:center; 
   }
 
-  #PUX_147 { left:6px; top:101px; width:101px; height:29px; right:auto; bottom:auto }
-  #PUX_237 { left:95px; top:451px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_149 { left:6px; top:491px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_148 { left:6px; top:101px; width:101px; height:29px; right:auto; bottom:auto }
+  #PUX_238 { left:95px; top:451px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_150 { left:6px; top:491px; width:71px; height:29px; right:auto; bottom:auto }
 
-  #PUX_240 {
+  #PUX_241 {
     left:auto; top:491px; width:24px; height:24px; right:4px; bottom:auto; 
     background-image:url("/images/image146.png"); 
   }
 
-  #PUX_150 {
+  #PUX_151 {
     left:6px; top:520px; width:auto; height:auto; right:6px; bottom:9px; 
     border:solid 1px #000000; 
   }
 
-  #PUX_110 {
+  #PUX_111 {
     left:271px; top:19px; width:242px; height:610px; right:auto; bottom:auto; 
     border:dotted 1px #000000; 
   }
 
-  #PUX_151 { left:5px; top:0px; width:221px; height:29px; right:auto; bottom:auto }
-  #PUX_152 { left:5px; top:31px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_153 { left:5px; top:61px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_216 { left:95px; top:31px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_217 { left:95px; top:61px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_218 { left:auto; top:101px; width:21px; height:21px; right:7px; bottom:auto }
-  #PUX_154 { left:5px; top:171px; width:90px; height:29px; right:auto; bottom:auto }
-  #PUX_155 { left:5px; top:201px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_219 { left:95px; top:201px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_156 { left:5px; top:230px; width:101px; height:29px; right:auto; bottom:auto }
-  #PUX_220 { left:auto; top:230px; width:53px; height:29px; right:7px; bottom:auto }
-  #PUX_157 { left:5px; top:261px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_221 { left:auto; top:266px; width:21px; height:21px; right:7px; bottom:auto }
-  #PUX_158 { left:5px; top:291px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_222 { left:auto; top:296px; width:21px; height:21px; right:7px; bottom:auto }
-  #PUX_159 { left:5px; top:320px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_223 { left:auto; top:320px; width:40px; height:29px; right:7px; bottom:auto }
-  #PUX_160 { left:5px; top:351px; width:121px; height:29px; right:auto; bottom:auto }
-  #PUX_224 { left:auto; top:351px; width:53px; height:29px; right:7px; bottom:auto }
-  #PUX_161 { left:5px; top:391px; width:90px; height:29px; right:auto; bottom:auto }
-  #PUX_162 { left:5px; top:420px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_225 { left:auto; top:420px; width:40px; height:29px; right:7px; bottom:auto }
-  #PUX_163 { left:5px; top:451px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_164 { left:5px; top:130px; width:101px; height:29px; right:auto; bottom:auto }
-  #PUX_244 { left:auto; top:130px; width:52px; height:29px; right:79px; bottom:auto }
-  #PUX_245 { left:auto; top:130px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_152 { left:5px; top:0px; width:221px; height:29px; right:auto; bottom:auto }
+  #PUX_153 { left:5px; top:31px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_154 { left:5px; top:61px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_217 { left:95px; top:31px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_218 { left:95px; top:61px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_219 { left:auto; top:101px; width:21px; height:21px; right:7px; bottom:auto }
+  #PUX_155 { left:5px; top:171px; width:90px; height:29px; right:auto; bottom:auto }
+  #PUX_156 { left:5px; top:201px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_220 { left:95px; top:201px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_157 { left:5px; top:230px; width:101px; height:29px; right:auto; bottom:auto }
+  #PUX_221 { left:auto; top:230px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_158 { left:5px; top:261px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_222 { left:auto; top:266px; width:21px; height:21px; right:7px; bottom:auto }
+  #PUX_159 { left:5px; top:291px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_223 { left:auto; top:296px; width:21px; height:21px; right:7px; bottom:auto }
+  #PUX_160 { left:5px; top:320px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_224 { left:auto; top:320px; width:40px; height:29px; right:7px; bottom:auto }
+  #PUX_161 { left:5px; top:351px; width:121px; height:29px; right:auto; bottom:auto }
+  #PUX_225 { left:auto; top:351px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_162 { left:5px; top:391px; width:90px; height:29px; right:auto; bottom:auto }
+  #PUX_163 { left:5px; top:420px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_226 { left:auto; top:420px; width:40px; height:29px; right:7px; bottom:auto }
+  #PUX_164 { left:5px; top:451px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_165 { left:5px; top:130px; width:101px; height:29px; right:auto; bottom:auto }
+  #PUX_245 { left:auto; top:130px; width:52px; height:29px; right:79px; bottom:auto }
+  #PUX_246 { left:auto; top:130px; width:53px; height:29px; right:7px; bottom:auto }
 
-  #PUX_246 {
+  #PUX_247 {
     left:auto; top:130px; width:21px; height:29px; right:60px; bottom:auto; 
     text-align:center; 
   }
 
-  #PUX_165 { left:5px; top:101px; width:101px; height:29px; right:auto; bottom:auto }
-  #PUX_226 { left:95px; top:451px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_166 { left:5px; top:491px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_166 { left:5px; top:101px; width:101px; height:29px; right:auto; bottom:auto }
+  #PUX_227 { left:95px; top:451px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_167 { left:5px; top:491px; width:71px; height:29px; right:auto; bottom:auto }
 
-  #PUX_239 {
+  #PUX_240 {
     left:auto; top:491px; width:24px; height:26px; right:6px; bottom:auto; 
     background-image:url("/images/image146.png"); 
   }
 
-  #PUX_167 {
+  #PUX_168 {
     left:5px; top:520px; width:auto; height:auto; right:7px; bottom:9px; 
     border:solid 1px #000000; 
   }
 
-  #PUX_111 {
+  #PUX_112 {
     left:520px; top:19px; width:242px; height:791px; right:auto; bottom:auto; 
     border:dotted 1px #000000; 
   }
 
-  #PUX_168 { left:5px; top:0px; width:221px; height:29px; right:auto; bottom:auto }
-  #PUX_169 { left:5px; top:31px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_170 { left:5px; top:61px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_190 { left:95px; top:31px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_191 { left:95px; top:61px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_171 { left:5px; top:190px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_172 { left:5px; top:221px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_192 { left:auto; top:221px; width:52px; height:29px; right:77px; bottom:auto }
-  #PUX_193 { left:auto; top:221px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_169 { left:5px; top:0px; width:221px; height:29px; right:auto; bottom:auto }
+  #PUX_170 { left:5px; top:31px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_171 { left:5px; top:61px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_191 { left:95px; top:31px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_192 { left:95px; top:61px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_172 { left:5px; top:190px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_173 { left:5px; top:221px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_193 { left:auto; top:221px; width:52px; height:29px; right:77px; bottom:auto }
+  #PUX_194 { left:auto; top:221px; width:53px; height:29px; right:7px; bottom:auto }
 
-  #PUX_194 {
+  #PUX_195 {
     left:auto; top:221px; width:21px; height:29px; right:58px; bottom:auto; 
     text-align:center; 
   }
 
-  #PUX_195 { left:auto; top:190px; width:52px; height:31px; right:77px; bottom:auto }
-  #PUX_196 { left:auto; top:190px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_196 { left:auto; top:190px; width:52px; height:31px; right:77px; bottom:auto }
+  #PUX_197 { left:auto; top:190px; width:53px; height:29px; right:7px; bottom:auto }
 
-  #PUX_197 {
+  #PUX_198 {
     left:auto; top:190px; width:21px; height:29px; right:58px; bottom:auto; 
     text-align:center; 
   }
 
-  #PUX_173 { left:5px; top:251px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_174 { left:5px; top:251px; width:71px; height:29px; right:auto; bottom:auto }
 
-  #PUX_198 {
+  #PUX_199 {
     left:auto; top:283px; width:24px; height:24px; right:32px; bottom:auto; 
     background-image:url("/images/arrow-sm-down.png"); 
   }
 
-  #PUX_199 {
+  #PUX_200 {
     left:auto; top:283px; width:24px; height:24px; right:58px; bottom:auto; 
     background-image:url("/images/arrow-sm-up.png"); 
   }
 
-  #PUX_200 {
+  #PUX_201 {
     left:auto; top:285px; width:21px; height:24px; right:84px; bottom:auto; 
     background-color:rgba(255, 255, 255, 0); 
     border-style:solid; border-width:2px 0px 0px 0px; border-color:#000000; 
   }
 
-  #PUX_201 {
+  #PUX_202 {
     left:auto; top:285px; width:24px; height:24px; right:82px; bottom:auto; 
     background-image:url("/images/arrow-sm-up.png"); 
   }
 
-  #PUX_202 {
+  #PUX_203 {
     left:auto; top:280px; width:21px; height:24px; right:8px; bottom:auto; 
     background-color:rgba(255, 255, 255, 0); 
     border-style:solid; border-width:0px 0px 2px 0px; border-color:#000000; 
   }
 
-  #PUX_203 {
+  #PUX_204 {
     left:auto; top:280px; width:24px; height:24px; right:8px; bottom:auto; 
     background-image:url("/images/arrow-sm-down.png"); 
   }
 
-  #PUX_204 { left:auto; top:251px; width:53px; height:29px; right:7px; bottom:auto }
-  #PUX_174 { left:5px; top:130px; width:90px; height:29px; right:auto; bottom:auto }
-  #PUX_205 { left:auto; top:130px; width:21px; height:21px; right:5px; bottom:auto }
-  #PUX_175 { left:5px; top:101px; width:221px; height:29px; right:auto; bottom:auto }
-  #PUX_176 { left:5px; top:311px; width:90px; height:29px; right:auto; bottom:auto }
-  #PUX_177 { left:5px; top:341px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_206 { left:95px; top:341px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_178 { left:5px; top:370px; width:101px; height:29px; right:auto; bottom:auto }
-  #PUX_207 { left:auto; top:370px; width:53px; height:29px; right:7px; bottom:auto }
-  #PUX_179 { left:5px; top:401px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_208 { left:auto; top:406px; width:21px; height:21px; right:5px; bottom:auto }
-  #PUX_180 { left:5px; top:430px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_209 { left:auto; top:436px; width:21px; height:21px; right:5px; bottom:auto }
-  #PUX_181 { left:5px; top:460px; width:81px; height:29px; right:auto; bottom:auto }
-  #PUX_210 { left:auto; top:460px; width:40px; height:29px; right:7px; bottom:auto }
-  #PUX_182 { left:5px; top:491px; width:121px; height:29px; right:auto; bottom:auto }
-  #PUX_211 { left:auto; top:491px; width:53px; height:29px; right:7px; bottom:auto }
-  #PUX_183 { left:5px; top:531px; width:90px; height:29px; right:auto; bottom:auto }
-  #PUX_184 { left:5px; top:560px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_212 { left:auto; top:560px; width:40px; height:29px; right:7px; bottom:auto }
-  #PUX_185 { left:5px; top:591px; width:71px; height:29px; right:auto; bottom:auto }
-  #PUX_213 { left:95px; top:591px; width:auto; height:29px; right:7px; bottom:auto }
-  #PUX_186 { left:5px; top:161px; width:90px; height:29px; right:auto; bottom:auto }
-  #PUX_214 { left:auto; top:161px; width:21px; height:21px; right:5px; bottom:auto }
-  #PUX_187 { left:5px; top:631px; width:90px; height:29px; right:auto; bottom:auto }
-  #PUX_215 { left:auto; top:631px; width:21px; height:21px; right:5px; bottom:auto }
-  #PUX_188 { left:5px; top:671px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_205 { left:auto; top:251px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_175 { left:5px; top:130px; width:90px; height:29px; right:auto; bottom:auto }
+  #PUX_206 { left:auto; top:130px; width:21px; height:21px; right:5px; bottom:auto }
+  #PUX_176 { left:5px; top:101px; width:221px; height:29px; right:auto; bottom:auto }
+  #PUX_177 { left:5px; top:311px; width:90px; height:29px; right:auto; bottom:auto }
+  #PUX_178 { left:5px; top:341px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_207 { left:95px; top:341px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_179 { left:5px; top:370px; width:101px; height:29px; right:auto; bottom:auto }
+  #PUX_208 { left:auto; top:370px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_180 { left:5px; top:401px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_209 { left:auto; top:406px; width:21px; height:21px; right:5px; bottom:auto }
+  #PUX_181 { left:5px; top:430px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_210 { left:auto; top:436px; width:21px; height:21px; right:5px; bottom:auto }
+  #PUX_182 { left:5px; top:460px; width:81px; height:29px; right:auto; bottom:auto }
+  #PUX_211 { left:auto; top:460px; width:40px; height:29px; right:7px; bottom:auto }
+  #PUX_183 { left:5px; top:491px; width:121px; height:29px; right:auto; bottom:auto }
+  #PUX_212 { left:auto; top:491px; width:53px; height:29px; right:7px; bottom:auto }
+  #PUX_184 { left:5px; top:531px; width:90px; height:29px; right:auto; bottom:auto }
+  #PUX_185 { left:5px; top:560px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_213 { left:auto; top:560px; width:40px; height:29px; right:7px; bottom:auto }
+  #PUX_186 { left:5px; top:591px; width:71px; height:29px; right:auto; bottom:auto }
+  #PUX_214 { left:95px; top:591px; width:auto; height:29px; right:7px; bottom:auto }
+  #PUX_187 { left:5px; top:161px; width:90px; height:29px; right:auto; bottom:auto }
+  #PUX_215 { left:auto; top:161px; width:21px; height:21px; right:5px; bottom:auto }
+  #PUX_188 { left:5px; top:631px; width:90px; height:29px; right:auto; bottom:auto }
+  #PUX_216 { left:auto; top:631px; width:21px; height:21px; right:5px; bottom:auto }
+  #PUX_189 { left:5px; top:671px; width:71px; height:29px; right:auto; bottom:auto }
 
-  #PUX_238 {
+  #PUX_239 {
     left:auto; top:671px; width:24px; height:26px; right:5px; bottom:auto; 
     background-image:url("/images/image146.png"); 
   }
 
-  #PUX_189 {
+  #PUX_190 {
     left:5px; top:700px; width:auto; height:auto; right:7px; bottom:10px; 
     border:solid 1px #000000; 
   }
 
-  #PUX_107 {
+  #PUX_108 {
     left:20px; top:700px; width:242px; height:270px; right:auto; bottom:auto; 
     border:dotted 1px #000000; 
   }
 
-  #PUX_112 { left:6px; top:0px; width:225px; height:29px; right:auto; bottom:auto }
+  #PUX_113 { left:6px; top:0px; width:225px; height:29px; right:auto; bottom:auto }
 
-  #PUX_120 {
+  #PUX_121 {
     left:6px; top:56px; width:auto; height:auto; right:6px; bottom:43px; 
     background-color:#eeeeee; 
     border:solid 1px #888888; border-radius:0px; 
   }
 
-  #PUX_121 { left:6px; top:auto; width:auto; height:29px; right:6px; bottom:6px }
+  #PUX_122 { left:6px; top:auto; width:auto; height:29px; right:6px; bottom:6px }
 
-  #PUX_119 {
+  #PUX_120 {
     left:auto; top:24px; width:24px; height:24px; right:7px; bottom:auto; 
     background-image:url("/images/minus.png"); 
   }
 
-  #PUX_113 {
+  #PUX_114 {
     left:0px; top:27px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/plus.png"); 
   }
 
-  #PUX_114 {
+  #PUX_115 {
     left:30px; top:27px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/clone.png"); 
   }
 
-  #PUX_115 {
+  #PUX_116 {
     left:156px; top:24px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/arrow-sm-down.png"); 
   }
 
-  #PUX_116 {
+  #PUX_117 {
     left:130px; top:24px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/arrow-sm-up.png"); 
   }
 
-  #PUX_117 {
+  #PUX_118 {
     left:71px; top:24px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/image21.png"); 
   }
 
-  #PUX_118 {
+  #PUX_119 {
     left:95px; top:24px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/image23.png"); 
   }
 
-  #PUX_108 {
+  #PUX_109 {
     left:271px; top:700px; width:242px; height:270px; right:auto; bottom:auto; 
     border:dotted 1px #000000; 
   }
 
-  #PUX_122 { left:5px; top:0px; width:225px; height:29px; right:auto; bottom:auto }
+  #PUX_123 { left:5px; top:0px; width:225px; height:29px; right:auto; bottom:auto }
 
-  #PUX_132 {
+  #PUX_133 {
     left:5px; top:56px; width:auto; height:auto; right:7px; bottom:43px; 
     background-color:#eeeeee; 
     border:solid 1px #888888; border-radius:0px; 
   }
 
-  #PUX_133 { left:5px; top:auto; width:auto; height:29px; right:7px; bottom:6px }
+  #PUX_134 { left:5px; top:auto; width:auto; height:29px; right:7px; bottom:6px }
 
-  #PUX_131 {
+  #PUX_132 {
     left:auto; top:24px; width:24px; height:24px; right:9px; bottom:auto; 
     background-image:url("/images/minus.png"); 
   }
 
-  #PUX_123 {
+  #PUX_124 {
     left:0px; top:27px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/plus.png"); 
   }
 
-  #PUX_124 {
+  #PUX_125 {
     left:29px; top:27px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/clone.png"); 
   }
 
-  #PUX_125 {
+  #PUX_126 {
     left:129px; top:26px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/arrow-sm-down.png"); 
   }
 
-  #PUX_126 {
+  #PUX_127 {
     left:100px; top:26px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/arrow-sm-up.png"); 
   }
 
-  #PUX_127 {
+  #PUX_128 {
     left:71px; top:26px; width:21px; height:24px; right:auto; bottom:auto; 
     background-color:rgba(255, 255, 255, 0); 
     border-style:solid; border-width:2px 0px 0px 0px; border-color:#000000; 
   }
 
-  #PUX_128 {
+  #PUX_129 {
     left:69px; top:26px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/arrow-sm-up.png"); 
   }
 
-  #PUX_129 {
+  #PUX_130 {
     left:161px; top:26px; width:21px; height:24px; right:auto; bottom:auto; 
     background-color:rgba(255, 255, 255, 0); 
     border-style:solid; border-width:0px 0px 2px 0px; border-color:#000000; 
   }
 
-  #PUX_130 {
+  #PUX_131 {
     left:159px; top:26px; width:24px; height:24px; right:auto; bottom:auto; 
     background-image:url("/images/arrow-sm-down.png"); 
   }
@@ -1076,6 +1081,7 @@
             {"Type":"Icon","Name":"ConsoleButton","Classes":"Icon","Value":"url(\"/images/terminal.png\")","Color":"black","Id":"PUX_32"},
             {"Type":"PseudoDropDown","Name":"AppletGeneratorButton","Classes":"PseudoDropDown","Value":"url(\"/images/clapperboard-play.png\")","Color":"black","Id":"PUX_31"},
             {"Type":"Icon","Name":"StickerScriptButton","Classes":"Icon","Value":"url(\"/images/square-code.png\")","Color":"black","Id":"PUX_35"},
+            {"Type":"Icon","Name":"ImageGeneratorButton","Classes":"Icon","Value":"url(\"/images/clapperboard.png\")","Color":"black","Id":"PUX_106"},
           ]},
           {"Type":"ResizableDialog","Name":"ScriptEditor","Classes":"ResizableDialog Container","x":421,"Width":280,"y":130,"Height":220,"Id":"PUX_57", WidgetList:[
             {"Type":"Icon","Name":"WithdrawButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/xmark.png\")","Color":"black","Id":"PUX_53"},
@@ -1117,154 +1123,154 @@
         ],
       },
       'Stuff Screen': {
-        Name:'Stuff Screen', Id:'PUX_106',
+        Name:'Stuff Screen', Id:'PUX_107',
         Width:768, Height:1024,
         packedGeometry:{"x":20,"y":19,"Width":741,"Height":950},
         WidgetList:[
-          {"Type":"Card","Name":"ProjectConfigurationPane","Classes":"Card Container","x":20,"Width":242,"y":19,"Height":610,"Id":"PUX_109", WidgetList:[
-            {"Type":"Label","Classes":"Label","Value":"Project Configuration","Id":"PUX_134"},
-            {"Type":"Label","Classes":"Label","Value":"Id","Id":"PUX_135"},
-            {"Type":"Label","Classes":"Label","Value":"Name","Id":"PUX_136"},
-            {"Type":"TextlineInput","Name":"IdView","Classes":"TextlineInput readonly","Anchoring":"n","Placeholder":"","Value":"","Id":"PUX_227"},
-            {"Type":"TextlineInput","Name":"NameView","Classes":"TextlineInput readonly","Anchoring":"n","Placeholder":"","Value":"","Id":"PUX_228"},
-            {"Type":"Checkbox","Name":"SnapToGridCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_229"},
-            {"Type":"Label","Classes":"Label","Value":"Typography","Id":"PUX_137"},
-            {"Type":"Label","Classes":"Label","Value":"Font","Id":"PUX_138"},
-            {"Type":"TextlineInput","Name":"FontFamilyInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Font Family","Value":"","Id":"PUX_230"},
-            {"Type":"Label","Classes":"Label","Value":"Font Size [px]","Id":"PUX_139"},
-            {"Type":"NumberInput","Name":"FontSizeInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_231"},
-            {"Type":"Label","Classes":"Label","Value":"Bold","Id":"PUX_140"},
-            {"Type":"Checkbox","Name":"BoldCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_232"},
-            {"Type":"Label","Classes":"Label","Value":"Italic","Id":"PUX_141"},
-            {"Type":"Checkbox","Name":"ItalicCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_233"},
-            {"Type":"Label","Classes":"Label","Value":"Text Color","Id":"PUX_142"},
-            {"Type":"ColorInput","Name":"TextColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_234"},
-            {"Type":"Label","Classes":"Label","Value":"Line Height [px]","Id":"PUX_143"},
-            {"Type":"NumberInput","Name":"LineHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_235"},
-            {"Type":"Label","Classes":"Label","Value":"Background","Id":"PUX_144"},
-            {"Type":"Label","Classes":"Label","Value":"Color","Id":"PUX_145"},
-            {"Type":"ColorInput","Name":"BackgroundColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_236"},
-            {"Type":"Label","Classes":"Label","Value":"Texture","Id":"PUX_146"},
-            {"Type":"Label","Classes":"Label","Value":"Grid Size [px]","Id":"PUX_148"},
-            {"Type":"NumberInput","Name":"GridWidthInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"W","Value":"","Id":"PUX_243"},
-            {"Type":"NumberInput","Name":"GridHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"H","Value":"","Id":"PUX_241"},
-            {"Type":"Label","Classes":"Label","Anchoring":"ne","Value":"x","Id":"PUX_242"},
-            {"Type":"Label","Classes":"Label","Value":"Snap-to-Grid","Id":"PUX_147"},
-            {"Type":"URLInput","Name":"TextureInput","Classes":"URLInput","Anchoring":"n","Placeholder":"Enter URL","Value":"","Id":"PUX_237"},
-            {"Type":"Label","Classes":"Label","Value":"Value","Id":"PUX_149"},
-            {"Type":"Icon","Name":"ValueEditorButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/image146.png\")","Color":"black","Id":"PUX_240"},
-            {"Type":"TextInput","Name":"ValueInput","Classes":"TextInput no-resize","Anchoring":"c","Placeholder":"Enter Value","Value":"","Id":"PUX_150"},
-          ]},
-          {"Type":"Card","Name":"BoardConfigurationPane","Classes":"Card Container","x":271,"Width":242,"y":19,"Height":610,"Id":"PUX_110", WidgetList:[
-            {"Type":"Label","Classes":"Label","Value":"Board Configuration","Id":"PUX_151"},
-            {"Type":"Label","Classes":"Label","Value":"Id","Id":"PUX_152"},
-            {"Type":"Label","Classes":"Label","Value":"Name","Id":"PUX_153"},
-            {"Type":"TextlineInput","Name":"IdView","Classes":"TextlineInput readonly","Anchoring":"n","Placeholder":"","Value":"","Id":"PUX_216"},
-            {"Type":"TextlineInput","Name":"NameInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Name","Value":"","Id":"PUX_217"},
-            {"Type":"Checkbox","Name":"SnapToGridCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_218"},
-            {"Type":"Label","Classes":"Label","Value":"Typography","Id":"PUX_154"},
-            {"Type":"Label","Classes":"Label","Value":"Font","Id":"PUX_155"},
-            {"Type":"TextlineInput","Name":"FontFamilyInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Font Family","Value":"","Id":"PUX_219"},
-            {"Type":"Label","Classes":"Label","Value":"Font Size [px]","Id":"PUX_156"},
-            {"Type":"NumberInput","Name":"FontSizeInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_220"},
-            {"Type":"Label","Classes":"Label","Value":"Bold","Id":"PUX_157"},
-            {"Type":"Checkbox","Name":"BoldCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_221"},
-            {"Type":"Label","Classes":"Label","Value":"Italic","Id":"PUX_158"},
-            {"Type":"Checkbox","Name":"ItalicCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_222"},
-            {"Type":"Label","Classes":"Label","Value":"Text Color","Id":"PUX_159"},
-            {"Type":"ColorInput","Name":"TextColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_223"},
-            {"Type":"Label","Classes":"Label","Value":"Line Height [px]","Id":"PUX_160"},
-            {"Type":"NumberInput","Name":"LineHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_224"},
-            {"Type":"Label","Classes":"Label","Value":"Background","Id":"PUX_161"},
-            {"Type":"Label","Classes":"Label","Value":"Color","Id":"PUX_162"},
-            {"Type":"ColorInput","Name":"BackgroundColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_225"},
-            {"Type":"Label","Classes":"Label","Value":"Texture","Id":"PUX_163"},
-            {"Type":"Label","Classes":"Label","Value":"Grid Size [px]","Id":"PUX_164"},
+          {"Type":"Card","Name":"ProjectConfigurationPane","Classes":"Card Container","x":20,"Width":242,"y":19,"Height":610,"Id":"PUX_110", WidgetList:[
+            {"Type":"Label","Classes":"Label","Value":"Project Configuration","Id":"PUX_135"},
+            {"Type":"Label","Classes":"Label","Value":"Id","Id":"PUX_136"},
+            {"Type":"Label","Classes":"Label","Value":"Name","Id":"PUX_137"},
+            {"Type":"TextlineInput","Name":"IdView","Classes":"TextlineInput readonly","Anchoring":"n","Placeholder":"","Value":"","Id":"PUX_228"},
+            {"Type":"TextlineInput","Name":"NameView","Classes":"TextlineInput readonly","Anchoring":"n","Placeholder":"","Value":"","Id":"PUX_229"},
+            {"Type":"Checkbox","Name":"SnapToGridCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_230"},
+            {"Type":"Label","Classes":"Label","Value":"Typography","Id":"PUX_138"},
+            {"Type":"Label","Classes":"Label","Value":"Font","Id":"PUX_139"},
+            {"Type":"TextlineInput","Name":"FontFamilyInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Font Family","Value":"","Id":"PUX_231"},
+            {"Type":"Label","Classes":"Label","Value":"Font Size [px]","Id":"PUX_140"},
+            {"Type":"NumberInput","Name":"FontSizeInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_232"},
+            {"Type":"Label","Classes":"Label","Value":"Bold","Id":"PUX_141"},
+            {"Type":"Checkbox","Name":"BoldCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_233"},
+            {"Type":"Label","Classes":"Label","Value":"Italic","Id":"PUX_142"},
+            {"Type":"Checkbox","Name":"ItalicCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_234"},
+            {"Type":"Label","Classes":"Label","Value":"Text Color","Id":"PUX_143"},
+            {"Type":"ColorInput","Name":"TextColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_235"},
+            {"Type":"Label","Classes":"Label","Value":"Line Height [px]","Id":"PUX_144"},
+            {"Type":"NumberInput","Name":"LineHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_236"},
+            {"Type":"Label","Classes":"Label","Value":"Background","Id":"PUX_145"},
+            {"Type":"Label","Classes":"Label","Value":"Color","Id":"PUX_146"},
+            {"Type":"ColorInput","Name":"BackgroundColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_237"},
+            {"Type":"Label","Classes":"Label","Value":"Texture","Id":"PUX_147"},
+            {"Type":"Label","Classes":"Label","Value":"Grid Size [px]","Id":"PUX_149"},
             {"Type":"NumberInput","Name":"GridWidthInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"W","Value":"","Id":"PUX_244"},
-            {"Type":"NumberInput","Name":"GridHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"H","Value":"","Id":"PUX_245"},
-            {"Type":"Label","Classes":"Label","Anchoring":"ne","Value":"x","Id":"PUX_246"},
-            {"Type":"Label","Classes":"Label","Value":"Snap-to-Grid","Id":"PUX_165"},
-            {"Type":"URLInput","Name":"TextureInput","Classes":"URLInput","Anchoring":"n","Placeholder":"Enter URL","Value":"","Id":"PUX_226"},
-            {"Type":"Label","Classes":"Label","Value":"Value","Id":"PUX_166"},
+            {"Type":"NumberInput","Name":"GridHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"H","Value":"","Id":"PUX_242"},
+            {"Type":"Label","Classes":"Label","Anchoring":"ne","Value":"x","Id":"PUX_243"},
+            {"Type":"Label","Classes":"Label","Value":"Snap-to-Grid","Id":"PUX_148"},
+            {"Type":"URLInput","Name":"TextureInput","Classes":"URLInput","Anchoring":"n","Placeholder":"Enter URL","Value":"","Id":"PUX_238"},
+            {"Type":"Label","Classes":"Label","Value":"Value","Id":"PUX_150"},
+            {"Type":"Icon","Name":"ValueEditorButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/image146.png\")","Color":"black","Id":"PUX_241"},
+            {"Type":"TextInput","Name":"ValueInput","Classes":"TextInput no-resize","Anchoring":"c","Placeholder":"Enter Value","Value":"","Id":"PUX_151"},
+          ]},
+          {"Type":"Card","Name":"BoardConfigurationPane","Classes":"Card Container","x":271,"Width":242,"y":19,"Height":610,"Id":"PUX_111", WidgetList:[
+            {"Type":"Label","Classes":"Label","Value":"Board Configuration","Id":"PUX_152"},
+            {"Type":"Label","Classes":"Label","Value":"Id","Id":"PUX_153"},
+            {"Type":"Label","Classes":"Label","Value":"Name","Id":"PUX_154"},
+            {"Type":"TextlineInput","Name":"IdView","Classes":"TextlineInput readonly","Anchoring":"n","Placeholder":"","Value":"","Id":"PUX_217"},
+            {"Type":"TextlineInput","Name":"NameInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Name","Value":"","Id":"PUX_218"},
+            {"Type":"Checkbox","Name":"SnapToGridCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_219"},
+            {"Type":"Label","Classes":"Label","Value":"Typography","Id":"PUX_155"},
+            {"Type":"Label","Classes":"Label","Value":"Font","Id":"PUX_156"},
+            {"Type":"TextlineInput","Name":"FontFamilyInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Font Family","Value":"","Id":"PUX_220"},
+            {"Type":"Label","Classes":"Label","Value":"Font Size [px]","Id":"PUX_157"},
+            {"Type":"NumberInput","Name":"FontSizeInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_221"},
+            {"Type":"Label","Classes":"Label","Value":"Bold","Id":"PUX_158"},
+            {"Type":"Checkbox","Name":"BoldCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_222"},
+            {"Type":"Label","Classes":"Label","Value":"Italic","Id":"PUX_159"},
+            {"Type":"Checkbox","Name":"ItalicCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_223"},
+            {"Type":"Label","Classes":"Label","Value":"Text Color","Id":"PUX_160"},
+            {"Type":"ColorInput","Name":"TextColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_224"},
+            {"Type":"Label","Classes":"Label","Value":"Line Height [px]","Id":"PUX_161"},
+            {"Type":"NumberInput","Name":"LineHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_225"},
+            {"Type":"Label","Classes":"Label","Value":"Background","Id":"PUX_162"},
+            {"Type":"Label","Classes":"Label","Value":"Color","Id":"PUX_163"},
+            {"Type":"ColorInput","Name":"BackgroundColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_226"},
+            {"Type":"Label","Classes":"Label","Value":"Texture","Id":"PUX_164"},
+            {"Type":"Label","Classes":"Label","Value":"Grid Size [px]","Id":"PUX_165"},
+            {"Type":"NumberInput","Name":"GridWidthInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"W","Value":"","Id":"PUX_245"},
+            {"Type":"NumberInput","Name":"GridHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"H","Value":"","Id":"PUX_246"},
+            {"Type":"Label","Classes":"Label","Anchoring":"ne","Value":"x","Id":"PUX_247"},
+            {"Type":"Label","Classes":"Label","Value":"Snap-to-Grid","Id":"PUX_166"},
+            {"Type":"URLInput","Name":"TextureInput","Classes":"URLInput","Anchoring":"n","Placeholder":"Enter URL","Value":"","Id":"PUX_227"},
+            {"Type":"Label","Classes":"Label","Value":"Value","Id":"PUX_167"},
+            {"Type":"Icon","Name":"ValueEditorButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/image146.png\")","Color":"black","Id":"PUX_240"},
+            {"Type":"TextInput","Name":"ValueInput","Classes":"TextInput no-resize","Anchoring":"c","Placeholder":"Enter Value","Value":"","Id":"PUX_168"},
+          ]},
+          {"Type":"Card","Name":"StickerConfigurationPane","Classes":"Card Container","x":520,"Width":242,"y":19,"Height":791,"Id":"PUX_112", WidgetList:[
+            {"Type":"Label","Classes":"Label","Value":"Sticker Configuration","Id":"PUX_169"},
+            {"Type":"Label","Classes":"Label","Value":"Id","Id":"PUX_170"},
+            {"Type":"Label","Classes":"Label","Value":"Name","Id":"PUX_171"},
+            {"Type":"TextlineInput","Name":"IdView","Classes":"TextlineInput readonly","Anchoring":"n","Placeholder":"","Value":"","Id":"PUX_191"},
+            {"Type":"TextlineInput","Name":"NameInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Name","Value":"","Id":"PUX_192"},
+            {"Type":"Label","Classes":"Label","Value":"Position","Id":"PUX_172"},
+            {"Type":"Label","Classes":"Label","Value":"Size","Id":"PUX_173"},
+            {"Type":"NumberInput","Name":"WidthInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"W","Value":"","Id":"PUX_193"},
+            {"Type":"NumberInput","Name":"HeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"H","Value":"","Id":"PUX_194"},
+            {"Type":"Label","Classes":"Label","Anchoring":"ne","Value":"x","Id":"PUX_195"},
+            {"Type":"NumberInput","Name":"xInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"x","Value":"","Id":"PUX_196"},
+            {"Type":"NumberInput","Name":"yInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"y","Value":"","Id":"PUX_197"},
+            {"Type":"Label","Classes":"Label","Anchoring":"ne","Value":",","Id":"PUX_198"},
+            {"Type":"Label","Classes":"Label","Value":"Layer","Id":"PUX_174"},
+            {"Type":"Icon","Name":"ShiftDownButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_199"},
+            {"Type":"Icon","Name":"ShiftUpButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_200"},
+            {"Type":"Box","Classes":"","Anchoring":"ne","Id":"PUX_201"},
+            {"Type":"Icon","Name":"ShiftToTopButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_202"},
+            {"Type":"Box","Classes":"","Anchoring":"ne","Id":"PUX_203"},
+            {"Type":"Icon","Name":"ShiftToBottomButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_204"},
+            {"Type":"NumberInput","Name":"IndexView","Classes":"NumberInput","Anchoring":"ne","Placeholder":"Layer","Value":"","Id":"PUX_205"},
+            {"Type":"Label","Classes":"Label","Value":"Lock","Id":"PUX_175"},
+            {"Type":"Checkbox","Name":"LockCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_206"},
+            {"Type":"Label","Classes":"Label","Value":"Layout and Visibility","Id":"PUX_176"},
+            {"Type":"Label","Classes":"Label","Value":"Typography","Id":"PUX_177"},
+            {"Type":"Label","Classes":"Label","Value":"Font","Id":"PUX_178"},
+            {"Type":"TextlineInput","Name":"FontFamilyInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Font Family","Value":"","Id":"PUX_207"},
+            {"Type":"Label","Classes":"Label","Value":"Font Size [px]","Id":"PUX_179"},
+            {"Type":"NumberInput","Name":"FontSizeInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_208"},
+            {"Type":"Label","Classes":"Label","Value":"Bold","Id":"PUX_180"},
+            {"Type":"Checkbox","Name":"BoldCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_209"},
+            {"Type":"Label","Classes":"Label","Value":"Italic","Id":"PUX_181"},
+            {"Type":"Checkbox","Name":"ItalicCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_210"},
+            {"Type":"Label","Classes":"Label","Value":"Text Color","Id":"PUX_182"},
+            {"Type":"ColorInput","Name":"TextColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_211"},
+            {"Type":"Label","Classes":"Label","Value":"Line Height [px]","Id":"PUX_183"},
+            {"Type":"NumberInput","Name":"LineHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_212"},
+            {"Type":"Label","Classes":"Label","Value":"Background","Id":"PUX_184"},
+            {"Type":"Label","Classes":"Label","Value":"Color","Id":"PUX_185"},
+            {"Type":"ColorInput","Name":"BackgroundColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_213"},
+            {"Type":"Label","Classes":"Label","Value":"Texture","Id":"PUX_186"},
+            {"Type":"URLInput","Name":"TextureInput","Classes":"URLInput","Anchoring":"n","Placeholder":"Enter URL","Value":"","Id":"PUX_214"},
+            {"Type":"Label","Classes":"Label","Value":"Visibility","Id":"PUX_187"},
+            {"Type":"Checkbox","Name":"VisibilityCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_215"},
+            {"Type":"Label","Classes":"Label","Value":"Enabling","Id":"PUX_188"},
+            {"Type":"Checkbox","Name":"EnablingCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_216"},
+            {"Type":"Label","Classes":"Label","Value":"Value","Id":"PUX_189"},
             {"Type":"Icon","Name":"ValueEditorButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/image146.png\")","Color":"black","Id":"PUX_239"},
-            {"Type":"TextInput","Name":"ValueInput","Classes":"TextInput no-resize","Anchoring":"c","Placeholder":"Enter Value","Value":"","Id":"PUX_167"},
+            {"Type":"TextInput","Name":"ValueInput","Classes":"TextInput no-resize","Anchoring":"c","Placeholder":"Enter Value","Value":"","Id":"PUX_190"},
           ]},
-          {"Type":"Card","Name":"StickerConfigurationPane","Classes":"Card Container","x":520,"Width":242,"y":19,"Height":791,"Id":"PUX_111", WidgetList:[
-            {"Type":"Label","Classes":"Label","Value":"Sticker Configuration","Id":"PUX_168"},
-            {"Type":"Label","Classes":"Label","Value":"Id","Id":"PUX_169"},
-            {"Type":"Label","Classes":"Label","Value":"Name","Id":"PUX_170"},
-            {"Type":"TextlineInput","Name":"IdView","Classes":"TextlineInput readonly","Anchoring":"n","Placeholder":"","Value":"","Id":"PUX_190"},
-            {"Type":"TextlineInput","Name":"NameInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Name","Value":"","Id":"PUX_191"},
-            {"Type":"Label","Classes":"Label","Value":"Position","Id":"PUX_171"},
-            {"Type":"Label","Classes":"Label","Value":"Size","Id":"PUX_172"},
-            {"Type":"NumberInput","Name":"WidthInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"W","Value":"","Id":"PUX_192"},
-            {"Type":"NumberInput","Name":"HeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"H","Value":"","Id":"PUX_193"},
-            {"Type":"Label","Classes":"Label","Anchoring":"ne","Value":"x","Id":"PUX_194"},
-            {"Type":"NumberInput","Name":"xInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"x","Value":"","Id":"PUX_195"},
-            {"Type":"NumberInput","Name":"yInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"y","Value":"","Id":"PUX_196"},
-            {"Type":"Label","Classes":"Label","Anchoring":"ne","Value":",","Id":"PUX_197"},
-            {"Type":"Label","Classes":"Label","Value":"Layer","Id":"PUX_173"},
-            {"Type":"Icon","Name":"ShiftDownButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_198"},
-            {"Type":"Icon","Name":"ShiftUpButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_199"},
-            {"Type":"Box","Classes":"","Anchoring":"ne","Id":"PUX_200"},
-            {"Type":"Icon","Name":"ShiftToTopButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_201"},
-            {"Type":"Box","Classes":"","Anchoring":"ne","Id":"PUX_202"},
-            {"Type":"Icon","Name":"ShiftToBottomButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_203"},
-            {"Type":"NumberInput","Name":"IndexView","Classes":"NumberInput","Anchoring":"ne","Placeholder":"Layer","Value":"","Id":"PUX_204"},
-            {"Type":"Label","Classes":"Label","Value":"Lock","Id":"PUX_174"},
-            {"Type":"Checkbox","Name":"LockCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_205"},
-            {"Type":"Label","Classes":"Label","Value":"Layout and Visibility","Id":"PUX_175"},
-            {"Type":"Label","Classes":"Label","Value":"Typography","Id":"PUX_176"},
-            {"Type":"Label","Classes":"Label","Value":"Font","Id":"PUX_177"},
-            {"Type":"TextlineInput","Name":"FontFamilyInput","Classes":"TextlineInput","Anchoring":"n","Placeholder":"Enter Font Family","Value":"","Id":"PUX_206"},
-            {"Type":"Label","Classes":"Label","Value":"Font Size [px]","Id":"PUX_178"},
-            {"Type":"NumberInput","Name":"FontSizeInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_207"},
-            {"Type":"Label","Classes":"Label","Value":"Bold","Id":"PUX_179"},
-            {"Type":"Checkbox","Name":"BoldCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_208"},
-            {"Type":"Label","Classes":"Label","Value":"Italic","Id":"PUX_180"},
-            {"Type":"Checkbox","Name":"ItalicCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_209"},
-            {"Type":"Label","Classes":"Label","Value":"Text Color","Id":"PUX_181"},
-            {"Type":"ColorInput","Name":"TextColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_210"},
-            {"Type":"Label","Classes":"Label","Value":"Line Height [px]","Id":"PUX_182"},
-            {"Type":"NumberInput","Name":"LineHeightInput","Classes":"NumberInput","Anchoring":"ne","Placeholder":"","Value":"","Id":"PUX_211"},
-            {"Type":"Label","Classes":"Label","Value":"Background","Id":"PUX_183"},
-            {"Type":"Label","Classes":"Label","Value":"Color","Id":"PUX_184"},
-            {"Type":"ColorInput","Name":"BackgroundColorInput","Classes":"ColorInput","Anchoring":"ne","Id":"PUX_212"},
-            {"Type":"Label","Classes":"Label","Value":"Texture","Id":"PUX_185"},
-            {"Type":"URLInput","Name":"TextureInput","Classes":"URLInput","Anchoring":"n","Placeholder":"Enter URL","Value":"","Id":"PUX_213"},
-            {"Type":"Label","Classes":"Label","Value":"Visibility","Id":"PUX_186"},
-            {"Type":"Checkbox","Name":"VisibilityCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_214"},
-            {"Type":"Label","Classes":"Label","Value":"Enabling","Id":"PUX_187"},
-            {"Type":"Checkbox","Name":"EnablingCheck","Classes":"Checkbox","Anchoring":"ne","Value":true,"Id":"PUX_215"},
-            {"Type":"Label","Classes":"Label","Value":"Value","Id":"PUX_188"},
-            {"Type":"Icon","Name":"ValueEditorButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/image146.png\")","Color":"black","Id":"PUX_238"},
-            {"Type":"TextInput","Name":"ValueInput","Classes":"TextInput no-resize","Anchoring":"c","Placeholder":"Enter Value","Value":"","Id":"PUX_189"},
+          {"Type":"Card","Name":"BoardBrowserPane","Classes":"Card Container","x":20,"Width":242,"y":700,"Height":270,"Id":"PUX_108", WidgetList:[
+            {"Type":"Label","Classes":"Label","Value":"Board Browser","Id":"PUX_113"},
+            {"Type":"NestedListView","Name":"BoardTreeView","Classes":"NestedListView","Anchoring":"c","Id":"PUX_121"},
+            {"Type":"TextlineInput","Name":"BoardNameInput","Classes":"TextlineInput","Anchoring":"s","Placeholder":"Name","Value":"","Id":"PUX_122"},
+            {"Type":"Icon","Name":"BoardDeleteButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/minus.png\")","Color":"black","Id":"PUX_120"},
+            {"Type":"Icon","Name":"BoardCreateButton","Classes":"Icon","Value":"url(\"/images/plus.png\")","Color":"black","Id":"PUX_114"},
+            {"Type":"Icon","Name":"BoardDuplicateButton","Classes":"Icon","Value":"url(\"/images/clone.png\")","Color":"black","Id":"PUX_115"},
+            {"Type":"Icon","Name":"BoardShiftDownButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_116"},
+            {"Type":"Icon","Name":"BoardShiftUpButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_117"},
+            {"Type":"Icon","Name":"BoardShiftOutButton","Classes":"Icon","Value":"url(\"/images/image21.png\")","Color":"black","Id":"PUX_118"},
+            {"Type":"Icon","Name":"BoardShiftInButton","Classes":"Icon","Value":"url(\"/images/image23.png\")","Color":"black","Id":"PUX_119"},
           ]},
-          {"Type":"Card","Name":"BoardBrowserPane","Classes":"Card Container","x":20,"Width":242,"y":700,"Height":270,"Id":"PUX_107", WidgetList:[
-            {"Type":"Label","Classes":"Label","Value":"Board Browser","Id":"PUX_112"},
-            {"Type":"NestedListView","Name":"BoardTreeView","Classes":"NestedListView","Anchoring":"c","Id":"PUX_120"},
-            {"Type":"TextlineInput","Name":"BoardNameInput","Classes":"TextlineInput","Anchoring":"s","Placeholder":"Name","Value":"","Id":"PUX_121"},
-            {"Type":"Icon","Name":"BoardDeleteButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/minus.png\")","Color":"black","Id":"PUX_119"},
-            {"Type":"Icon","Name":"BoardCreateButton","Classes":"Icon","Value":"url(\"/images/plus.png\")","Color":"black","Id":"PUX_113"},
-            {"Type":"Icon","Name":"BoardDuplicateButton","Classes":"Icon","Value":"url(\"/images/clone.png\")","Color":"black","Id":"PUX_114"},
-            {"Type":"Icon","Name":"BoardShiftDownButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_115"},
-            {"Type":"Icon","Name":"BoardShiftUpButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_116"},
-            {"Type":"Icon","Name":"BoardShiftOutButton","Classes":"Icon","Value":"url(\"/images/image21.png\")","Color":"black","Id":"PUX_117"},
-            {"Type":"Icon","Name":"BoardShiftInButton","Classes":"Icon","Value":"url(\"/images/image23.png\")","Color":"black","Id":"PUX_118"},
-          ]},
-          {"Type":"Card","Name":"StickerBrowserPane","Classes":"Card Container","x":271,"Width":242,"y":700,"Height":270,"Id":"PUX_108", WidgetList:[
-            {"Type":"Label","Classes":"Label","Value":"Sticker Browser","Id":"PUX_122"},
-            {"Type":"FlatListView","Name":"StickerListView","Classes":"FlatListView","Anchoring":"c","Id":"PUX_132"},
-            {"Type":"TextlineInput","Name":"StickerNameInput","Classes":"TextlineInput","Anchoring":"s","Placeholder":"Name","Value":"","Id":"PUX_133"},
-            {"Type":"Icon","Name":"StickerDeleteButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/minus.png\")","Color":"black","Id":"PUX_131"},
-            {"Type":"PseudoDropDown","Name":"StickerCreateButton","Classes":"PseudoDropDown","Value":"url(\"/images/plus.png\")","Color":"black","Id":"PUX_123"},
-            {"Type":"Icon","Name":"StickerDuplicateButton","Classes":"Icon","Value":"url(\"/images/clone.png\")","Color":"black","Id":"PUX_124"},
-            {"Type":"Icon","Name":"StickerShiftDownButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_125"},
-            {"Type":"Icon","Name":"StickerShiftUpButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_126"},
-            {"Type":"Box","Classes":"","Id":"PUX_127"},
-            {"Type":"Icon","Name":"StickerShiftToTopButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_128"},
-            {"Type":"Box","Classes":"","Id":"PUX_129"},
-            {"Type":"Icon","Name":"StickerShiftToBottomButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_130"},
+          {"Type":"Card","Name":"StickerBrowserPane","Classes":"Card Container","x":271,"Width":242,"y":700,"Height":270,"Id":"PUX_109", WidgetList:[
+            {"Type":"Label","Classes":"Label","Value":"Sticker Browser","Id":"PUX_123"},
+            {"Type":"FlatListView","Name":"StickerListView","Classes":"FlatListView","Anchoring":"c","Id":"PUX_133"},
+            {"Type":"TextlineInput","Name":"StickerNameInput","Classes":"TextlineInput","Anchoring":"s","Placeholder":"Name","Value":"","Id":"PUX_134"},
+            {"Type":"Icon","Name":"StickerDeleteButton","Classes":"Icon","Anchoring":"ne","Value":"url(\"/images/minus.png\")","Color":"black","Id":"PUX_132"},
+            {"Type":"PseudoDropDown","Name":"StickerCreateButton","Classes":"PseudoDropDown","Value":"url(\"/images/plus.png\")","Color":"black","Id":"PUX_124"},
+            {"Type":"Icon","Name":"StickerDuplicateButton","Classes":"Icon","Value":"url(\"/images/clone.png\")","Color":"black","Id":"PUX_125"},
+            {"Type":"Icon","Name":"StickerShiftDownButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_126"},
+            {"Type":"Icon","Name":"StickerShiftUpButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_127"},
+            {"Type":"Box","Classes":"","Id":"PUX_128"},
+            {"Type":"Icon","Name":"StickerShiftToTopButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-up.png\")","Color":"black","Id":"PUX_129"},
+            {"Type":"Box","Classes":"","Id":"PUX_130"},
+            {"Type":"Icon","Name":"StickerShiftToBottomButton","Classes":"Icon","Value":"url(\"/images/arrow-sm-down.png\")","Color":"black","Id":"PUX_131"},
           ]},
         ],
       },
@@ -1575,6 +1581,13 @@
             onClick:(Event:PointerEvent) => showDialogAround(
               'Console', Event.clientX,Event.clientY
             ),
+          },
+          ImageGeneratorButton: {
+            disabled:updatedFrom(() => ! (
+              (Application.chosenBoard != null) &&
+              (Application.selectedStickers.length > 0)
+            )),
+            onClick:() => doGenerateImage(Application.selectedStickers),
           },
           AppletGeneratorButton: {
             disabled:updatedFrom(() => Application.chosenBoard == null),
@@ -3370,6 +3383,55 @@ console.log('Reader.onload')
     } else {
       window.alert('this export is not safe')
     }
+  }
+
+/**** doGenerateImage ****/
+
+  function doGenerateImage (StickerList:SNS_Sticker[]):void {
+    if (StickerList.length === 0) {
+      return withWarning('there are currently no selected stickers')
+    }
+
+    const minX = Math.min(...StickerList.map((Sticker:SNS_Sticker) => Sticker.x))
+    const minY = Math.min(...StickerList.map((Sticker:SNS_Sticker) => Sticker.y))
+    const maxX = Math.max(...StickerList.map((Sticker:SNS_Sticker) => Sticker.x + Sticker.Width))
+    const maxY = Math.max(...StickerList.map((Sticker:SNS_Sticker) => Sticker.y + Sticker.Height))
+
+    const Width  = maxX-minX
+    const Height = maxY-minY
+
+    const Canvas  = document.createElement('canvas')
+      Canvas.width  = Width
+      Canvas.height = Height
+    const Context = Canvas.getContext('2d')
+    const BoardViewElement = BoardViewWidget.base
+
+    selectStickers([])
+    ;(async () => {
+      const Stream = await navigator.mediaDevices.getDisplayMedia({
+// @ts-ignore TS2353 allow "preferCurrentTab"
+        video:true, preferCurrentTab:true
+      })
+      const Video = document.createElement('video')
+        Video.srcObject = Stream
+      await Video.play()
+
+// @ts-ignore TS18047 "Context" is not null
+      Context.drawImage(Video,
+        BoardViewElement.offsetLeft+minX,BoardViewElement.offsetTop+minY, Width,Height,
+        0,0, Width,Height
+      )
+
+      Stream.getTracks().forEach((Track:any) => Track.stop())
+      selectStickers(StickerList)
+
+      const Name = StickerList[0].Name || StickerList[0].Board.Name ||
+                   StickerList[0].Project.Name
+
+      Canvas.toBlob((Blob:any) => {
+        download(Blob, Name + '.png', 'image/png')
+      }, 'image/png')
+    })()
   }
 
 /**** doGenerateAppletFromBoard ****/
