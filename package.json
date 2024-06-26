@@ -36,7 +36,7 @@
     "htm": "github:rozek/htm",
     "hyperactiv": "github:rozek/hyperactiv",
     "javascript-interface-library": "github:rozek/javascript-interface-library",
-    "localforage": "github:rozek/localforage-esm",
+    "localforage": "^1.10.0",
     "protoux": "github:rozek/protoux",
     "shareable-note-stickers": "github:rozek/shareable-note-stickers",
     "sns-boardview": "github:rozek/sns-boardview"
