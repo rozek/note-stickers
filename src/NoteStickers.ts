@@ -5,6 +5,7 @@
 *******************************************************************************/
 
   declare const download:Function
+  declare const localforage:any
 
   import {
     quoted,
@@ -12,10 +13,6 @@
     ValueIsArray, ValueIsListSatisfying,
     expectListSatisfying,
   } from 'javascript-interface-library'
-
-//import 'localforage-types'
-  import * as _localforage from 'localforage'
-  const localforage:any = _localforage // *C* very weird hack
 
   import { html } from 'htm/preact'
 
