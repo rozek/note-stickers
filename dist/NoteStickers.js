@@ -2671,6 +2671,7 @@ function doImport(File) {
                     (Serialization) => chosenProject.BoardDeserializedAt(Serialization));
                 }
                 chosenProject.recursivelyActivateAllScripts();
+                visitBoard(chosenProject.Board(0));
             }
         }
         catch (Signal) {
