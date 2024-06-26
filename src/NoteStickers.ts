@@ -3317,6 +3317,8 @@ console.log('Reader.onload')
               }
 
               chosenProject.recursivelyActivateAllScripts()
+
+              visitBoard(chosenProject.Board(0))
             }
           } catch (Signal) {
             console.error(Signal)
