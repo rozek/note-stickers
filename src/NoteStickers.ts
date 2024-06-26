@@ -13,7 +13,9 @@
     expectListSatisfying,
   } from 'javascript-interface-library'
 
-  import localforage from 'localforage'
+//import 'localforage-types'
+  import * as _localforage from 'localforage'
+  const localforage:any = _localforage // *C* very weird hack
 
   import { html } from 'htm/preact'
 
