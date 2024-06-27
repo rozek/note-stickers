@@ -8,7 +8,7 @@
 
 > (this is a "work in progress" - do not use it unless you are adventurous - and, if so, "save often" by "export"ing the "whole project" for a later re-import)
 
-[live demo](https://rozek.github.io/note-stickers/dist/) (right now, for internal testing only - there still seems to be a really strange but fundamental problem when running from GitHub.io compared to an instance running from a local server...)
+[live demo](https://rozek.github.io/note-stickers/dist/) (right now, for notebooks and desktops only, tablet support will come later - smartphones usually have screens which are too small for development, but you will be free to test NoteStickers on foldables as soon as mobile support has been published)
 
 ## Overview ##
 
