@@ -2628,7 +2628,6 @@ function doImport(File) {
     Reader.onerror = function LoadFailed() { alert('import failed'); };
     Reader.onload = function FileLoaded(Event) {
         let FileValue = (new TextDecoder()).decode(Reader.result);
-        console.log('Reader.onload');
         const chosenProject = Application.Project;
         if (chosenProject == null) {
             return;
@@ -2762,7 +2761,7 @@ function doGenerateImage(StickerList) {
         Stream.getTracks().forEach((Track) => Track.stop());
         selectStickers(StickerList);
         const Name = StickerList[0].Name || StickerList[0].Board.Name ||
-            StickerList[0].Project.Name;
+            StickerList[0].Project.Name || 'NoteStickers';
         Canvas.toBlob((Blob) => {
             download(Blob, Name + '.png', 'image/png');
         }, 'image/png');
@@ -3042,20 +3041,17 @@ function ProjectChangeCallback(Project, Change, ...ArgList) {
                     Application.BoardProperties = PropertiesOfBoard(Application.chosenBoard);
                     Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers);
                     Application.ViewState++;
-                    console.log('Application.ViewState++');
                     return;
                 case Application.chosenBoard:
                     Application.BoardProperties = PropertiesOfBoard(Application.chosenBoard);
                     Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers);
                     Application.ViewState++;
-                    console.log('Application.ViewState++');
                     return;
                 default:
                     if (ArgList[0].containsFolder(Application.chosenBoard)) {
                         Application.BoardProperties = PropertiesOfBoard(Application.chosenBoard);
                         Application.StickerSelectionProperties = PropertiesOfStickers(Application.selectedStickers);
                         Application.ViewState++;
-                        console.log('Application.ViewState++');
                     }
             }
             return;
@@ -3066,7 +3062,6 @@ function ProjectChangeCallback(Project, Change, ...ArgList) {
             if (ArgList[1] === Application.chosenBoard) {
                 Application.StickerList = Application.chosenBoard.StickerList;
                 Application.ViewState++;
-                console.log('Application.ViewState++');
             }
             return;
         case 'configureSticker': // Sticker, Property, Value
@@ -3077,7 +3072,6 @@ function ProjectChangeCallback(Project, Change, ...ArgList) {
                 }
                 Application.StickerSelectionProperties = PropertiesOfStickers(selectedStickers);
                 Application.ViewState++;
-                console.log('Application.ViewState++');
             }
             return;
         //    case 'destroySticker':   // Sticker
@@ -3086,7 +3080,6 @@ function ProjectChangeCallback(Project, Change, ...ArgList) {
 /**** ProjectRenderCallback ****/
 function ProjectRenderCallback(Project, Board, Sticker) {
     if ((Board === Application.chosenBoard) || (Application.chosenBoard == null)) {
-        console.log('ProjectRenderCallback');
         BoardViewWidget.rerender();
     }
 }
@@ -3561,7 +3554,6 @@ function setInspectorMessage(newMessage) {
 //------------------------------------------------------------------------------
 /**** observe "chosenProject" ****/
 computed(() => {
-    console.log('was changed: Application.Project');
     const chosenProject = Application.Project;
     if (chosenProject == null) {
         Application.BoardTree = [];
@@ -3576,14 +3568,12 @@ computed(() => {
 });
 /**** observe "BoardTree" ****/
 computed(() => {
-    console.log('was changed: Application.BoardTreeState');
     // @ts-ignore TS6133 "BoardTreeState" is used for triggering
     const BoardTreeState = Application.BoardTreeState; // just for triggering
     validateVisitHistory(); // may change "VisitHistory" and "chosenBoard"
 });
 /**** observe "selectedBoards" ****/
 computed(() => {
-    console.log('was changed: Application.BoardTreeState/selectedBoards/expandedBoards');
     // @ts-ignore TS6133 "BoardTreeState" is used for triggering
     const BoardTreeState = Application.BoardTreeState; // just for triggering
     /**** sanitize selection ****/
@@ -3603,19 +3593,16 @@ computed(() => {
 });
 /**** observe "chosenBoard" ****/
 computed(() => {
-    console.log('was changed: Application.chosenBoard');
     const chosenBoard = Application.chosenBoard;
     Application.BoardProperties = PropertiesOfBoard(chosenBoard);
     Application.StickerList = (chosenBoard == null ? [] : chosenBoard.StickerList);
 });
 /**** observe "StickerList" ****/
 computed(() => {
-    console.log('was changed: Application.StickerList');
     Application.StickerGeometries = Application.StickerList.map((Sticker) => Sticker.Geometry);
 });
 /**** observe "selectedStickers" ****/
 computed(() => {
-    console.log('was changed: Application.chosenBoard/StickerList/selectedStickers');
     const chosenBoard = Application.chosenBoard;
     // @ts-ignore TS6133 "StickerList" is used for triggering
     const StickerList = Application.StickerList; // a small trick
@@ -3628,11 +3615,9 @@ computed(() => {
     Application.StickerSelectionMayBeShiftedUp = StickersMayBeShiftedUp(selectedStickers);
     Application.StickerSelectionMayBeShiftedDown = StickersMayBeShiftedDown(selectedStickers);
     Application.ViewState++;
-    console.log('Application.ViewState++');
 });
 /**** update "ScriptEditorValue" ****/
 computed(() => {
-    console.log('was changed: Application.ScriptEditorMode/Project/Board/StickerSelectionProperties');
     switch (Application.ScriptEditorMode) {
         case 'Project':
             Application.ScriptEditorValue = (Application.Project == null
@@ -3653,7 +3638,6 @@ computed(() => {
 });
 /**** update "ValueEditorValue" ****/
 computed(() => {
-    console.log('was changed: Application.ValueEditorMode/Project/Board/StickerSelectionProperties');
     switch (Application.ValueEditorMode) {
         case 'Project':
             Application.ScriptEditorValue = (Application.Project == null
@@ -3674,14 +3658,12 @@ computed(() => {
 });
 /**** update "OperationHistory" ****/
 computed(() => {
-    console.log('was changed: Application.OperationHistoryState');
     Application.OperationHistoryState; // just for triggering
     Application.mayUndoOperation = (OperationIndex > 0);
     Application.mayRedoOperation = (OperationIndex < OperationHistory.length);
 });
 /**** update "VisitHistory" ****/
 computed(() => {
-    console.log('was changed: Application.VisitHistoryState');
     Application.VisitHistoryState; // just for triggering
     Application.mayVisitPrevBoard = (VisitIndex > 0);
     Application.mayVisitNextBoard = (VisitIndex < VisitHistory.length - 1);
