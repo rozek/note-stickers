@@ -66,6 +66,12 @@ The rendering callback is usually the most important one: here you can compute t
 
 
 
+<details>
+  <summary>
+## Cheatsheets ##
+
+Expand this section to see a list of "cheatsheets" which visually introduce the NoteStickers UI within a few minutes
+  </summary>
 
 ![NoteStickers CheatSheet I](./screenshots/NoteStickers_CheatSheet_I.png)
 
@@ -92,6 +98,9 @@ The rendering callback is usually the most important one: here you can compute t
 ![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_XII.png)
 
 ![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_XIII.png)
+
+</details>
+
 
 
 ## License ##
