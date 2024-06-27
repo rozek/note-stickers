@@ -6,7 +6,7 @@
 
 "NoteStickers" is the first step in a series of implementation and user studies towards a modern variant of Apple's famous but hopelessly underrated [HyperCard](https://en.m.wikipedia.org/wiki/HyperCard)
 
-> (this is a "work in progress" - do not use it unless you are adventurous - and, if so, "save often" by "export"ing the "whole project" for a later re-import)
+> (this is a "work in progress" - treat it like "pre-alpha" software and save often by "export"ing the "whole project" for a later re-import in case of a crash or similar problems)
 
 [live demo](https://rozek.github.io/note-stickers/dist/) (right now, for notebooks and desktops only, tablet support will come later - smartphones usually have screens which are too small for development, but you will be free to test NoteStickers on foldables as soon as mobile support has been published)
 
