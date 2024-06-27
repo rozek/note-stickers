@@ -67,11 +67,11 @@ The rendering callback is usually the most important one: here you can compute t
 
 
 <details>
-  <summary>
-## Cheatsheets ##
+ <summary>
+  <h2 tabindex="-1" class="heading-element" dir="auto">Cheatsheets</h2>
 
 Expand this section to see a list of "cheatsheets" which visually introduce the NoteStickers UI within a few minutes
-  </summary>
+ </summary>
 
 ![NoteStickers CheatSheet I](./screenshots/NoteStickers_CheatSheet_I.png)
 
