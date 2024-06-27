@@ -2,7 +2,7 @@
 
 (an unshared application based on "[shareable-note-stickers](https://github.com/rozek/shareable-note-stickers)")
 
-![NoteStickers Screenshot](./NoteStickers-Screenshot.png)
+![NoteStickers Screenshot](./screenshots/NoteStickers-Screenshot.png)
 
 "NoteStickers" is the first step in a series of implementation and user studies towards a modern variant of Apple's famous but hopelessly underrated [HyperCard](https://en.m.wikipedia.org/wiki/HyperCard)
 
@@ -67,31 +67,31 @@ The rendering callback is usually the most important one: here you can compute t
 
 
 
-![NoteStickers CheatSheet I](./NoteStickers_CheatSheet_I.png)
+![NoteStickers CheatSheet I](./screenshots/NoteStickers_CheatSheet_I.png)
 
-![NoteStickers CheatSheet II](./NoteStickers_CheatSheet_II.png)
+![NoteStickers CheatSheet II](./screenshots/NoteStickers_CheatSheet_II.png)
 
-![NoteStickers CheatSheet III](./NoteStickers_CheatSheet_III.png)
+![NoteStickers CheatSheet III](./screenshots/NoteStickers_CheatSheet_III.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_IV.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_IV.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_V.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_V.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_VI.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_VI.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_VII.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_VII.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_VIII.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_VIII.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_IX.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_IX.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_X.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_X.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_XI.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_XI.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_XII.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_XII.png)
 
-![NoteStickers CheatSheet IV](./NoteStickers_CheatSheet_XIII.png)
+![NoteStickers CheatSheet IV](./screenshots/NoteStickers_CheatSheet_XIII.png)
 
 
 ## License ##
