@@ -2592,7 +2592,14 @@
 
   function doSwitchMode ():void {
     const currentMode = Application.Mode
-    Application.Mode = (currentMode === 'edit' ? 'run' : 'edit')
+    if (currentMode === 'edit') {
+      Application.Mode = 'run'
+      Application.selectedStickers = Application.selectedStickers.filter(
+        (Sticker:SNS_Sticker) => Sticker.isSelectable
+      )
+    } else {
+      Application.Mode = 'edit'
+    }
   }
 
 /**** doConfigureProject ****/
