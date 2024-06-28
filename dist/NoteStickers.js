@@ -2146,7 +2146,13 @@ function doPurgeProject(Name) {
 /**** doSwitchMode ****/
 function doSwitchMode() {
     const currentMode = Application.Mode;
-    Application.Mode = (currentMode === 'edit' ? 'run' : 'edit');
+    if (currentMode === 'edit') {
+        Application.Mode = 'run';
+        Application.selectedStickers = Application.selectedStickers.filter((Sticker) => Sticker.isSelectable);
+    }
+    else {
+        Application.Mode = 'edit';
+    }
 }
 /**** doConfigureProject ****/
 function doConfigureProject(Project, PropertyName, PropertyValue) {
