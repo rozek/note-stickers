@@ -2839,15 +2839,8 @@
       case ! Board.isAttached:                return withWarning('the chosen board is no longer attached')
     }
 
-    const selectedStickers = Application.selectedStickers
-
-    const Index = (selectedStickers.length === 0
-      ? Board.StickerCount
-      : bottommostIndexOfStickers(selectedStickers)+1
-    )
-
     doOperation(new SNS_StickerDeserializationOperation(
-      Board, [TemplateOfBehavior(BehaviorName)], Index
+      Board, [TemplateOfBehavior(BehaviorName)], Board.StickerCount
     ))
   }
 
@@ -2871,10 +2864,9 @@
     const Serializations:Serializable[] = StickersSortedByIndex(StickerList).map(
       (Sticker:SNS_Sticker) => Sticker.Serialization
     )
-    const Index = bottommostIndexOfStickers(StickerList)+1
 
     doOperation(new SNS_StickerDeserializationOperation(
-      Board, Serializations, Index
+      Board, Serializations, Board.StickerCount
     ))
 
   /**** sticker offset is currently a separate operation ****/
