@@ -2320,11 +2320,7 @@ function doCreateNewSticker(BehaviorName) {
         // @ts-ignore TS18048 "Board" is obviously *not* undefined here
         case !Board.isAttached: return withWarning('the chosen board is no longer attached');
     }
-    const selectedStickers = Application.selectedStickers;
-    const Index = (selectedStickers.length === 0
-        ? Board.StickerCount
-        : bottommostIndexOfStickers(selectedStickers) + 1);
-    doOperation(new SNS_StickerDeserializationOperation(Board, [TemplateOfBehavior(BehaviorName)], Index));
+    doOperation(new SNS_StickerDeserializationOperation(Board, [TemplateOfBehavior(BehaviorName)], Board.StickerCount));
 }
 /**** doDuplicateStickers ****/
 function doDuplicateStickers(StickerList) {
@@ -2341,8 +2337,7 @@ function doDuplicateStickers(StickerList) {
         case !Board.isAttached: return withWarning('the chosen board is no longer attached');
     }
     const Serializations = StickersSortedByIndex(StickerList).map((Sticker) => Sticker.Serialization);
-    const Index = bottommostIndexOfStickers(StickerList) + 1;
-    doOperation(new SNS_StickerDeserializationOperation(Board, Serializations, Index));
+    doOperation(new SNS_StickerDeserializationOperation(Board, Serializations, Board.StickerCount));
     /**** sticker offset is currently a separate operation ****/
     const StickerDuplicates = Application.selectedStickers;
     if (StickerDuplicates.length > 0) {
