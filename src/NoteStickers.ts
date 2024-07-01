@@ -369,7 +369,7 @@
       onSelectionChange=${(selectedStickers:SNS_Sticker[]) => {
         Application.selectedStickers = selectedStickers.slice()
       }}
-      LassoMode="contain"
+      LassoMode="enclose"
       onGeometryChange=${(StickerList:SNS_Sticker[],GeometryList:SNS_Geometry[]) => {
         doChangeStickerGeometries(StickerList,GeometryList)
       }}
@@ -4505,6 +4505,8 @@ ${JSON.stringify(AppletSerialization)}
     const chosenBoard = Application.chosenBoard
 // @ts-ignore TS6133 "StickerList" is used for triggering
     const StickerList = Application.StickerList                 // a small trick
+// @ts-ignore TS6133 "Mode" is used for triggering
+    const Mode        = Application.Mode // dto., updates view after mode switch
 
   /**** sanitize selection ****/
 
