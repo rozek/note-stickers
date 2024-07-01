@@ -2934,7 +2934,7 @@ async function openPersistedProject(Name) {
     try {
         Application.Project = SNS_Project.deserializedFrom(Name, Serialization);
         Application.Project.onChange(ProjectChangeCallback);
-        Application.Project.onRender(ProjectRenderCallback);
+        Application.Project.onRendering(ProjectRenderingCallback);
         Application.Project.onError(ProjectErrorCallback);
         Application.Project.recursivelyActivateAllScripts();
         window['Project'] = Application.Project; // just for testing
@@ -3078,10 +3078,10 @@ function ProjectChangeCallback(Project, Change, ...ArgList) {
         //    case 'destroySticker':   // Sticker
     }
 }
-/**** ProjectRenderCallback ****/
-function ProjectRenderCallback(Project, Board, Sticker) {
+/**** ProjectRenderingCallback ****/
+function ProjectRenderingCallback(Project, Board, Sticker) {
     if ((Board === Application.chosenBoard) || (Application.chosenBoard == null)) {
-        BoardViewWidget.rerender();
+        BoardViewWidget.rerender(Sticker);
     }
 }
 /**** ProjectErrorCallback ****/
