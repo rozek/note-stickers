@@ -3664,7 +3664,7 @@
       Application.Project = SNS_Project.deserializedFrom(Name,Serialization)
 
       Application.Project.onChange(ProjectChangeCallback)
-      Application.Project.onRender(ProjectRenderCallback)
+      Application.Project.onRendering(ProjectRenderingCallback)
 
       Application.Project.onError(ProjectErrorCallback)
 
@@ -3848,13 +3848,13 @@
     }
   }
 
-/**** ProjectRenderCallback ****/
+/**** ProjectRenderingCallback ****/
 
-  function ProjectRenderCallback (
+  function ProjectRenderingCallback (
     Project:SNS_Project, Board:SNS_Board|undefined, Sticker:SNS_Sticker|undefined
   ):void {
     if ((Board === Application.chosenBoard) || (Application.chosenBoard == null)) {
-      BoardViewWidget.rerender()
+      BoardViewWidget.rerender(Sticker)
     }
   }
 
