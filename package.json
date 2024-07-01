@@ -1,6 +1,6 @@
 {
   "name": "note-stickers",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "an unshared version of \"shareable-note-stickers\"",
   "type": "module",
   "source": "src/NoteStickers.ts",
