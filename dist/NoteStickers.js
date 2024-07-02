@@ -1540,7 +1540,11 @@ PUX.configure({
             },
         },
         WithdrawButton: {
-            disabled: true,
+            disabled: updatedFrom(() => (Application.ScriptEditorMode === 'Project'
+                ? Application.ProjectProperties.Script === Application.ProjectProperties.activeScript
+                : Application.ScriptEditorMode === 'Board'
+                    ? Application.ProjectProperties.Script === Application.ProjectProperties.activeScript
+                    : Application.StickerSelectionProperties.Script === Application.StickerSelectionProperties.activeScript)),
             onClick: () => {
                 switch (Application.ScriptEditorMode) {
                     case 'Project':
