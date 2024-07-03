@@ -2853,6 +2853,8 @@
       case ! Board.isAttached:                return withWarning('the chosen board is no longer attached')
     }
 
+    Application.Mode = 'edit'
+
     doOperation(new SNS_StickerDeserializationOperation(
       Board, [TemplateOfBehavior(BehaviorName)], Board.StickerCount
     ))
@@ -2878,6 +2880,8 @@
     const Serializations:Serializable[] = StickersSortedByIndex(StickerList).map(
       (Sticker:SNS_Sticker) => Sticker.Serialization
     )
+
+    Application.Mode = 'edit'
 
     doOperation(new SNS_StickerDeserializationOperation(
       Board, Serializations, Board.StickerCount
@@ -3180,6 +3184,8 @@
     const Board = Application.chosenBoard
     if (Board == null) { return withWarning('there is curently no chosen board') }
 
+    Application.Mode = 'edit'
+
     doOperation(new SNS_StickerDeserializationOperation(
       Board, Shelf.slice(), Board.StickerCount
     ))
@@ -3194,6 +3200,8 @@
 
     const Board = Application.chosenBoard
     if (Board == null) { return withWarning('there is curently no chosen board') }
+
+    Application.Mode = 'edit'
 
     doOperation(new SNS_StickerDeserializationOperation(
       Board, Shelf.slice(), Board.StickerCount
@@ -4522,13 +4530,15 @@ ${JSON.stringify(AppletSerialization)}
     const chosenBoard = Application.chosenBoard
 // @ts-ignore TS6133 "StickerList" is used for triggering
     const StickerList = Application.StickerList                 // a small trick
-// @ts-ignore TS6133 "Mode" is used for triggering
     const Mode        = Application.Mode // dto., updates view after mode switch
 
   /**** sanitize selection ****/
 
     Application.selectedStickers = Application.selectedStickers.filter(
-      (Sticker:SNS_Sticker) => Sticker.isAttached && (Sticker.Board === chosenBoard)
+      (Sticker:SNS_Sticker) => (
+        Sticker.isAttached && (Sticker.Board === chosenBoard) &&
+        ((Mode === 'edit') || Sticker.isSelectable)
+      )
     )
 
   /**** calculate dependencies ****/
