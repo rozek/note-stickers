@@ -3672,8 +3672,8 @@
 
       Application.Project.Application = {
         visitFirstBoard:() => visitBoard(Application.Project.Board(0)),
-        mayVisitPrevBoard:Application.mayVisitPrevBoard,
-        mayVisitNextBoard:Application.mayVisitNextBoard,
+        mayVisitPrevBoard:() => Application.mayVisitPrevBoard,
+        mayVisitNextBoard:() => Application.mayVisitNextBoard,
         visitPrevBoard, visitNextBoard, visitBoard,
         showConsole, hideConsole, clearConsole, print, println,
       }
