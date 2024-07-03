@@ -5,7 +5,7 @@
 *******************************************************************************/
 import { quoted, ValuesAreEqual, ValuesDiffer, ValueIsArray, ValueIsListSatisfying, expectListSatisfying, } from 'javascript-interface-library';
 import { html } from 'htm/preact';
-import { throwError, throwReadOnlyError, ValueIsBoard, ValueIsSticker, ValueIsName, ValueIsIdentifier, ValueIsGeometry, ValueIsError, SNS_Project, newId, removeIdsFrom, TemplateOfBehavior, groupedBehaviorEntryList, } from 'shareable-note-stickers';
+import { throwError, throwReadOnlyError, ValueIsBoard, ValueIsSticker, ValueIsName, ValueIsIdentifier, ValueIsGeometry, ValueIsError, allowBoard, SNS_Project, newId, removeIdsFrom, TemplateOfBehavior, groupedBehaviorEntryList, } from 'shareable-note-stickers';
 import { SNS_BoardView } from 'sns-boardview';
 import hyperactiv from 'hyperactiv';
 const { computed } = hyperactiv;
@@ -2937,6 +2937,13 @@ async function openPersistedProject(Name) {
     }
     try {
         Application.Project = SNS_Project.deserializedFrom(Name, Serialization);
+        Application.Project.Application = {
+            visitFirstBoard: () => visitBoard(Application.Project.Board(0)),
+            mayVisitPrevBoard: Application.mayVisitPrevBoard,
+            mayVisitNextBoard: Application.mayVisitNextBoard,
+            visitPrevBoard, visitNextBoard, visitBoard,
+            showConsole, hideConsole, clearConsole, print, println,
+        };
         Application.Project.onChange(ProjectChangeCallback);
         Application.Project.onRendering(ProjectRenderingCallback);
         Application.Project.onError(ProjectErrorCallback);
@@ -3210,6 +3217,7 @@ function visitNextBoard() {
 }
 /**** visitBoard ****/
 function visitBoard(Board) {
+    allowBoard('board to visit', Board);
     if (Board == null) {
         _chooseBoard(undefined);
         VisitHistory.length = 0;
