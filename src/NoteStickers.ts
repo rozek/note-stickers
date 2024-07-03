@@ -3950,6 +3950,14 @@
     )
   }
 
+/**** deselectStickers ****/
+
+  function deselectStickers (StickerList:SNS_Sticker[]):void {
+    Application.selectedStickers = Application.selectedStickers.filter(
+      (Sticker:SNS_Sticker) => StickerList.indexOf(Sticker) < 0
+    )
+  }
+
 //------------------------------------------------------------------------------
 //--                            Operation History                             --
 //------------------------------------------------------------------------------
@@ -5421,7 +5429,7 @@ ${JSON.stringify(AppletSerialization)}
         throwError('OperationFailure: could not delete the previously created stickers')
       }
 
-      selectStickers([])
+      deselectStickers(luckyStickers)
     }
   }
 
@@ -5840,6 +5848,8 @@ ${JSON.stringify(AppletSerialization)}
         setInspectorMessage('operation failed')
         throwError('OperationFailure: could not delete any stickers')
       }
+
+      deselectStickers(luckyStickers)
     }
 
   /**** extend ****/
