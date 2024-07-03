@@ -20,6 +20,7 @@
     throwError, throwReadOnlyError,
     ValueIsBoard, ValueIsSticker,
     ValueIsName, ValueIsIdentifier, ValueIsGeometry, ValueIsError,
+    allowBoard,
     SNS_Id, SNS_Name, SNS_Identifier,
     SNS_Ordinal, SNS_Text, SNS_Textline, SNS_Color, SNS_URL,
     SNS_Geometry, SNS_FontStyle, SNS_Error,
@@ -3669,6 +3670,14 @@
     try {
       Application.Project = SNS_Project.deserializedFrom(Name,Serialization)
 
+      Application.Project.Application = {
+        visitFirstBoard:() => visitBoard(Application.Project.Board(0)),
+        mayVisitPrevBoard:Application.mayVisitPrevBoard,
+        mayVisitNextBoard:Application.mayVisitNextBoard,
+        visitPrevBoard, visitNextBoard, visitBoard,
+        showConsole, hideConsole, clearConsole, print, println,
+      }
+
       Application.Project.onChange(ProjectChangeCallback)
       Application.Project.onRendering(ProjectRenderingCallback)
 
@@ -4033,6 +4042,8 @@
 /**** visitBoard ****/
 
   function visitBoard (Board:SNS_Board|undefined):void {
+    allowBoard('board to visit',Board)
+
     if (Board == null) {
       _chooseBoard(undefined)
 
