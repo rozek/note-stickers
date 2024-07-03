@@ -3146,6 +3146,10 @@ function selectStickers(StickerList) {
     });
     Application.selectedStickers = StickersSortedByIndex(Array.from(StickerSet.values()));
 }
+/**** deselectStickers ****/
+function deselectStickers(StickerList) {
+    Application.selectedStickers = Application.selectedStickers.filter((Sticker) => StickerList.indexOf(Sticker) < 0);
+}
 //------------------------------------------------------------------------------
 //--                            Operation History                             --
 //------------------------------------------------------------------------------
@@ -4306,7 +4310,7 @@ class SNS_StickerDeserializationOperation extends SNS_Operation {
             setInspectorMessage('operation failed');
             throwError('OperationFailure: could not delete the previously created stickers');
         }
-        selectStickers([]);
+        deselectStickers(luckyStickers);
     }
 }
 //----------------------------------------------------------------------------//
@@ -4652,6 +4656,7 @@ class SNS_StickerDeletionOperation extends SNS_Operation {
             setInspectorMessage('operation failed');
             throwError('OperationFailure: could not delete any stickers');
         }
+        deselectStickers(luckyStickers);
     }
     /**** extend ****/
     extend(otherOperation) {
