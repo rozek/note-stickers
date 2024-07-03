@@ -2330,6 +2330,7 @@ function doCreateNewSticker(BehaviorName) {
         // @ts-ignore TS18048 "Board" is obviously *not* undefined here
         case !Board.isAttached: return withWarning('the chosen board is no longer attached');
     }
+    Application.Mode = 'edit';
     doOperation(new SNS_StickerDeserializationOperation(Board, [TemplateOfBehavior(BehaviorName)], Board.StickerCount));
 }
 /**** doDuplicateStickers ****/
@@ -2347,6 +2348,7 @@ function doDuplicateStickers(StickerList) {
         case !Board.isAttached: return withWarning('the chosen board is no longer attached');
     }
     const Serializations = StickersSortedByIndex(StickerList).map((Sticker) => Sticker.Serialization);
+    Application.Mode = 'edit';
     doOperation(new SNS_StickerDeserializationOperation(Board, Serializations, Board.StickerCount));
     /**** sticker offset is currently a separate operation ****/
     const StickerDuplicates = Application.selectedStickers;
@@ -2576,6 +2578,7 @@ function doPasteStickers() {
     if (Board == null) {
         return withWarning('there is curently no chosen board');
     }
+    Application.Mode = 'edit';
     doOperation(new SNS_StickerDeserializationOperation(Board, Shelf.slice(), Board.StickerCount));
 }
 /**** doPasteStickersAround ****/
@@ -2587,6 +2590,7 @@ function doPasteStickersAround(x, y) {
     if (Board == null) {
         return withWarning('there is curently no chosen board');
     }
+    Application.Mode = 'edit';
     doOperation(new SNS_StickerDeserializationOperation(Board, Shelf.slice(), Board.StickerCount));
     /**** sticker offset is currently a separate operation ****/
     const pastedStickers = Application.selectedStickers;
@@ -3619,10 +3623,10 @@ computed(() => {
     const chosenBoard = Application.chosenBoard;
     // @ts-ignore TS6133 "StickerList" is used for triggering
     const StickerList = Application.StickerList; // a small trick
-    // @ts-ignore TS6133 "Mode" is used for triggering
     const Mode = Application.Mode; // dto., updates view after mode switch
     /**** sanitize selection ****/
-    Application.selectedStickers = Application.selectedStickers.filter((Sticker) => Sticker.isAttached && (Sticker.Board === chosenBoard));
+    Application.selectedStickers = Application.selectedStickers.filter((Sticker) => (Sticker.isAttached && (Sticker.Board === chosenBoard) &&
+        ((Mode === 'edit') || Sticker.isSelectable)));
     /**** calculate dependencies ****/
     const selectedStickers = Application.selectedStickers;
     Application.StickerSelectionGeometries = selectedStickers.map((Sticker) => Sticker.Geometry);
