@@ -3890,9 +3890,6 @@ class SNS_BoardConfigurationOperation extends SNS_Operation {
     }
     /**** extend ****/
     extend(otherOperation) {
-        if (this._Board.isAttached) {
-            visitBoard(this._Board);
-        }
         this.doNow(); // will report if board no longer exists
         otherOperation._newValue = this._newValue;
     }
