@@ -4910,7 +4910,6 @@ ${JSON.stringify(AppletSerialization)}
   /**** extend ****/
 
     public extend (otherOperation:SNS_BoardConfigurationOperation):void {
-      if (this._Board.isAttached) { visitBoard(this._Board) }
       this.doNow()                      // will report if board no longer exists
       otherOperation._newValue = this._newValue
     }
