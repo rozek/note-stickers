@@ -171,6 +171,7 @@ function hideDesignerTools() {
 //------------------------------------------------------------------------------
 function BoardView() {
     return html `<${SNS_BoardView}
+      PUX=${PUX}
       Mode=${Application.Mode}
       Board=${Application.chosenBoard} StickerList=${Application.StickerList}
       selectedStickers=${Application.selectedStickers}
