@@ -1843,7 +1843,7 @@
               Application.ScriptEditorMode === 'Project'
               ? Application.ProjectProperties.Script === Application.ProjectProperties.activeScript
               : Application.ScriptEditorMode === 'Board'
-                ? Application.ProjectProperties.Script          === Application.ProjectProperties.activeScript
+                ? Application.BoardProperties.Script            === Application.BoardProperties.activeScript
                 : Application.StickerSelectionProperties.Script === Application.StickerSelectionProperties.activeScript
             )),
             onClick:() => {
@@ -1862,7 +1862,7 @@
               Application.ScriptEditorMode === 'Project'
               ? Application.ProjectProperties.Script === Application.ProjectProperties.activeScript
               : Application.ScriptEditorMode === 'Board'
-                ? Application.ProjectProperties.Script          === Application.ProjectProperties.activeScript
+                ? Application.BoardProperties.Script            === Application.BoardProperties.activeScript
                 : Application.StickerSelectionProperties.Script === Application.StickerSelectionProperties.activeScript
             )),
             onClick:() => {
