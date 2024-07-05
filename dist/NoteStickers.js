@@ -1525,7 +1525,7 @@ PUX.configure({
             disabled: updatedFrom(() => (Application.ScriptEditorMode === 'Project'
                 ? Application.ProjectProperties.Script === Application.ProjectProperties.activeScript
                 : Application.ScriptEditorMode === 'Board'
-                    ? Application.ProjectProperties.Script === Application.ProjectProperties.activeScript
+                    ? Application.BoardProperties.Script === Application.BoardProperties.activeScript
                     : Application.StickerSelectionProperties.Script === Application.StickerSelectionProperties.activeScript)),
             onClick: () => {
                 switch (Application.ScriptEditorMode) {
@@ -1543,7 +1543,7 @@ PUX.configure({
             disabled: updatedFrom(() => (Application.ScriptEditorMode === 'Project'
                 ? Application.ProjectProperties.Script === Application.ProjectProperties.activeScript
                 : Application.ScriptEditorMode === 'Board'
-                    ? Application.ProjectProperties.Script === Application.ProjectProperties.activeScript
+                    ? Application.BoardProperties.Script === Application.BoardProperties.activeScript
                     : Application.StickerSelectionProperties.Script === Application.StickerSelectionProperties.activeScript)),
             onClick: () => {
                 switch (Application.ScriptEditorMode) {
