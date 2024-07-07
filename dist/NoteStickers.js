@@ -3335,7 +3335,7 @@ function compactFor(LineCount, CharCount) {
     if ((LinesToSkip <= 0) && (CharsToSkip <= 0)) {
         return;
     }
-    let Content = Application.Console.Value;
+    let Content = Application.ConsoleValue;
     for (let EOLCount = 0, curIndex = -1;;) {
         curIndex = Content.indexOf('\n', curIndex + 1); // might be -1!
         if (curIndex < 0) { // no more EOLs, just a loooong line
@@ -3344,7 +3344,7 @@ function compactFor(LineCount, CharCount) {
         }
         EOLCount += 1;
         if ((EOLCount >= LinesToSkip) && (curIndex - EOLCount * 28 >= CharsToSkip)) {
-            Application.Console.Value = Content.slice(curIndex + 1);
+            Application.ConsoleValue = Content.slice(curIndex + 1);
             return;
         }
     }
