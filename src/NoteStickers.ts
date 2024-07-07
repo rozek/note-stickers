@@ -4091,6 +4091,7 @@
   function validateVisitHistory ():void {
     for (let i = VisitHistory.length-1; i >= 0; i--) {
       if ((VisitHistory[i] == null) || ! VisitHistory[i].isAttached) {
+        VisitHistory.splice(i,1)
         if (VisitIndex >= i) { VisitIndex -= 1 }
       }
     }
