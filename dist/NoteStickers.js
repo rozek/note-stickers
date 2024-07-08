@@ -2947,7 +2947,7 @@ async function openPersistedProject(Name) {
             mayVisitPrevBoard: () => Application.mayVisitPrevBoard,
             mayVisitNextBoard: () => Application.mayVisitNextBoard,
             visitPrevBoard, visitNextBoard, visitBoard,
-            showConsole, hideConsole, clearConsole, print, println,
+            openConsole, closeConsole, clearConsole, print, println,
         };
         Application.Project.onChange(ProjectChangeCallback);
         Application.Project.onRendering(ProjectRenderingCallback);
@@ -3274,12 +3274,12 @@ const ConsoleCharLimit = 1050000; // a bit more than 2^20 characters
 const ConsoleLineLimit = 20000;
 let ConsoleLineCount = 0;
 let ConsoleCharCount = 0;
-/**** showConsole ****/
-function showConsole() {
-    PUX.openDialog('Console');
+/**** openConsole ****/
+function openConsole() {
+    showDialogCentered('Console');
 }
-/**** hideConsole ****/
-function hideConsole() {
+/**** closeConsole ****/
+function closeConsole() {
     PUX.closeDialog('Console');
 }
 /**** clearConsole ****/
@@ -3387,7 +3387,7 @@ function StringFromArguments(ArgList) {
     return Result;
 }
 Object.assign(window, { Console: {
-        show: showConsole, hide: hideConsole,
+        open: openConsole, close: closeConsole,
         clear: clearConsole, print: print, println: println
     } });
 //------------------------------------------------------------------------------
@@ -3513,12 +3513,27 @@ function downloadStandaloneApplet(AppletName, AppletSerialization) {
     html, body { width:100%; height:100%; width:100vw; height:100vh; margin:0px; padding:0px }
     html       { overflow:hidden scroll }
   </style>
-  ${'<'}script src="https://rozek.github.io/note-stickers-runtime/dist/note-stickers-runtime.js">${'<'}/script>
-  ${'<'}script type="Note-Stickers" name="${AppletName}">
+  ${'<'}script type="importmap">
+  {
+    "imports": {
+      "javascript-interface-library":"https://rozek.github.io/javascript-interface-library/dist/javascript-interface-library.esm.js",
+      "htm/preact":                  "https://rozek.github.io/htm/preact/standalone.module.js",
+      "hyperactiv":                  "https://rozek.github.io/hyperactiv/dist/index.mjs",
+      "protoux":                     "https://rozek.github.io/protoux/dist/protoux.modern.js",
+      "nanoid":                      "https://rozek.github.io/nanoid/dist/nanoid.esm.js",
+      "nanoid-dictionary":           "https://rozek.github.io/nanoid-dictionary/dist/nanoid-dictionary.esm.js",
+      "shareable-note-stickers":     "https://rozek.github.io/shareable-note-stickers/dist/shareable-note-stickers.modern.js",
+      "sns-boardview":               "https://rozek.github.io/sns-boardview/dist/sns-boardview.modern.js",
+      "svelte-coordinate-conversion":"https://rozek.github.io/svelte-coordinate-conversion/dist/svelte-coordinate-conversion.esm.js"
+    }
+  }
+  ${'<'}/script>
+  ${'<'}script type="module" src="https://rozek.github.io/note-stickers-runtime/dist/note-stickers-runtime.js">${'<'}/script>
+  ${'<'}script type="NoteStickers" name="${AppletName}">
 ${JSON.stringify(AppletSerialization)}
   ${'<'}/script>
  </head>
- <body type="Note-Stickers" name="${AppletName}">
+ <body type="NoteStickers" name="${AppletName}">
  </body>
 </html>
     `.trim();
@@ -3534,10 +3549,10 @@ ${JSON.stringify(AppletSerialization)}
 /**** downloadEmbeddableApplet ****/
 function downloadEmbeddableApplet(AppletName, AppletSerialization) {
     const AppletSource = `
-  ${'<'}script type="Note-Stickers" name="${AppletName}">
+  ${'<'}script type="NoteStickers" name="${AppletName}">
 ${JSON.stringify(AppletSerialization)}
   ${'<'}/script>
-  <div type="Note-Stickers" name="${AppletName}">
+  <div type="NoteStickers" name="${AppletName}">
   </div>
     `.trim();
     const encodedSource = (new TextEncoder()).encode(AppletSource);
@@ -5096,7 +5111,6 @@ localforage.ready(function () {
     });
     fetchPersistedProjectList();
     showDialogCentered('ProjectBrowser');
-    print('ready for operation');
     Object.assign(window, {
         Application,
         MainScreen: PUX.ScreenNamed('MainScreen'),
