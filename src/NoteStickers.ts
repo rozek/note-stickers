@@ -3684,7 +3684,7 @@
         mayVisitPrevBoard:() => Application.mayVisitPrevBoard,
         mayVisitNextBoard:() => Application.mayVisitNextBoard,
         visitPrevBoard, visitNextBoard, visitBoard,
-        showConsole, hideConsole, clearConsole, print, println,
+        openConsole, closeConsole, clearConsole, print, println,
       }
 
       Application.Project.onChange(ProjectChangeCallback)
@@ -4112,15 +4112,15 @@
   let ConsoleLineCount:number = 0
   let ConsoleCharCount:number = 0
 
-/**** showConsole ****/
+/**** openConsole ****/
 
-  function showConsole ():void {
-    PUX.openDialog('Console')
+  function openConsole ():void {
+    showDialogCentered('Console')
   }
 
-/**** hideConsole ****/
+/**** closeConsole ****/
 
-  function hideConsole ():void {
+  function closeConsole ():void {
     PUX.closeDialog('Console')
   }
 
@@ -4240,7 +4240,7 @@
   }
 
   Object.assign(window,{ Console:{
-    show:showConsole, hide:hideConsole,
+    open:openConsole, close:closeConsole,
     clear:clearConsole, print:print, println:println
   } })
 
@@ -4381,12 +4381,27 @@
     html, body { width:100%; height:100%; width:100vw; height:100vh; margin:0px; padding:0px }
     html       { overflow:hidden scroll }
   </style>
-  ${'<'}script src="https://rozek.github.io/note-stickers-runtime/dist/note-stickers-runtime.js">${'<'}/script>
-  ${'<'}script type="Note-Stickers" name="${AppletName}">
+  ${'<'}script type="importmap">
+  {
+    "imports": {
+      "javascript-interface-library":"https://rozek.github.io/javascript-interface-library/dist/javascript-interface-library.esm.js",
+      "htm/preact":                  "https://rozek.github.io/htm/preact/standalone.module.js",
+      "hyperactiv":                  "https://rozek.github.io/hyperactiv/dist/index.mjs",
+      "protoux":                     "https://rozek.github.io/protoux/dist/protoux.modern.js",
+      "nanoid":                      "https://rozek.github.io/nanoid/dist/nanoid.esm.js",
+      "nanoid-dictionary":           "https://rozek.github.io/nanoid-dictionary/dist/nanoid-dictionary.esm.js",
+      "shareable-note-stickers":     "https://rozek.github.io/shareable-note-stickers/dist/shareable-note-stickers.modern.js",
+      "sns-boardview":               "https://rozek.github.io/sns-boardview/dist/sns-boardview.modern.js",
+      "svelte-coordinate-conversion":"https://rozek.github.io/svelte-coordinate-conversion/dist/svelte-coordinate-conversion.esm.js"
+    }
+  }
+  ${'<'}/script>
+  ${'<'}script type="module" src="https://rozek.github.io/note-stickers-runtime/dist/note-stickers-runtime.js">${'<'}/script>
+  ${'<'}script type="NoteStickers" name="${AppletName}">
 ${JSON.stringify(AppletSerialization)}
   ${'<'}/script>
  </head>
- <body type="Note-Stickers" name="${AppletName}">
+ <body type="NoteStickers" name="${AppletName}">
  </body>
 </html>
     `.trim()
@@ -4406,10 +4421,10 @@ ${JSON.stringify(AppletSerialization)}
     AppletName:SNS_Textline, AppletSerialization:Serializable
   ):void {
     const AppletSource:string = `
-  ${'<'}script type="Note-Stickers" name="${AppletName}">
+  ${'<'}script type="NoteStickers" name="${AppletName}">
 ${JSON.stringify(AppletSerialization)}
   ${'<'}/script>
-  <div type="Note-Stickers" name="${AppletName}">
+  <div type="NoteStickers" name="${AppletName}">
   </div>
     `.trim()
 
@@ -6391,7 +6406,6 @@ debugger // *C* remove or comment for production
     fetchPersistedProjectList()
     showDialogCentered('ProjectBrowser')
 
-    print('ready for operation')
 Object.assign(window,{ // just for testing
   Application,
   MainScreen:PUX.ScreenNamed('MainScreen'),
