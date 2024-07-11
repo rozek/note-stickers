@@ -21,7 +21,6 @@
   "scripts": {
     "compile": "tsc --target esnext --moduleResolution nodenext --module nodenext --skipLibCheck --allowSyntheticDefaultImports ./src/NoteStickers.ts",
     "build": "rimraf ./dist && mkdir ./dist && npm run compile && mv ./src/NoteStickers.js ./dist && cp ./index.html ./dist && mkdir ./dist/common ./dist/icons && cp ./common/* ./dist/common/ && cp ./icons/* ./dist/icons/",
-    "start": "live-server --port=12345 ./dist",
     "test": "npx cypress open"
   },
   "repository": {
@@ -29,9 +28,8 @@
     "url": "git+https://github.com/rozek/note-stickers.git"
   },
   "devDependencies": {
-    "cypress": "^13.13.0",
-    "live-server": "^1.2.2",
     "rimraf": "^3.0.2",
+    "testcafe": "^3.6.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
