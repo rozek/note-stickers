@@ -2854,7 +2854,7 @@
       case ! Board.isAttached:                return withWarning('the chosen board is no longer attached')
     }
 
-    Application.Mode = 'edit'
+//  Application.Mode = 'edit'
 
     doOperation(new SNS_StickerDeserializationOperation(
       Board, [TemplateOfBehavior(BehaviorName)], Board.StickerCount
@@ -2882,7 +2882,7 @@
       (Sticker:SNS_Sticker) => Sticker.Serialization
     )
 
-    Application.Mode = 'edit'
+//  Application.Mode = 'edit'
 
     doOperation(new SNS_StickerDeserializationOperation(
       Board, Serializations, Board.StickerCount
