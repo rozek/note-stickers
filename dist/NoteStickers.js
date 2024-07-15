@@ -2331,7 +2331,7 @@ function doCreateNewSticker(BehaviorName) {
         // @ts-ignore TS18048 "Board" is obviously *not* undefined here
         case !Board.isAttached: return withWarning('the chosen board is no longer attached');
     }
-    Application.Mode = 'edit';
+    //  Application.Mode = 'edit'
     doOperation(new SNS_StickerDeserializationOperation(Board, [TemplateOfBehavior(BehaviorName)], Board.StickerCount));
 }
 /**** doDuplicateStickers ****/
@@ -2349,7 +2349,7 @@ function doDuplicateStickers(StickerList) {
         case !Board.isAttached: return withWarning('the chosen board is no longer attached');
     }
     const Serializations = StickersSortedByIndex(StickerList).map((Sticker) => Sticker.Serialization);
-    Application.Mode = 'edit';
+    //  Application.Mode = 'edit'
     doOperation(new SNS_StickerDeserializationOperation(Board, Serializations, Board.StickerCount));
     /**** sticker offset is currently a separate operation ****/
     const StickerDuplicates = Application.selectedStickers;
